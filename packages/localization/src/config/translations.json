@@ -3665,5 +3665,7 @@
   "Disabled": "Disabled",
   "Enable MEV Protect": "Enable MEV Protect",
   "Add automatically on BNB Smart Chain:": "Add automatically on BNB Smart Chain:",
-  "PancakeSwap MEV Guard": "PancakeSwap MEV Guard"
+  "PancakeSwap MEV Guard": "PancakeSwap MEV Guard",
+  "No Existing Orders": "No Existing Orders",
+  "Existing Orders": "Existing Orders"
 }
