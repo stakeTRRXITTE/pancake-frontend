@@ -17,6 +17,7 @@ import { memo, useMemo } from 'react'
 
 import { RoutingSettingsButton } from 'components/Menu/GlobalSettings/SettingsModalV2'
 import { CurrencyLogoWrapper, RouterBox, RouterPoolBox, RouterTypeText } from 'views/Swap/components/RouterViewer'
+import { useToken } from 'hooks/Tokens'
 import { v3FeeToPercent } from '../utils/exchange'
 
 type Pair = [Currency, Currency]
@@ -69,6 +70,8 @@ export const RouteDisplay = memo(function RouteDisplay({ route }: RouteDisplayPr
   const { targetRef, tooltip, tooltipVisible } = useTooltip(<Text>{inputCurrency.symbol}</Text>, {
     placement: 'right',
   })
+  const inputToken = useToken(inputCurrency?.wrapped?.address)
+  const outputToken = useToken(outputCurrency?.wrapped?.address)
 
   const {
     targetRef: outputTargetRef,
@@ -141,7 +144,7 @@ export const RouteDisplay = memo(function RouteDisplay({ route }: RouteDisplayPr
           }}
           ref={targetRef}
         >
-          <CurrencyLogo size="100%" currency={inputCurrency} />
+          <CurrencyLogo size="100%" currency={inputToken ?? inputCurrency} />
           <RouterTypeText fontWeight="bold">{Math.round(route.percent)}%</RouterTypeText>
         </CurrencyLogoWrapper>
         {tooltipVisible && tooltip}
@@ -153,7 +156,7 @@ export const RouteDisplay = memo(function RouteDisplay({ route }: RouteDisplayPr
           }}
           ref={outputTargetRef}
         >
-          <CurrencyLogo size="100%" currency={outputCurrency} />
+          <CurrencyLogo size="100%" currency={outputToken ?? outputCurrency} />
         </CurrencyLogoWrapper>
         {outputTooltipVisible && outputTooltip}
       </RouterBox>
@@ -173,6 +176,8 @@ function PairNode({
   tooltipText: string
 }) {
   const [input, output] = pair
+  const inputToken = useToken(input?.wrapped?.address)
+  const outputToken = useToken(output?.wrapped?.address)
 
   const tooltip = useTooltip(tooltipText)
 
@@ -185,7 +190,7 @@ function PairNode({
           md: '32px',
         }}
       >
-        <CurrencyLogo size="100%" currency={input} />
+        <CurrencyLogo size="100%" currency={inputToken ?? input} />
       </AtomBox>
       <AtomBox
         size={{
@@ -193,7 +198,7 @@ function PairNode({
           md: '32px',
         }}
       >
-        <CurrencyLogo size="100%" currency={output} />
+        <CurrencyLogo size="100%" currency={outputToken ?? output} />
       </AtomBox>
       <RouterTypeText>{text}</RouterTypeText>
     </RouterPoolBox>
