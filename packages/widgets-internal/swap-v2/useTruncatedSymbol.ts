@@ -10,13 +10,12 @@ export const useTruncatedSymbol = (symbol?: string) => {
   const { isMobile } = useMatchBreakpoints();
 
   const shortedSymbol = useMemo(() => {
-    const CUTOFF_FONT_SIZE = isMobile ? { left: 3, right: 3 } : { left: 5, right: 4 };
-    if (symbol && symbol.length > CUTOFF_FONT_SIZE.left + CUTOFF_FONT_SIZE.right) {
-      return `${symbol.slice(0, CUTOFF_FONT_SIZE.left)}...${symbol.slice(
-        symbol.length - CUTOFF_FONT_SIZE.right,
-        symbol.length
-      )}`;
+    const CUTOFF = isMobile ? { left: 3, right: 3 } : { left: 5, right: 4 };
+
+    if (symbol && symbol.length > CUTOFF.left + CUTOFF.right) {
+      return `${symbol.slice(0, CUTOFF.left)}...${symbol.slice(symbol.length - CUTOFF.right, symbol.length)}`;
     }
+
     return symbol;
   }, [symbol, isMobile]);
 
