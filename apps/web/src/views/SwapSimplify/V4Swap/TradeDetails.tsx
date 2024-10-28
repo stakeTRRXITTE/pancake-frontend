@@ -64,7 +64,9 @@ export const TradeDetails = memo(function TradeDetails({ loaded, order }: Props)
           priceImpactWithoutFee={priceImpactWithoutFee ?? undefined}
           realizedLPFee={lpFeeAmount ?? undefined}
           hasStablePair={hasStablePool}
-          gasTokenSelector={isPaymasterAvailable && <GasTokenSelector currency={order?.trade.inputAmount.currency} />}
+          gasTokenSelector={
+            isPaymasterAvailable && <GasTokenSelector inputCurrency={order?.trade.inputAmount.currency} />
+          }
           loading={!loaded}
         />
         <Box mt="10px" pl="4px">

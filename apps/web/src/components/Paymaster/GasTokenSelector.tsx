@@ -118,10 +118,10 @@ const StyledWarningIcon = styled(WarningIcon)`
 `
 
 interface GasTokenSelectorProps {
-  currency?: Currency
+  inputCurrency?: Currency
 }
 
-export const GasTokenSelector = ({ currency: inputCurrency }: GasTokenSelectorProps) => {
+export const GasTokenSelector = ({ inputCurrency }: GasTokenSelectorProps) => {
   const { t } = useTranslation()
   const { isOpen, setIsOpen, onDismiss } = useModalV2()
   const { address: account } = useAccount()
