@@ -1,6 +1,5 @@
 import { Currency, Price } from "@pancakeswap/swap-sdk-core";
 import { FlexGap, SkeletonV2, SwapHorizIcon, Text } from "@pancakeswap/uikit";
-import { formatPrice } from "@pancakeswap/utils/formatFractions";
 import { useState } from "react";
 import { useTruncatedSymbol } from "./useTruncatedSymbol";
 import { formatSwapPrice } from "./utils";
@@ -13,7 +12,8 @@ interface TradePriceProps {
 export function TradePrice({ price, loading }: TradePriceProps) {
   const [showInverted, setShowInverted] = useState<boolean>(false);
 
-  const formattedPrice = formatSwapPrice(showInverted ? formatPrice(price, 6) : formatPrice(price?.invert(), 6));
+  const formattedPrice = showInverted ? formatSwapPrice(price, 6) : formatSwapPrice(price?.invert(), 6);
+
   const show = Boolean(price?.baseCurrency && price?.quoteCurrency);
 
   const quoteSymbol = useTruncatedSymbol(showInverted ? price?.baseCurrency?.symbol : price?.quoteCurrency?.symbol);
