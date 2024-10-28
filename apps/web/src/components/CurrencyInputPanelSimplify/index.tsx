@@ -14,8 +14,8 @@ import {
   useModal,
 } from '@pancakeswap/uikit'
 import { formatAmount } from '@pancakeswap/utils/formatFractions'
-import { CurrencyLogo, DoubleCurrencyLogo, SwapUIV2 } from '@pancakeswap/widgets-internal'
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { CurrencyLogo, DoubleCurrencyLogo, SwapUIV2, useTruncatedSymbol } from '@pancakeswap/widgets-internal'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 
 import { formatNumber } from '@pancakeswap/utils/formatBalance'
@@ -27,6 +27,7 @@ import { FiatLogo } from 'components/Logo/CurrencyLogo'
 import { useCurrencyBalance } from 'state/wallet/hooks'
 import { useAccount } from 'wagmi'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
+
 import { FONT_SIZE, LOGO_SIZE, useFontSize } from './state'
 
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })`
@@ -40,11 +41,11 @@ const SymbolText = styled(Text)`
   font-size: ${FONT_SIZE.LARGE}px;
 `
 
-const formatDollarAmount = (amount: number) => {
-  if (amount > 0 && amount < 0.01) {
+const formatNumberWithMinimum = (value: number) => {
+  if (value > 0 && value < 0.01) {
     return '<0.01'
   }
-  return formatNumber(amount)
+  return formatNumber(value)
 }
 
 const useSizeAdaption = (value: string, currencySymbol?: string, otherCurrencySymbol?: string) => {
@@ -59,19 +60,9 @@ const useSizeAdaption = (value: string, currencySymbol?: string, otherCurrencySy
     otherCurrencySymbol ?? '',
   )
 
-  const { isMobile, isXs, isSm } = useMatchBreakpoints()
+  const { isXs, isSm } = useMatchBreakpoints()
 
-  const shortedSymbol = useMemo(() => {
-    const CUTOFF_FONT_SIZE = isMobile ? { left: 3, right: 3 } : { left: 5, right: 4 }
-
-    if (currencySymbol && currencySymbol.length > 8) {
-      return `${currencySymbol.slice(0, CUTOFF_FONT_SIZE.left)}...${currencySymbol.slice(
-        currencySymbol.length - CUTOFF_FONT_SIZE.right,
-        currencySymbol.length,
-      )}`
-    }
-    return currencySymbol
-  }, [currencySymbol, isMobile])
+  const shortedSymbol = useTruncatedSymbol(currencySymbol)
 
   useEffect(() => {
     if (!inputRef.current || !symbolRef.current || !wrapperRef.current || !tokenImageRef.current) return
@@ -351,7 +342,7 @@ const CurrencyInputPanelSimplify = memo(function CurrencyInputPanel({
                 ) : showUSDPrice && Number.isFinite(amountInDollar) ? (
                   <>
                     <Text fontSize="14px" color="textSubtle" ellipsis>
-                      {`~${amountInDollar && formatDollarAmount(amountInDollar)}`}
+                      {`~${amountInDollar && formatNumberWithMinimum(amountInDollar)}`}
                     </Text>
                     <Text ml="4px" fontSize="14px" color="textSubtle">
                       USD
