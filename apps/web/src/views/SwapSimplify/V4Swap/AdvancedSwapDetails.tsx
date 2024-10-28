@@ -3,6 +3,7 @@ import { Currency, CurrencyAmount, Percent, TradeType } from '@pancakeswap/sdk'
 import { LegacyPair as Pair } from '@pancakeswap/smart-router/legacy-router'
 import {
   AutoColumn,
+  DottedHelpText,
   Flex,
   Link,
   Modal,
@@ -21,21 +22,12 @@ import { NumberDisplay } from '@pancakeswap/widgets-internal'
 import { RowBetween, RowFixed } from 'components/Layout/Row'
 import { RoutingSettingsButton } from 'components/Menu/GlobalSettings/SettingsModalV2'
 import { Field } from 'state/swap/actions'
-import { styled } from 'styled-components'
 import FormattedPriceImpact from '../../Swap/components/FormattedPriceImpact'
 import { RouterViewer } from '../../Swap/components/RouterViewer'
 import SwapRoute from '../../Swap/components/SwapRoute'
 import { useFeeSaved } from '../../Swap/hooks/useFeeSaved'
 import { SlippageButton } from '../../Swap/V3Swap/components/SlippageButton'
 import { SlippageAdjustedAmounts } from '../../Swap/V3Swap/utils/exchange'
-
-const DetailsTitle = styled(Text)`
-  text-decoration: underline dotted;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.textSubtle};
-  line-height: 150%;
-  cursor: help;
-`
 
 export const TradeSummary = memo(function TradeSummary({
   inputAmount,
@@ -75,7 +67,7 @@ export const TradeSummary = memo(function TradeSummary({
             )}
             placement="top"
           >
-            <DetailsTitle>{isExactIn ? t('Minimum received') : t('Maximum sold')}</DetailsTitle>
+            <DottedHelpText>{isExactIn ? t('Minimum received') : t('Maximum sold')}</DottedHelpText>
           </QuestionHelperV2>
         </RowFixed>
         <RowFixed>
@@ -99,7 +91,7 @@ export const TradeSummary = memo(function TradeSummary({
               }
               placement="top"
             >
-              <DetailsTitle>{t('Fee saved')}</DetailsTitle>
+              <DottedHelpText>{t('Fee saved')}</DottedHelpText>
             </QuestionHelperV2>
           </RowFixed>
           <SkeletonV2 width="100px" height="16px" borderRadius="8px" minHeight="auto" isDataReady={!loading}>
@@ -148,7 +140,7 @@ export const TradeSummary = memo(function TradeSummary({
               }
               placement="top"
             >
-              <DetailsTitle>{t('Price Impact')}</DetailsTitle>
+              <DottedHelpText>{t('Price Impact')}</DottedHelpText>
             </QuestionHelperV2>
           </RowFixed>
           <SkeletonV2 width="50px" height="16px" borderRadius="8px" minHeight="auto" isDataReady={!loading}>
@@ -179,7 +171,7 @@ export const TradeSummary = memo(function TradeSummary({
             }
             placement="top"
           >
-            <DetailsTitle>{t('Slippage Tolerance')}</DetailsTitle>
+            <DottedHelpText>{t('Slippage Tolerance')}</DottedHelpText>
           </QuestionHelperV2>
         </RowFixed>
         <SlippageButton slippage={allowedSlippage} />
@@ -220,9 +212,9 @@ export const TradeSummary = memo(function TradeSummary({
               }
               placement="top"
             >
-              <DetailsTitle fontSize="14px" color="textSubtle">
+              <DottedHelpText fontSize="14px" color="textSubtle">
                 {t('Trading Fee')}
-              </DetailsTitle>
+              </DottedHelpText>
             </QuestionHelperV2>
           </RowFixed>
           <SkeletonV2 width="70px" height="16px" borderRadius="8px" minHeight="auto" isDataReady={!loading}>

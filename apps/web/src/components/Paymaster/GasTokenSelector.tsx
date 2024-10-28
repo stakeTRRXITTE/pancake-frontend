@@ -6,6 +6,7 @@ import {
   Button,
   CircleLoader,
   Column,
+  DottedHelpText,
   Flex,
   Heading,
   ModalBody,
@@ -15,8 +16,7 @@ import {
   ModalTitle,
   ModalV2,
   QuestionHelper,
-  RowBetween,
-  RowFixed,
+  QuestionHelperV2,
   Text,
   WarningIcon,
   useModalV2,
@@ -35,6 +35,7 @@ import { useAccount, useConfig } from 'wagmi'
 
 import { Currency } from '@pancakeswap/swap-sdk-core'
 import { watchAccount } from '@wagmi/core'
+import { RowBetween, RowFixed } from 'components/Layout/Row'
 import { DEFAULT_PAYMASTER_TOKEN, paymasterInfo, paymasterTokens } from 'config/paymaster'
 import { useGasToken } from 'hooks/useGasToken'
 
@@ -265,12 +266,9 @@ export const GasTokenSelector = ({ currency: inputCurrency }: GasTokenSelectorPr
 
   return (
     <>
-      <RowBetween style={{ padding: '4px 0 0 0' }}>
+      <RowBetween mb="4px">
         <RowFixed>
-          <Text fontSize="14px" color="textSubtle">
-            {t('Gas Token')}
-          </Text>
-          <QuestionHelper
+          <QuestionHelperV2
             text={
               <>
                 <Text mb="12px">
@@ -285,11 +283,12 @@ export const GasTokenSelector = ({ currency: inputCurrency }: GasTokenSelectorPr
                 </Text>
               </>
             }
-            ml="4px"
             placement="top"
-          />
+          >
+            <DottedHelpText>{t('Gas Token')}</DottedHelpText>
+          </QuestionHelperV2>
           {gasTokenInfo && gasTokenInfo.discount && (
-            <Badge ref={targetRef} style={{ fontSize: '12px', fontWeight: 600, padding: '3px 5px', marginLeft: '4px' }}>
+            <Badge ref={targetRef} style={{ fontSize: '12px', fontWeight: 600, padding: '3px 5px', marginLeft: '6px' }}>
               ⛽️ {gasTokenInfo.discountLabel ?? gasTokenInfo.discount}
             </Badge>
           )}
