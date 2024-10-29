@@ -34,11 +34,10 @@ export const RouteDisplayModal = memo(function RouteDisplayModal({ isOpen, onDis
     <ModalV2 closeOnOverlayClick isOpen={isOpen} onDismiss={onDismiss} minHeight="0">
       <Modal
         title={
-          <Flex justifyContent="center">
-            {t('Route')}{' '}
+          <Flex justifyContent="center" style={{ gap: '4px' }}>
+            {t('Route')}
             <QuestionHelper
               text={t('Routing through these tokens resulted in the best price for your trade.')}
-              ml="4px"
               placement="top-start"
             />
           </Flex>
