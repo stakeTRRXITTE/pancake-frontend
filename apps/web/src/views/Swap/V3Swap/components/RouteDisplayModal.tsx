@@ -34,7 +34,7 @@ export const RouteDisplayModal = memo(function RouteDisplayModal({ isOpen, onDis
     <ModalV2 closeOnOverlayClick isOpen={isOpen} onDismiss={onDismiss} minHeight="0">
       <Modal
         title={
-          <Flex justifyContent="center" style={{ gap: '4px' }}>
+          <Flex alignItems="center" style={{ gap: '4px' }}>
             {t('Route')}
             <QuestionHelper
               text={t('Routing through these tokens resulted in the best price for your trade.')}
@@ -175,8 +175,8 @@ function PairNode({
   tooltipText: string
 }) {
   const [input, output] = pair
-  const inputToken = useToken(input?.wrapped?.address)
-  const outputToken = useToken(output?.wrapped?.address)
+  const inputToken = useToken(input?.isNative ? undefined : input?.wrapped?.address)
+  const outputToken = useToken(output?.isNative ? undefined : output?.wrapped?.address)
 
   const tooltip = useTooltip(tooltipText)
 
