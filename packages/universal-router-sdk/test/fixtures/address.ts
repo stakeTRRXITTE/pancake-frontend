@@ -1,18 +1,20 @@
 import { ChainId } from '@pancakeswap/chains'
 import { getPermit2Address } from '@pancakeswap/permit2-sdk'
-import { CurrencyAmount, ERC20Token, Pair, Percent } from '@pancakeswap/sdk'
-import { PoolType, SmartRouter, StablePool, V2Pool, V3Pool } from '@pancakeswap/smart-router'
+import { Currency, CurrencyAmount, ERC20Token, Native, Pair, Percent } from '@pancakeswap/sdk'
+import { PoolType, SmartRouter, StablePool, V2Pool, V3Pool, V4ClPool } from '@pancakeswap/smart-router'
 import {
+  computePoolAddress,
   DEPLOYER_ADDRESSES,
+  encodeSqrtRatioX96,
   FeeAmount,
+  nearestUsableTick,
   Pool,
   TICK_SPACINGS,
   TickMath,
-  computePoolAddress,
-  encodeSqrtRatioX96,
-  nearestUsableTick,
 } from '@pancakeswap/v3-sdk'
+import { CLPoolParameter, getPoolId, PoolKey } from '@pancakeswap/v4-sdk'
 import { getUniversalRouterAddress } from '../../src'
+import { currencyAddressV4 } from '../../src/utils/currencyAddressV4'
 import { Provider } from './clients'
 import { BUSD, CAKE, ETHER, USDC, USDT, WBNB, WETH9 } from './constants/tokens'
 
@@ -78,6 +80,21 @@ export const convertPoolToV3Pool = (pool: Pool): V3Pool => {
     token1ProtocolFee: new Percent(0, 100),
   }
 }
+
+export const convertPoolToV4CLPool = (pool: Pool): V4ClPool => {
+  return {
+    type: PoolType.V4CL,
+    currency0: pool.token0,
+    currency1: pool.token1,
+    fee: pool.fee,
+    tickSpacing: TICK_SPACINGS[pool.fee],
+    liquidity: pool.liquidity,
+    sqrtRatioX96: pool.sqrtRatioX96,
+    tick: pool.tickCurrent,
+    poolManager: DEPLOYER_ADDRESSES[pool.token0.chainId],
+    id: Pool.getAddress(pool.token0, pool.token1, pool.fee),
+  }
+}
 export const convertPairToV2Pool = (pair: Pair): V2Pool => ({
   type: PoolType.V2,
   reserve0: pair.reserve0,
@@ -87,6 +104,42 @@ export const convertPairToV2Pool = (pair: Pair): V2Pool => ({
 export const convertV3PoolToSDKPool = ({ token0, token1, fee, sqrtRatioX96, liquidity, tick, ticks }: V3Pool) =>
   new Pool(token0.wrapped, token1.wrapped, fee, sqrtRatioX96, liquidity, tick, ticks)
 export const convertV2PoolToSDKPool = ({ reserve1, reserve0 }: V2Pool) => new Pair(reserve0.wrapped, reserve1.wrapped)
+
+const fixtureClPoolV4 = ({
+  currency0,
+  currency1,
+  feeAmount = FeeAmount.MEDIUM,
+  parameters,
+}: {
+  currency0: Currency
+  currency1: Currency
+  feeAmount: FeeAmount
+  parameters: CLPoolParameter
+}): V4ClPool => {
+  // eslint-disable-next-line no-console
+  const poolKey: PoolKey<'CL'> = {
+    currency0: currencyAddressV4(currency0),
+    currency1: currencyAddressV4(currency1),
+    poolManager: '0x',
+    fee: feeAmount,
+    parameters,
+  }
+  const id = getPoolId(poolKey)
+
+  const pool: V4ClPool = {
+    type: PoolType.V4CL,
+    currency0,
+    currency1,
+    fee: feeAmount,
+    tickSpacing: TICK_SPACINGS[feeAmount],
+    liquidity: 0n,
+    sqrtRatioX96: 0n,
+    tick: 0,
+    poolManager: '0x',
+    id,
+  }
+  return pool
+}
 
 const fixturePool = ({
   tokenA,
@@ -172,6 +225,18 @@ export const fixtureAddresses = async (chainId: ChainId, liquidity: bigint) => {
     }),
   }
 
+  const ether: Currency = Native.onChain(chainId)
+  const v4Pools = {
+    ETH_USDC_CL_V4: fixtureClPoolV4({
+      currency0: ether,
+      currency1: USDC,
+      feeAmount: FeeAmount.LOW,
+      parameters: {
+        tickSpacing: 100,
+      },
+    }),
+  }
+
   const UNIVERSAL_ROUTER = getUniversalRouterAddress(chainId)
   const PERMIT2 = getPermit2Address(chainId)
 
@@ -179,6 +244,7 @@ export const fixtureAddresses = async (chainId: ChainId, liquidity: bigint) => {
     ...tokens,
     ...v2Pairs,
     ...v3Pools,
+    ...v4Pools,
     UNIVERSAL_ROUTER,
     PERMIT2,
   }

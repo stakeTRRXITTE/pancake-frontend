@@ -29,6 +29,7 @@
     "dev": "tsup --watch",
     "coverage": "vitest run --coverage",
     "test": "vitest --run",
+    "testv4": "vitest -t case1 --run",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "format:check": "prettier --check --loglevel error \"{src,test}/**/*.{js,jsx,ts,tsx,json}\"",
     "format:write": "prettier --write \"{src,test}/**/*.{js,jsx,ts,tsx,json}\"",
@@ -47,6 +48,7 @@
     "@pancakeswap/sdk": "workspace:*",
     "@pancakeswap/smart-router": "workspace:*",
     "@pancakeswap/v3-sdk": "workspace:*",
+    "@pancakeswap/v4-sdk": "workspace:*",
     "abitype": "^0.9.8",
     "tiny-invariant": "^1.1.0",
     "viem": "catalog:"
