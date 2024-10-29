@@ -70,8 +70,8 @@ export const RouteDisplay = memo(function RouteDisplay({ route }: RouteDisplayPr
   const { targetRef, tooltip, tooltipVisible } = useTooltip(<Text>{inputCurrency.symbol}</Text>, {
     placement: 'right',
   })
-  const inputToken = useToken(inputCurrency?.wrapped?.address)
-  const outputToken = useToken(outputCurrency?.wrapped?.address)
+  const inputToken = useToken(inputCurrency?.isNative ? undefined : inputCurrency?.wrapped?.address)
+  const outputToken = useToken(outputCurrency?.isNative ? undefined : outputCurrency?.wrapped?.address)
 
   const {
     targetRef: outputTargetRef,
