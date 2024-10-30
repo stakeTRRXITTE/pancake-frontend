@@ -1,6 +1,7 @@
 import { useTranslation } from '@pancakeswap/localization'
-import { Link, Message, MessageText, Text } from '@pancakeswap/uikit'
+import { Message, MessageText, Text } from '@pancakeswap/uikit'
 import { PoolInfo } from 'state/farmsV4/state/type'
+import { TextLink } from 'views/Ifos/components/IfoCardStyles'
 import { useRouterQuery } from '../hooks/useRouterQuery'
 
 const ONE_BILLION = 1_000_000_000
@@ -17,18 +18,10 @@ export const PoolTvlWarning = ({ poolInfo }: { poolInfo: PoolInfo }) => {
     <Message my="24px" mx="24px" variant="warning">
       <MessageText fontSize="17px">
         <Text color="warning" as="span">
-          {t('TVL and APR data may not be reflected correctly due to technical limitation, please refer to')}
-          <Link
-            href={link}
-            external
-            style={{
-              display: 'inline',
-              marginLeft: '4px',
-              marginRight: '4px',
-            }}
-          >
+          {t('TVL and APR data may not be reflected correctly due to technical limitation, please refer to')}{' '}
+          <TextLink target="_blank" href={link}>
             {t('this link')}
-          </Link>
+          </TextLink>{' '}
           {t('for accurate values')}
         </Text>
       </MessageText>
