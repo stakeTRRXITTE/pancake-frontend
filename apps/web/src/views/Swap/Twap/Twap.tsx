@@ -91,6 +91,7 @@ const useBestTrade = (fromToken?: string, toToken?: string, value?: string) => {
     stableSwap,
     type: 'auto',
     trackPerf: true,
+    enabled: Boolean(amount),
   })
 
   return {

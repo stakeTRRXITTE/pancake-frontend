@@ -144,6 +144,7 @@ export function useSwapBestTrade({ maxHops }: Options = {}) {
     stableSwap: stableSwapEnable,
     type: 'auto',
     trackPerf: true,
+    enabled: Boolean(amount),
   })
   const [loading, setLoading] = useState(false)
   const refresh = useCallback(async () => {
