@@ -27,7 +27,6 @@ const nextConfig = {
     optimizePackageImports: ['@pancakeswap/widgets-internal', '@pancakeswap/uikit'],
   },
   reactStrictMode: true,
-  swcMinify: false,
   transpilePackages: [
     '@pancakeswap/uikit',
     '@pancakeswap/hooks',
