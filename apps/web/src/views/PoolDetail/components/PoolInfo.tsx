@@ -14,7 +14,7 @@ import { MyPositions } from './MyPositions'
 import { PoolCharts } from './PoolCharts'
 import { PoolCurrencies } from './PoolCurrencies'
 import { PoolStatus } from './PoolStatus'
-import { PoolTvlWarning } from './PoolTvlWarnning'
+import { PoolTvlWarning } from './PoolTvlWarning'
 import { Transactions } from './Transactions/Transactions'
 
 const Header = styled.div`
