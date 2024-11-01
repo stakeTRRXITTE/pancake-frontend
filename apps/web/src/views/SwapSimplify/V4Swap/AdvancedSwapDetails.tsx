@@ -18,7 +18,7 @@ import { formatAmount, formatFraction } from '@pancakeswap/utils/formatFractions
 import { useUserSlippage } from '@pancakeswap/utils/user'
 import React, { memo, useState } from 'react'
 
-import { NumberDisplay } from '@pancakeswap/widgets-internal'
+import { NumberDisplay, useTruncatedSymbol } from '@pancakeswap/widgets-internal'
 import { RowBetween, RowFixed } from 'components/Layout/Row'
 import { RoutingSettingsButton } from 'components/Menu/GlobalSettings/SettingsModalV2'
 import { Field } from 'state/swap/actions'
@@ -56,6 +56,9 @@ export const TradeSummary = memo(function TradeSummary({
   const { feeSavedAmount, feeSavedUsdValue } = useFeeSaved(inputAmount, outputAmount)
   const [allowedSlippage] = useUserSlippage()
 
+  const inputCurrencySymbol = useTruncatedSymbol(inputAmount?.currency?.symbol)
+  const outputCurrencySymbol = useTruncatedSymbol(outputAmount?.currency?.symbol)
+
   return (
     <AutoColumn px="4px">
       {gasTokenSelector}
@@ -73,9 +76,18 @@ export const TradeSummary = memo(function TradeSummary({
         <RowFixed>
           <SkeletonV2 width="80px" height="16px" borderRadius="8px" minHeight="auto" isDataReady={!loading}>
             <Text fontSize="14px">
+              {/* <NumberDisplay
+                value={
+                  isExactIn
+                    ? slippageAdjustedAmounts[Field.OUTPUT]?.toExact()
+                    : slippageAdjustedAmounts[Field.INPUT]?.toExact()
+                }
+                fontSize="14px"
+              />
+              {isExactIn ? ` ${outputCurrencySymbol}` : ` ${inputCurrencySymbol}`} */}
               {isExactIn
-                ? `${formatAmount(slippageAdjustedAmounts[Field.OUTPUT], 4) ?? '-'} ${outputAmount?.currency?.symbol}`
-                : `${formatAmount(slippageAdjustedAmounts[Field.INPUT], 4) ?? '-'} ${inputAmount?.currency?.symbol}`}
+                ? `${formatAmount(slippageAdjustedAmounts[Field.OUTPUT], 4) ?? '-'} ${outputCurrencySymbol}`
+                : `${formatAmount(slippageAdjustedAmounts[Field.INPUT], 4) ?? '-'} ${inputCurrencySymbol}`}
             </Text>
           </SkeletonV2>
         </RowFixed>
@@ -100,7 +112,7 @@ export const TradeSummary = memo(function TradeSummary({
                 as="span"
                 fontSize={14}
                 value={formatAmount(feeSavedAmount, 2)}
-                suffix={` ${outputAmount?.currency?.symbol}`}
+                suffix={` ${outputCurrencySymbol}`}
                 color="positive60"
               />
               <NumberDisplay
