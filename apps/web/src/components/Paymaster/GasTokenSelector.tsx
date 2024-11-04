@@ -2,6 +2,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import {
   ArrowDropDownIcon,
   ArrowForwardIcon,
+  AtomBoxProps,
   Box,
   Button,
   CircleLoader,
@@ -41,8 +42,10 @@ import { DEFAULT_PAYMASTER_TOKEN, paymasterInfo, paymasterTokens } from 'config/
 import { useGasToken } from 'hooks/useGasToken'
 
 // Selector Styles
-const GasTokenSelectButton = styled(Button).attrs({ variant: 'text', scale: 'xs' })`
-  padding: 18px 0 18px 6px;
+const GasTokenSelectButton = styled(Button).attrs({ variant: 'tertiary', scale: 'xs' })`
+  padding: 16px 0 14px 6px;
+  border-radius: 12px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 `
 
 // Modal Styles
@@ -108,7 +111,7 @@ const SameTokenWarningBox = styled(Box)`
   font-size: 13px;
   background-color: #ffb2371a;
   padding: 10px;
-  margin: 5px 0 8px;
+  margin-bottom: 8px;
   color: ${({ theme }) => theme.colors.yellow};
   border: 1px solid ${({ theme }) => theme.colors.yellow};
   border-radius: ${({ theme }) => theme.radii['12px']};
@@ -118,11 +121,11 @@ const StyledWarningIcon = styled(WarningIcon)`
   fill: ${({ theme }) => theme.colors.yellow};
 `
 
-interface GasTokenSelectorProps {
-  currency?: Currency
+interface GasTokenSelectorProps extends AtomBoxProps {
+  inputCurrency?: Currency
 }
 
-export const GasTokenSelector = ({ currency: inputCurrency }: GasTokenSelectorProps) => {
+export const GasTokenSelector = ({ inputCurrency, ...props }: GasTokenSelectorProps) => {
   const { t } = useTranslation()
   const { isOpen, setIsOpen, onDismiss } = useModalV2()
   const { address: account } = useAccount()
@@ -267,7 +270,7 @@ export const GasTokenSelector = ({ currency: inputCurrency }: GasTokenSelectorPr
 
   return (
     <>
-      <RowBetween style={{ padding: '0 0 4px 0' }}>
+      <RowBetween style={{ padding: '0 0 4px 0' }} {...props}>
         <RowFixed>
           <QuestionHelperV2
             text={
@@ -309,7 +312,7 @@ export const GasTokenSelector = ({ currency: inputCurrency }: GasTokenSelectorPr
               <p style={{ position: 'absolute', bottom: '-2px', right: '-6px', fontSize: '14px' }}>⛽️</p>
             </div>
 
-            <Text marginLeft={2} fontSize={14} bold>
+            <Text color="primary60" marginLeft={2} fontSize={14} bold>
               {(gasToken && gasToken.symbol && gasToken.symbol.length > 10
                 ? `${gasToken.symbol.slice(0, 4)}...${gasToken.symbol.slice(
                     gasToken.symbol.length - 5,
@@ -317,7 +320,7 @@ export const GasTokenSelector = ({ currency: inputCurrency }: GasTokenSelectorPr
                   )}`
                 : gasToken?.symbol) || ''}
             </Text>
-            <ArrowDropDownIcon marginLeft={1} />
+            <ArrowDropDownIcon color="primary60" marginLeft={1} />
           </Flex>
         </GasTokenSelectButton>
       </RowBetween>
