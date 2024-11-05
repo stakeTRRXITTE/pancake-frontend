@@ -38,7 +38,9 @@ export const getAllGauges = async (
   if (!killed) allActiveGaugeInfos = allActiveGaugeInfos.filter((gauge) => !gauge.killed)
 
   const allGaugeInfoConfigs = allActiveGaugeInfos.reduce((prev, gauge) => {
-    const filters = presets.filter((p) => p.address === gauge.pairAddress && Number(p.chainId) === gauge.chainId)
+    const filters = presets.filter(
+      (p) => p.address.toLowerCase() === gauge.pairAddress.toLowerCase() && Number(p.chainId) === gauge.chainId,
+    )
     let preset: GaugeConfig
 
     if (!filters.length) return prev
