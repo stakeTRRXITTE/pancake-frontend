@@ -45,7 +45,10 @@ export function FormMain({ inputAmount, outputAmount, tradeLoading, isUserInsuff
   const inputCurrency = useCurrency(inputCurrencyId)
   const outputCurrency = useCurrency(outputCurrencyId)
   const { onCurrencySelection, onUserInput } = useSwapActionHandlers()
-  const [inputBalance] = useCurrencyBalances(account, [inputCurrency, outputCurrency])
+  const [inputBalance] = useCurrencyBalances(
+    account,
+    useMemo(() => [inputCurrency, outputCurrency], [inputCurrency, outputCurrency]),
+  )
   const maxAmountInput = useMemo(() => maxAmountSpend(inputBalance), [inputBalance])
   const loadedUrlParams = useDefaultsFromURLSearch()
   const handleTypeInput = useCallback((value: string) => onUserInput(Field.INPUT, value), [onUserInput])

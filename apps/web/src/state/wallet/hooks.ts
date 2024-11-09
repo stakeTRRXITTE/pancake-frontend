@@ -94,6 +94,14 @@ export function useTokenBalancesWithLoadingIndicator(
   ]
 }
 
+/**
+ * Fetch token balances for a given address and set of tokens.
+ *
+ * @param address - The user's wallet address. If not provided, returns undefined for all balances.
+ * @param tokens - Array of tokens to fetch balances for. Memoize this array to avoid repeated `JSON.stringify` calls on every render.
+ *
+ * @returns - Array of token balances or undefined if a balance is unavailable.
+ */
 export function useTokenBalances(
   address?: string,
   tokens?: (Token | undefined)[],
@@ -111,6 +119,14 @@ export function useTokenBalance(account?: string, token?: Token): CurrencyAmount
   return tokenBalances[token.address]
 }
 
+/**
+ * Fetch balances for specified currencies and a given account.
+ *
+ * @param account - The user's account address. If not provided, returns undefined for all balances.
+ * @param currencies - Array of currencies to fetch balances for. Memoize this array to avoid repeated `JSON.stringify` calls on every render.
+ *
+ * @returns - Array of balances or undefined if a balance is unavailable.
+ */
 export function useCurrencyBalances(
   account?: string,
   currencies?: (Currency | undefined | null)[],

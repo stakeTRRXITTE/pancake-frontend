@@ -13,10 +13,10 @@ export function useUserInsufficientBalance(order: PriceOrder | undefined): boole
   const [inputCurrency, outputCurrency] = useSwapCurrency()
   const { tradeLoaded } = useAllTypeBestTrade()
   const { address: account } = useAccount()
-  const relevantTokenBalances = useCurrencyBalances(account ?? undefined, [
-    inputCurrency ?? undefined,
-    outputCurrency ?? undefined,
-  ])
+  const relevantTokenBalances = useCurrencyBalances(
+    account ?? undefined,
+    useMemo(() => [inputCurrency ?? undefined, outputCurrency ?? undefined], [inputCurrency, outputCurrency]),
+  )
 
   const slippageAdjustedAmounts = useSlippageAdjustedAmounts(order)
   const isInsufficientBalance = useMemo(() => {
