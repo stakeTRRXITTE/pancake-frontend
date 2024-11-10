@@ -39,7 +39,6 @@ export function useV3PositionsFromTokenIds(tokenIds: bigint[] | undefined): UseV
 
   const { isLoading, data: positions = [] } = useReadContracts({
     contracts: inputs,
-    allowFailure: true,
     query: {
       enabled: !!inputs.length,
     },
@@ -147,7 +146,6 @@ export function useV3TokenIdsByAccount(
     refetch: refetchTokenIds,
   } = useReadContracts({
     contracts: tokenIdsArgs,
-    allowFailure: true,
     query: {
       enabled: !!tokenIdsArgs.length,
     },

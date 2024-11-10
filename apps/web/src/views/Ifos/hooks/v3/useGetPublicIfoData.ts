@@ -188,7 +188,6 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
               args: [1n],
             },
           ],
-          allowFailure: true,
         })
 
       const poolBasicFormatted = formatPool(poolBasic)

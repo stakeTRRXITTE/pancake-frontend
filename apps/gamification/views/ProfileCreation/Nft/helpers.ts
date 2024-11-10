@@ -212,7 +212,6 @@ export const fetchWalletTokenIdsForCollections = async (
 
   const balanceOfCallsResultRaw = await client.multicall({
     contracts: balanceOfCalls,
-    allowFailure: true,
   })
 
   const balanceOfCallsResult = balanceOfCallsResultRaw.map((r) => r.result)
@@ -235,7 +234,6 @@ export const fetchWalletTokenIdsForCollections = async (
 
   const tokenIdResultRaw = await client.multicall({
     contracts: tokenIdCalls,
-    allowFailure: true,
   })
 
   const tokenIdResult = tokenIdResultRaw.map((r) => r.result)
@@ -271,7 +269,6 @@ export const fetchWalletTokenIdsForCollections = async (
 
   const walletOfOwnerCallResult = await client.multicall({
     contracts: walletOfOwnerCalls,
-    allowFailure: true,
   })
 
   const walletNftsWithWO = walletOfOwnerCallResult

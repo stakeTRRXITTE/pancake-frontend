@@ -54,7 +54,6 @@ export const getAccountV2FarmingBCakeWrapperEarning = async (
   const earnings = await client
     .multicall({
       contracts: earningCalls,
-      allowFailure: true,
     })
     .then((res) => res.map((item) => item.result ?? 0n))
 
@@ -188,19 +187,15 @@ export const getAccountV2LpDetails = async (
   const [balances, _farming, reserves, totalSupplies] = await Promise.all([
     client.multicall({
       contracts: balanceCalls,
-      allowFailure: true, //
     }),
     client.multicall({
       contracts: farmingCalls,
-      allowFailure: true,
     }),
     client.multicall({
       contracts: reserveCalls,
-      allowFailure: true,
     }),
     client.multicall({
       contracts: totalSupplyCalls,
-      allowFailure: true,
     }),
   ])
 
@@ -328,19 +323,16 @@ export const getStablePairDetails = async (
     client
       .multicall({
         contracts: balanceCalls,
-        allowFailure: true,
       })
       .then((res) => res.map((item) => item.result ?? 0n)),
     client
       .multicall({
         contracts: totalSupplyCalls,
-        allowFailure: true,
       })
       .then((res) => res.map((item) => item.result ?? 0n)),
     client
       .multicall({
         contracts: farmingCalls,
-        allowFailure: true,
       })
       .then((res) => res.map((item) => item.result ?? Array(5).fill(0n))),
   ])
@@ -366,13 +358,11 @@ export const getStablePairDetails = async (
     client
       .multicall({
         contracts: nativeCalcCoinsAmountCalls,
-        allowFailure: true,
       })
       .then((res) => res.map((item) => item.result ?? [0n, 0n])),
     client
       .multicall({
         contracts: farmingCalcCoinsAmountCalls,
-        allowFailure: true,
       })
       .then((res) => res.map((item) => item.result ?? [0n, 0n])),
   ])

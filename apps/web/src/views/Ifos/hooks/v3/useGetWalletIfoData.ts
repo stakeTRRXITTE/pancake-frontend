@@ -185,7 +185,6 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
             args: [unlimitedId as any],
           },
         ],
-        allowFailure: true,
       })
 
       isQualifiedNFT = isQualifiedNFTResult.result as any

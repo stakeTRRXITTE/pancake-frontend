@@ -61,7 +61,6 @@ const useRevenueSharingPool = (): RevenueSharingPool => {
         const [revenueResult, claimResult] = await Promise.all([
           client.multicall({
             contracts: revenueCalls,
-            allowFailure: true,
           }),
           contract.simulate.claim([account]),
         ])

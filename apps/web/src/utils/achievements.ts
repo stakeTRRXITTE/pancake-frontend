@@ -63,7 +63,6 @@ export const getClaimableIfoData = async (account: string, t: TranslateFunction)
           args: [account as Address, address] as const,
         } as const),
     ),
-    allowFailure: true,
   })
 
   const claimStatuses = claimStatusesResults.map((result) => result.result)

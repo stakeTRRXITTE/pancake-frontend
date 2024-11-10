@@ -32,7 +32,6 @@ async function getPublicMultiplier({ farmBoosterContract }): Promise<number> {
         functionName: 'BOOST_PRECISION',
       },
     ],
-    allowFailure: true,
   })
 
   if (!cAResult.result || !caPercisionResult.result || !boostPercisionResult) return 0
@@ -64,7 +63,6 @@ async function getUserMultiplier({ farmBoosterContract, account, pid }): Promise
         functionName: 'BOOST_PRECISION',
       },
     ],
-    allowFailure: true,
   })
 
   if (!multiplierResult.result || !boostPrecisionResult.result) return 0
