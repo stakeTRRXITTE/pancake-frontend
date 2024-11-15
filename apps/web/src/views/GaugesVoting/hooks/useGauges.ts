@@ -29,7 +29,7 @@ export const useGauges = () => {
 
         return gauges
       }
-      return [] as Gauge[]
+      throw Error('Failed to fetch gauges')
     },
     enabled: Boolean(chainId),
     refetchOnReconnect: false,
