@@ -38,13 +38,13 @@ export const GaugesTable: React.FC<
     if (!data) return []
     if (!sortKey || !sortBy) return orderBy(uniqBy(data, 'hash'), ['gid'], ['asc'])
 
-    return orderBy(uniqBy(data, 'hash'), [sortKey], [sortBy])
+    return orderBy(uniqBy(data, 'hash'), [sortKey], [sortBy]) ?? []
   }, [data, sortBy, sortKey])
 
-  const handleSort = (key: SortField, by: SortBy) => {
+  const handleSort = useCallback((key: SortField, by: SortBy) => {
     setSortKey(key)
     setSortBy(by)
-  }
+  }, [])
 
   const Row = useCallback(
     ({ data: rows, index, style }): ReactNode => {
@@ -70,6 +70,8 @@ export const GaugesTable: React.FC<
     [sortedData.length, maxHeight],
   )
 
+  const handleOnCollapse = useCallback(() => setExpanded(!expanded), [expanded])
+
   return (
     <Table {...props}>
       <TableHeader onSort={handleSort} selectable={selectable} total={sortedData.length} />
@@ -80,9 +82,9 @@ export const GaugesTable: React.FC<
           <Skeleton height={64} />
         </AutoColumn>
       ) : (
-        <div>
+        <>
           <FixedSizeList
-            itemData={sortedData ?? []}
+            itemData={sortedData}
             itemCount={sortedData.length}
             itemKey={itemKey}
             itemSize={ROW_HEIGHT}
@@ -91,8 +93,8 @@ export const GaugesTable: React.FC<
           >
             {Row}
           </FixedSizeList>
-          <ExpandRow onCollapse={() => setExpanded(!expanded)} />
-        </div>
+          <ExpandRow onCollapse={handleOnCollapse} />
+        </>
       )}
     </Table>
   )
