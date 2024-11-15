@@ -59,9 +59,17 @@ export const useUrlQueryGauge = (gauges: Gauge[] | undefined) => {
       if (!nextAccount.address && !preAccount.address) return
 
       if (router.isReady && nextAccount?.address !== preAccount?.address) {
-        const query = { ...router.query }
-        delete query[GAUGE_QUERY_KEY]
-        router.replace(router.pathname, { query }, { shallow: true })
+        const { [GAUGE_QUERY_KEY]: _, ...restQuery } = router.query
+        router.replace(
+          {
+            pathname: router.pathname,
+            query: {
+              ...restQuery,
+            },
+          },
+          undefined,
+          { shallow: true },
+        )
       }
     },
     [router],
