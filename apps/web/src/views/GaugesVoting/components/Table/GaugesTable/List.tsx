@@ -177,7 +177,7 @@ export function GaugeIdentifierDetails({ data }: ListItemProps) {
 export function GaugeItemDetails({ data, totalGaugesWeight }: ListItemProps) {
   const { t } = useTranslation()
   const maxCapPercent = useMemo(() => {
-    return new Percent(data?.maxVoteCap, 10000)
+    return new Percent(data?.maxVoteCap ?? 0, 10000)
   }, [data?.maxVoteCap])
 
   const currentWeightPercent = useMemo(() => {

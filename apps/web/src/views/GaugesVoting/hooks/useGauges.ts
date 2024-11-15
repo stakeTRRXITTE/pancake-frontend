@@ -20,7 +20,8 @@ export const useGauges = () => {
         const result = (await response.json()) as Response
 
         const gauges = result.data
-          .filter((g) => !!g.hash)
+            .filter((gauge) => gauge && Object.keys(gauge).length > 0)
+            .filter((g) => !!g.hash)
           .map((gauge) => ({
             ...gauge,
             weight: BigInt(gauge.weight),
@@ -30,7 +31,7 @@ export const useGauges = () => {
       }
       return [] as Gauge[]
     },
-
+    enabled: Boolean(chainId),
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
