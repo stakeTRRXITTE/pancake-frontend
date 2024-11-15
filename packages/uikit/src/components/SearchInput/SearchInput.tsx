@@ -1,7 +1,8 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { styled } from "styled-components";
 import debounce from "lodash/debounce";
 import { useTranslation } from "@pancakeswap/localization";
+import isUndefinedOrNull from "@pancakeswap/utils/isUndefinedOrNull";
 import { Input } from "../Input";
 
 const StyledInput = styled(Input)`
@@ -35,13 +36,17 @@ const SearchInput: React.FC<React.PropsWithChildren<Props>> = ({
     [onChangeCallback]
   );
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
-    debouncedOnChange(e);
-  };
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchText(e.target.value);
+      debouncedOnChange(e);
+    },
+    [debouncedOnChange]
+  );
+
   useEffect(() => {
-    if (initialValue) {
-      setSearchText(initialValue);
+    if (!isUndefinedOrNull(initialValue)) {
+      setSearchText(initialValue!);
     }
   }, [initialValue]);
 
