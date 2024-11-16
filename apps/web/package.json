@@ -148,7 +148,7 @@
     "zod": "^3.22.3"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "14.2.3",
+    "@next/eslint-plugin-next": "catalog:",
     "@pancakeswap/next-config": "workspace:*",
     "@pancakeswap/tsconfig": "workspace:*",
     "@stylelint/postcss-css-in-js": "^0.37.2",
@@ -174,7 +174,7 @@
     "@vercel/flags": "^2.3.0",
     "@vercel/toolbar": "^0.1.13",
     "@vitejs/plugin-react": "4.2.1",
-    "eslint": "^8.32.0",
+    "eslint": "catalog:",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-lodash": "^7.4.0",
     "happy-dom": "^13.3.8",
