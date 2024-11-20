@@ -10,6 +10,9 @@
     "format:write": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\""
   },
   "dependencies": {
+    "@pancakeswap/uikit": "workspace:*",
+    "styled-components": "6.0.7",
+    "styled-system": "^5.1.5",
     "@ton/core": "^0.59.0",
     "@tonconnect/ui-react": "^2.0.9",
     "jotai": "catalog:",

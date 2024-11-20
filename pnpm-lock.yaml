@@ -917,6 +917,9 @@ importers:
 
   apps/ton:
     dependencies:
+      '@pancakeswap/uikit':
+        specifier: workspace:*
+        version: link:../../packages/uikit
       '@ton/core':
         specifier: ^0.59.0
         version: 0.59.0(@ton/crypto@3.3.0)
@@ -928,16 +931,22 @@ importers:
         version: 2.5.1(@types/react@18.2.37)(react@18.2.0)
       next:
         specifier: 'catalog:'
-        version: 14.2.14(@babel/core@7.23.3)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 14.2.14(@babel/core@7.23.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-themes:
         specifier: ^0.2.1
-        version: 0.2.1(next@14.2.14(@babel/core@7.23.3)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 0.2.1(next@14.2.14(@babel/core@7.23.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: 'catalog:'
         version: 18.2.0
       react-dom:
         specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
+      styled-components:
+        specifier: 6.0.7
+        version: 6.0.7(babel-plugin-styled-components@1.13.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      styled-system:
+        specifier: ^5.1.5
+        version: 5.1.5
     devDependencies:
       '@next/eslint-plugin-next':
         specifier: 'catalog:'
@@ -16207,9 +16216,6 @@ packages:
   ua-parser-js@1.0.37:
     resolution: {integrity: sha512-bhTyI94tZofjo+Dn8SN6Zv8nBDvyXTymAdM3LDI/0IboIUwTu1rEhW7v2TfiVsoYWgkQ4kOVqnI8APUFbIQIFQ==}
 
-  ufo@1.3.1:
-    resolution: {integrity: sha512-uY/99gMLIOlJPwATcMVYfqDSxUR9//AUcgZMzwfSTJPDKzA1S8mX4VLqa+fiAtveraQUBCz4FFcwVZBGbwBXIw==}
-
   ufo@1.5.4:
     resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
 
@@ -17268,7 +17274,7 @@ snapshots:
 
   '@aptos-labs/aptos-client@0.1.1':
     dependencies:
-      axios: 1.7.4(debug@4.3.4)
+      axios: 1.7.4(debug@4.3.7)
       got: 11.8.6
     transitivePeerDependencies:
       - debug
@@ -19684,7 +19690,7 @@ snapshots:
       '@types/lodash': 4.14.202
       '@uniswap/permit2-sdk': 1.2.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       bignumber.js: 9.1.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       ethereum-multicall: 2.21.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       isomorphic-fetch: 3.0.0
       lodash: 4.17.21
@@ -19707,7 +19713,7 @@ snapshots:
       dotenv: 16.3.1
       fs-extra: 11.1.1
       hardhat: 2.22.2(bufferutil@4.0.8)(ts-node@10.9.1(@types/node@13.13.52)(typescript@5.2.2))(typescript@5.2.2)(utf-8-validate@5.0.10)
-      hardhat-gas-reporter: 1.0.10(bufferutil@4.0.8)(debug@4.3.4)(hardhat@2.22.2(bufferutil@4.0.8)(ts-node@10.9.1(@types/node@13.13.52)(typescript@5.2.2))(typescript@4.9.5)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
+      hardhat-gas-reporter: 1.0.10(bufferutil@4.0.8)(debug@4.3.7)(hardhat@2.22.2(bufferutil@4.0.8)(ts-node@10.9.1(@types/node@13.13.52)(typescript@5.2.2))(typescript@4.9.5)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       hardhat-spdx-license-identifier: 2.2.0(hardhat@2.22.2(bufferutil@4.0.8)(ts-node@10.9.1(@types/node@13.13.52)(typescript@5.2.2))(typescript@4.9.5)(utf-8-validate@5.0.10))
       hardhat-tracer: 1.3.0(chalk@4.1.2)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(hardhat@2.22.2(bufferutil@4.0.8)(ts-node@10.9.1(@types/node@13.13.52)(typescript@5.2.2))(typescript@4.9.5)(utf-8-validate@5.0.10))
       mocha: 10.4.0
@@ -20871,7 +20877,7 @@ snapshots:
 
   '@layerzerolabs/scan-client@0.0.6(axios@1.7.4)':
     dependencies:
-      axios: 1.7.4(debug@4.3.4)
+      axios: 1.7.4(debug@4.3.7)
 
   '@ledgerhq/connect-kit-loader@1.1.2(patch_hash=xlsebypdiwsukm3c2ow7voujra)': {}
 
@@ -21061,7 +21067,7 @@ snapshots:
       bufferutil: 4.0.8
       cross-fetch: 4.0.0
       date-fns: 2.30.0
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       eciesjs: 0.3.18
       eventemitter2: 6.4.9
       readable-stream: 3.6.2
@@ -21163,7 +21169,7 @@ snapshots:
     dependencies:
       '@ethereumjs/tx': 4.2.0
       '@types/debug': 4.1.12
-      debug: 4.3.7
+      debug: 4.3.7(supports-color@9.4.0)
       semver: 7.6.3
       superstruct: 1.0.3
     transitivePeerDependencies:
@@ -21175,9 +21181,9 @@ snapshots:
       '@noble/hashes': 1.5.0
       '@scure/base': 1.1.9
       '@types/debug': 4.1.12
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       pony-cause: 2.1.10
-      semver: 7.5.4
+      semver: 7.6.3
       superstruct: 1.0.3
       uuid: 9.0.1
     transitivePeerDependencies:
@@ -21587,7 +21593,7 @@ snapshots:
       '@ethersproject/address': 5.7.0
       cbor: 8.1.0
       chalk: 2.4.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       fs-extra: 7.0.1
       hardhat: 2.22.2(bufferutil@4.0.8)(ts-node@10.9.1(@types/node@13.13.52)(typescript@5.2.2))(typescript@5.2.2)(utf-8-validate@5.0.10)
       lodash: 4.17.21
@@ -21764,7 +21770,7 @@ snapshots:
       '@types/shimmer': 1.2.0
       import-in-the-middle: 1.4.2
       require-in-the-middle: 7.3.0
-      semver: 7.5.4
+      semver: 7.6.3
       shimmer: 1.2.1
     transitivePeerDependencies:
       - supports-color
@@ -24024,7 +24030,7 @@ snapshots:
       pretty-hrtime: 1.0.3
       prompts: 2.4.2
       read-pkg-up: 7.0.1
-      semver: 7.5.4
+      semver: 7.6.3
       telejson: 7.2.0
       tiny-invariant: 1.3.3
       ts-dedent: 2.2.0
@@ -27583,19 +27589,13 @@ snapshots:
 
   agent-base@6.0.2:
     dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
-    transitivePeerDependencies:
-      - supports-color
-
-  agent-base@7.1.0:
-    dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
 
   agent-base@7.1.0(supports-color@9.4.0):
     dependencies:
-      debug: 4.3.4(supports-color@9.4.0)
+      debug: 4.3.7(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -27911,15 +27911,15 @@ snapshots:
 
   axios@1.7.2:
     dependencies:
-      follow-redirects: 1.15.6(debug@4.3.4)
+      follow-redirects: 1.15.6(debug@4.3.7)
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
 
-  axios@1.7.4(debug@4.3.4):
+  axios@1.7.4(debug@4.3.7):
     dependencies:
-      follow-redirects: 1.15.6(debug@4.3.4)
+      follow-redirects: 1.15.6(debug@4.3.7)
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -29261,9 +29261,11 @@ snapshots:
     optionalDependencies:
       supports-color: 9.4.0
 
-  debug@4.3.7:
+  debug@4.3.7(supports-color@9.4.0):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
+      supports-color: 9.4.0
 
   decamelize-keys@1.1.1:
     dependencies:
@@ -29412,7 +29414,7 @@ snapshots:
   detect-port@1.5.1:
     dependencies:
       address: 1.2.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -29573,7 +29575,7 @@ snapshots:
   engine.io-client@6.5.3(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@socket.io/component-emitter': 3.1.1
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       engine.io-parser: 5.2.2
       ws: 8.11.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       xmlhttprequest-ssl: 2.0.0
@@ -30136,10 +30138,10 @@ snapshots:
       idna-uts46-hx: 2.3.1
       js-sha3: 0.5.7
 
-  eth-gas-reporter@0.2.27(bufferutil@4.0.8)(debug@4.3.4)(utf-8-validate@5.0.10):
+  eth-gas-reporter@0.2.27(bufferutil@4.0.8)(debug@4.3.7)(utf-8-validate@5.0.10):
     dependencies:
       '@solidity-parser/parser': 0.14.5
-      axios: 1.7.4(debug@4.3.4)
+      axios: 1.7.4(debug@4.3.7)
       cli-table3: 0.5.1
       colors: 1.4.0
       ethereum-cryptography: 1.2.0
@@ -30708,9 +30710,9 @@ snapshots:
     optionalDependencies:
       debug: 4.3.4(supports-color@8.1.1)
 
-  follow-redirects@1.15.6(debug@4.3.4):
+  follow-redirects@1.15.6(debug@4.3.7):
     optionalDependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
 
   for-each@0.3.3:
     dependencies:
@@ -31155,10 +31157,10 @@ snapshots:
 
   hard-rejection@2.1.0: {}
 
-  hardhat-gas-reporter@1.0.10(bufferutil@4.0.8)(debug@4.3.4)(hardhat@2.22.2(bufferutil@4.0.8)(ts-node@10.9.1(@types/node@13.13.52)(typescript@5.2.2))(typescript@4.9.5)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10):
+  hardhat-gas-reporter@1.0.10(bufferutil@4.0.8)(debug@4.3.7)(hardhat@2.22.2(bufferutil@4.0.8)(ts-node@10.9.1(@types/node@13.13.52)(typescript@5.2.2))(typescript@4.9.5)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10):
     dependencies:
       array-uniq: 1.0.3
-      eth-gas-reporter: 0.2.27(bufferutil@4.0.8)(debug@4.3.4)(utf-8-validate@5.0.10)
+      eth-gas-reporter: 0.2.27(bufferutil@4.0.8)(debug@4.3.7)(utf-8-validate@5.0.10)
       hardhat: 2.22.2(bufferutil@4.0.8)(ts-node@10.9.1(@types/node@13.13.52)(typescript@5.2.2))(typescript@5.2.2)(utf-8-validate@5.0.10)
       sha1: 1.1.1
     transitivePeerDependencies:
@@ -31199,7 +31201,7 @@ snapshots:
       chalk: 2.4.2
       chokidar: 3.5.3
       ci-info: 2.0.0
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       enquirer: 2.4.1
       env-paths: 2.2.1
       ethereum-cryptography: 1.2.0
@@ -31218,7 +31220,7 @@ snapshots:
       raw-body: 2.5.1
       resolve: 1.17.0
       semver: 6.3.1
-      solc: 0.7.3(debug@4.3.4)
+      solc: 0.7.3(debug@4.3.7)
       source-map-support: 0.5.21
       stacktrace-parser: 0.1.10
       tsort: 0.0.1
@@ -31372,21 +31374,21 @@ snapshots:
   https-proxy-agent@4.0.0:
     dependencies:
       agent-base: 5.1.1
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
 
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
 
   https-proxy-agent@7.0.2:
     dependencies:
-      agent-base: 7.1.0
-      debug: 4.3.4(supports-color@8.1.1)
+      agent-base: 7.1.0(supports-color@9.4.0)
+      debug: 4.3.7(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -31526,7 +31528,7 @@ snapshots:
     dependencies:
       '@ioredis/commands': 1.2.0
       cluster-key-slot: 1.1.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       denque: 2.1.0
       lodash.defaults: 4.2.0
       lodash.isarguments: 3.1.0
@@ -32547,7 +32549,7 @@ snapshots:
 
   lru-cache@10.0.2:
     dependencies:
-      semver: 7.5.4
+      semver: 7.6.3
 
   lru-cache@10.4.3: {}
 
@@ -33140,9 +33142,9 @@ snapshots:
   mlly@1.4.2:
     dependencies:
       acorn: 8.11.2
-      pathe: 1.1.1
+      pathe: 1.1.2
       pkg-types: 1.0.3
-      ufo: 1.3.1
+      ufo: 1.5.4
 
   mnemonist@0.38.5:
     dependencies:
@@ -33874,7 +33876,7 @@ snapshots:
       minimist: 1.2.8
       open: 7.4.2
       rimraf: 2.7.1
-      semver: 7.5.4
+      semver: 7.6.3
       slash: 2.0.0
       tmp: 0.0.33
       yaml: 2.3.4
@@ -34021,7 +34023,7 @@ snapshots:
     dependencies:
       jsonc-parser: 3.2.0
       mlly: 1.4.2
-      pathe: 1.1.1
+      pathe: 1.1.2
 
   pluralize@8.0.0: {}
 
@@ -34330,7 +34332,7 @@ snapshots:
   puppeteer-core@2.1.1(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@types/mime-types': 2.1.4
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       extract-zip: 1.7.0
       https-proxy-agent: 4.0.0
       mime: 2.6.0
@@ -35245,7 +35247,7 @@ snapshots:
 
   require-in-the-middle@7.3.0:
     dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       module-details-from-path: 1.0.3
       resolve: 1.22.8
     transitivePeerDependencies:
@@ -35693,7 +35695,7 @@ snapshots:
 
   simple-update-notifier@2.0.0:
     dependencies:
-      semver: 7.5.4
+      semver: 7.6.3
 
   sinon@17.0.1:
     dependencies:
@@ -35759,7 +35761,7 @@ snapshots:
   socket.io-client@4.7.5(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@socket.io/component-emitter': 3.1.1
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       engine.io-client: 6.5.3(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       socket.io-parser: 4.2.4
     transitivePeerDependencies:
@@ -35770,15 +35772,15 @@ snapshots:
   socket.io-parser@4.2.4:
     dependencies:
       '@socket.io/component-emitter': 3.1.1
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
 
-  solc@0.7.3(debug@4.3.4):
+  solc@0.7.3(debug@4.3.7):
     dependencies:
       command-exists: 1.2.9
       commander: 3.0.2
-      follow-redirects: 1.15.6(debug@4.3.4)
+      follow-redirects: 1.15.6(debug@4.3.7)
       fs-extra: 0.30.0
       js-sha3: 0.8.0
       memorystream: 0.3.1
@@ -35804,7 +35806,7 @@ snapshots:
       js-yaml: 4.1.0
       lodash: 4.17.21
       pluralize: 8.0.0
-      semver: 7.5.4
+      semver: 7.6.3
       strip-ansi: 6.0.1
       table: 6.8.1
       text-table: 0.2.0
@@ -36947,7 +36949,7 @@ snapshots:
   typechain@8.3.2(typescript@4.9.5):
     dependencies:
       '@types/prettier': 2.7.3
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       fs-extra: 7.0.1
       glob: 7.1.7
       js-sha3: 0.8.0
@@ -37014,8 +37016,6 @@ snapshots:
   typo-js@1.2.3: {}
 
   ua-parser-js@1.0.37: {}
-
-  ufo@1.3.1: {}
 
   ufo@1.5.4: {}
 

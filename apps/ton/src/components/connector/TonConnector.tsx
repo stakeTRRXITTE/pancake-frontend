@@ -14,9 +14,10 @@ export const TonConnector = ({ children }: { children: React.ReactNode }) => {
 const Container = ({ children }: { children: React.ReactNode }) => {
   const address = useTonAddress()
   const setAddress = useSetAtom(addressAtom)
+
   useEffect(() => {
     setAddress(address)
-  }, [address])
+  }, [address, setAddress])
 
   return children
 }
