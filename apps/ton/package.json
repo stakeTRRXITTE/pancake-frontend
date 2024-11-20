@@ -6,20 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "format:write": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\""
   },
   "dependencies": {
-    "react": "catalog:",
-    "react-dom": "catalog:",
+    "@ton/core": "^0.59.0",
+    "@tonconnect/ui-react": "^2.0.9",
+    "jotai": "catalog:",
     "next": "catalog:",
-    "next-themes": "^0.2.1"
+    "next-themes": "^0.2.1",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@next/eslint-plugin-next": "catalog:",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "catalog:",
-    "@next/eslint-plugin-next": "catalog:"
+    "typescript": "^5",
+    "prettier": "^2.8.3"
   }
 }
