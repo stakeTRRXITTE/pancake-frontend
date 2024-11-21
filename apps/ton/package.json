@@ -11,6 +11,12 @@
   },
   "dependencies": {
     "@pancakeswap/uikit": "workspace:*",
+    "@pancakeswap/hooks": "workspace:*",
+    "@pancakeswap/widgets-internal": "workspace:*",
+    "@pancakeswap/localization": "workspace:*",
+    "@vanilla-extract/next-plugin": "^2.3.0",
+    "@vanilla-extract/vite-plugin": "^4.0.2",
+    "@tanstack/react-query": "^5.52.1",
     "styled-components": "6.0.7",
     "styled-system": "^5.1.5",
     "@ton/core": "^0.59.0",

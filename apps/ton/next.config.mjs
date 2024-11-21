@@ -1,4 +1,7 @@
 // next.config.mjs
+import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin'
+
+const withVanillaExtract = createVanillaExtractPlugin()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -42,17 +45,14 @@ const nextConfig = {
   },
 
   transpilePackages: [
-    '@pancakeswap/farms',
-    '@pancakeswap/position-managers',
     '@pancakeswap/localization',
     '@pancakeswap/hooks',
     '@pancakeswap/utils',
     '@pancakeswap/widgets-internal',
-    '@pancakeswap/ifos',
     '@pancakeswap/uikit',
     // https://github.com/TanStack/query/issues/6560#issuecomment-1975771676
     '@tanstack/query-core',
   ],
 }
 
-export default nextConfig
+export default withVanillaExtract(nextConfig)
