@@ -1,4 +1,4 @@
-import { TonSwapV2 } from 'views/Swap'
+import { TonSwapV2 } from 'views/TONSwap'
 
 const Home = () => {
   return (

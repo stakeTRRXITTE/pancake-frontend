@@ -4,17 +4,16 @@ import { Providers } from 'components/Providers'
 import type { AppProps } from 'next/app'
 import '../styles/globals.css' // Import global CSS
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps }: AppProps<{ dehydratedState?: any }>) => {
   return (
-    <TonConnector>
-      <>
-        <Header />
-        {/* Add a global layout or wrapper */}
-        <Providers>
+    <>
+      <Providers dehydratedState={pageProps.dehydratedState}>
+        <TonConnector>
+          <Header />
           <Component {...pageProps} />
-        </Providers>
-      </>
-    </TonConnector>
+        </TonConnector>
+      </Providers>
+    </>
   )
 }
 
