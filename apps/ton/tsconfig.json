@@ -11,7 +11,8 @@
     "paths": {
       "*": ["./src/*"],
       "@pancakeswap/uikit": ["../../packages/uikit/src/index.ts"],
-      "@pancakeswap/uikit/*": ["../../packages/uikit/src/*"]
+      "@pancakeswap/uikit/*": ["../../packages/uikit/src/*"],
+      "@pancakeswap/widgets-internal": ["../../packages/widgets-internal/src/index.ts"]
     }
   },
   "exclude": ["**/node_modules", "**/.*/", "**/config/abi/types/", "**/abis/types/*.ts"],

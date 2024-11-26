@@ -917,18 +917,24 @@ importers:
 
   apps/ton:
     dependencies:
+      '@datadog/browser-logs':
+        specifier: ^5.8.0
+        version: 5.8.0(@datadog/browser-rum@5.8.0)
+      '@datadog/browser-rum':
+        specifier: ^5.8.0
+        version: 5.8.0(@datadog/browser-logs@5.8.0)
       '@pancakeswap/hooks':
         specifier: workspace:*
         version: link:../../packages/hooks
       '@pancakeswap/localization':
         specifier: workspace:*
         version: link:../../packages/localization
+      '@pancakeswap/price-api-sdk':
+        specifier: ^5.0.1
+        version: 5.0.1(@pancakeswap/pcsx-sdk@1.0.1(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4))(@pancakeswap/permit2-sdk@1.0.11(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4))(@pancakeswap/smart-router@6.2.1(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3))(@pancakeswap/swap-sdk-core@1.3.0)
       '@pancakeswap/uikit':
         specifier: workspace:*
         version: link:../../packages/uikit
-      '@pancakeswap/widgets-internal':
-        specifier: workspace:*
-        version: link:../../packages/widgets-internal
       '@tanstack/react-query':
         specifier: ^5.52.1
         version: 5.52.1(react@18.2.0)
@@ -944,6 +950,9 @@ importers:
       '@vanilla-extract/vite-plugin':
         specifier: ^4.0.2
         version: 4.0.2(@types/node@20.5.7)(terser@5.24.0)(vite@5.0.12(@types/node@20.5.7)(terser@5.24.0))
+      evm:
+        specifier: link:@pancakeswap/smart-router/evm
+        version: link:@pancakeswap/smart-router/evm
       jotai:
         specifier: 'catalog:'
         version: 2.5.1(@types/react@18.2.37)(react@18.2.0)
@@ -6150,22 +6159,99 @@ packages:
     resolution: {integrity: sha512-2uflmzHY+rno4+wTQL0ae4c4tbA/r5aGxWg9dNI/A4mS2jx/0lVbELwpSYughK2zcb6MbDbXkAZuLaNKhZe/Yg==}
     engines: {node: '>=10'}
 
+  '@pancakeswap/gauges@2.0.2':
+    resolution: {integrity: sha512-Pc7GYQeGE3FoURjWBACyY2ulHSSOhP1v6eVgtWoFgn/Ab2BRjWlh4dse3UJ9WogTxFjzyzc0nsEyHAwDZv5tXQ==}
+
+  '@pancakeswap/multicall@3.5.9':
+    resolution: {integrity: sha512-NPfDVB5AtTrmohENB0ST0zZtNrC9sx4bf1/Ineraro0wgj0CRcKsPBi5Re35LXBazfXr0YjrXA3XO+OgQ0nWnA==}
+
+  '@pancakeswap/pcsx-sdk@1.0.1':
+    resolution: {integrity: sha512-RpkET7ZYkAwEDUbyT4ifvanN14p84DxYi3RvBCdqlMFEAPWjFwaURxrMiyBjvsnTqCG8IdJuwPGvvpqr/1gZkw==}
+
+  '@pancakeswap/permit2-sdk@1.0.11':
+    resolution: {integrity: sha512-HKqZGMxg9+at3UDhYPV4p4hbyDQ0htJRBuMyvhvQhwTKTrFjCsFMzPchmWX3ZSDIcjSKCxQrwk9Kn6ktlzKjLA==}
+
+  '@pancakeswap/price-api-sdk@5.0.1':
+    resolution: {integrity: sha512-zdYmQtF30e5jF1sAdKYgqp8fXHRY9qGpgnRzWO16f48dc7vuCAzxdY+QqfpBGVO8OYrncLUm7g25UjABW0HGjg==}
+    peerDependencies:
+      '@pancakeswap/pcsx-sdk': 1.0.1
+      '@pancakeswap/permit2-sdk': 1.0.11
+      '@pancakeswap/smart-router': 6.2.1
+      '@pancakeswap/swap-sdk-core': 1.3.0
+    peerDependenciesMeta:
+      '@pancakeswap/pcsx-sdk':
+        optional: true
+      '@pancakeswap/permit2-sdk':
+        optional: true
+      '@pancakeswap/smart-router':
+        optional: true
+      '@pancakeswap/swap-sdk-core':
+        optional: true
+
   '@pancakeswap/sdk@5.8.8':
     resolution: {integrity: sha512-uqqBy2o0c02W5i5lGyoUJL/Jyv/fY6bzBx1GauMlMZdwHEWWc1dk5Nu70Z92SlcAhGnliKJ1N4HEBI/NcJE0jg==}
     engines: {node: '>=10'}
+
+  '@pancakeswap/sdk@5.8.9':
+    resolution: {integrity: sha512-Aj5N4AYsuA9mIEcpt+vchmNSfSI2r5j7QevX2NWUqk5uZUvTZLGOAcJcxIdKC7q8nUtWDT4cmSzZAszl6rfvSg==}
+    engines: {node: '>=10'}
+
+  '@pancakeswap/smart-router@6.2.1':
+    resolution: {integrity: sha512-VV7yVMTv0wDaBRPOxB3iAp2Rnsi3ksRu4+AGAoZ5tdq1YsRYNVdvRKwfbSuBJcZM8eCxUwnjFIBZWWqgJuOZlg==}
+
+  '@pancakeswap/stable-swap-sdk@1.1.4':
+    resolution: {integrity: sha512-4zSFYL9bXxVh8WMr0eKW17MWHtJtOfThWU8E8uUi+eH3Voiwr/yKSLnCL98aoUkUsykKh8IcDLTtmU3Cf5RuaA==}
 
   '@pancakeswap/swap-sdk-core@1.2.0':
     resolution: {integrity: sha512-GYgfG6O3229D7M2tcDtbo1Az7BQRmyQPRApWQrScRfoAQEjNV6X9LNO3dqWDFwq+APmgi9YBbzuECE3MZJgK9w==}
     engines: {node: '>=10'}
 
+  '@pancakeswap/swap-sdk-core@1.3.0':
+    resolution: {integrity: sha512-nkeDs3GyNfvRGsTbTAO30yl6ccOTr5WQERsKAaxKTe1fbGvpDRFLo3nlR1ZddRCj+RYZSS+B4Sll4A39k7nFDQ==}
+    engines: {node: '>=10'}
+
   '@pancakeswap/swap-sdk-evm@1.0.5':
     resolution: {integrity: sha512-vPNKcsbK1qCVCxFJWSHm7Cyy4do8J90PftfbFP9C5+2a3SnFpbEkXD0cuIXrPG+rDuMD/kVp3gVDZPNXA+Tdmw==}
+
+  '@pancakeswap/swap-sdk-evm@1.0.6':
+    resolution: {integrity: sha512-q4kTonZ5DOt/0FdMB19faZC4P9v5WidTnS7vlPalMguUXyAj79U1Hh1N37wqa6LcWFz2lTBnOrkaDst72h9MqA==}
+
+  '@pancakeswap/token-lists@0.0.14':
+    resolution: {integrity: sha512-WJTQdkw/Aexb3hlCCSAzHz776AkTOdfm0UZLg36ylLG9TjKrRya2Hi1bfjsfIQoCVMH3LkHyGAnQA4MOJjkf2w==}
+    peerDependencies:
+      '@reduxjs/toolkit': ^1.9.1
+      jotai: ^2.4.3
+      localforage: ^1.10.0
+      react: ^18.2.0
+    peerDependenciesMeta:
+      '@reduxjs/toolkit':
+        optional: true
+      jotai:
+        optional: true
+      localforage:
+        optional: true
+      react:
+        optional: true
+
+  '@pancakeswap/tokens@0.6.28':
+    resolution: {integrity: sha512-Lt8T/DETS0UJECIxMvNLWomsOyPwNF0cUx61op+Lc3963ff92Cibaq1yYF2o+8BNWkAXVP44rhgvYE2ozU1smg==}
 
   '@pancakeswap/v2-sdk@1.0.5':
     resolution: {integrity: sha512-zVKG859rARPjMQFj0tsoFj3pED50Y4BpcMgGBjq4/gz4w7UIx/g0Jzv8m8fmPPoumXKxOSF0fTaXMyBec6F3cQ==}
 
+  '@pancakeswap/v2-sdk@1.0.6':
+    resolution: {integrity: sha512-4MmazJLSiN3JgRNtJ9eHB93GnQDmQudm0CDkBfnp3cOjqP1QRIFFdk8mkwoD4PxfrHmozWlzL/0eHT5l553kQw==}
+
   '@pancakeswap/v3-sdk@3.8.11':
     resolution: {integrity: sha512-jDn0DGbVy3yGQ2URfqBc3WWFDuNSc0X31G654Ezp8smZ4gK81T67GzQcRzn63N3k89tpjywzBNg06xWFIRNmxw==}
+    engines: {node: '>=10'}
+
+  '@pancakeswap/v3-sdk@3.8.12':
+    resolution: {integrity: sha512-mweDAjb7fzpVFBbMEOBqUCW2jVqxIGnazMIn4WH2jl2gQImf2Jjgwy6JJYV6QcfDkWNV5zNhQ6y62LhQbQh/fQ==}
+    engines: {node: '>=10'}
+
+  '@pancakeswap/v4-sdk@0.1.5':
+    resolution: {integrity: sha512-sv+fn2taAIodqcHblaML9XlNTGfhQCVNtnlQzsSmV01iW0SmKlC/KFkPkOXXVP1KnQ4rrAt+Xi8kPajg8VkMzg==}
     engines: {node: '>=10'}
 
   '@panva/hkdf@1.2.1':
@@ -21960,6 +22046,71 @@ snapshots:
 
   '@pancakeswap/chains@0.4.6': {}
 
+  '@pancakeswap/gauges@2.0.2(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/tokens': 0.6.28(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/v3-sdk': 3.8.12(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      viem: 2.21.22(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+    transitivePeerDependencies:
+      - '@reduxjs/toolkit'
+      - bufferutil
+      - jotai
+      - localforage
+      - react
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
+
+  '@pancakeswap/multicall@3.5.9(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/sdk': 5.8.9(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      viem: 2.21.22(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
+
+  '@pancakeswap/pcsx-sdk@1.0.1(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/permit2-sdk': 1.0.11(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/swap-sdk-core': 1.3.0
+      dayjs: 1.11.11
+      viem: 2.21.22(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
+
+  '@pancakeswap/permit2-sdk@1.0.11(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/sdk': 5.8.9(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      tiny-invariant: 1.3.3
+      viem: 2.21.22(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
+
+  '@pancakeswap/price-api-sdk@5.0.1(@pancakeswap/pcsx-sdk@1.0.1(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4))(@pancakeswap/permit2-sdk@1.0.11(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4))(@pancakeswap/smart-router@6.2.1(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3))(@pancakeswap/swap-sdk-core@1.3.0)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+    optionalDependencies:
+      '@pancakeswap/pcsx-sdk': 1.0.1(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/permit2-sdk': 1.0.11(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/smart-router': 6.2.1(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3)
+      '@pancakeswap/swap-sdk-core': 1.3.0
+
   '@pancakeswap/sdk@5.8.8(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@5.0.10)(zod@3.22.4)':
     dependencies:
       '@pancakeswap/chains': 0.4.6
@@ -21978,6 +22129,76 @@ snapshots:
       - utf-8-validate
       - zod
 
+  '@pancakeswap/sdk@5.8.9(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/swap-sdk-core': 1.3.0
+      '@pancakeswap/swap-sdk-evm': 1.0.6(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/v2-sdk': 1.0.6(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      big.js: 5.2.2
+      decimal.js-light: 2.5.1
+      tiny-invariant: 1.3.3
+      tiny-warning: 1.0.3
+      toformat: 2.0.0
+      viem: 2.21.22(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
+
+  '@pancakeswap/smart-router@6.2.1(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/gauges': 2.0.2(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/multicall': 3.5.9(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/sdk': 5.8.9(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/stable-swap-sdk': 1.1.4(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/swap-sdk-core': 1.3.0
+      '@pancakeswap/token-lists': 0.0.14(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)
+      '@pancakeswap/tokens': 0.6.28(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/v3-sdk': 3.8.12(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/v4-sdk': 0.1.5(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      async-retry: 1.3.3
+      debug: 4.3.7(supports-color@9.4.0)
+      graphql: 16.8.1
+      graphql-request: 5.0.0(graphql@16.8.1)
+      lodash: 4.17.21
+      mnemonist: 0.38.5
+      stats-lite: 2.2.0
+      tiny-invariant: 1.3.3
+      viem: 2.21.22(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      zod: 3.22.4
+    transitivePeerDependencies:
+      - '@reduxjs/toolkit'
+      - bufferutil
+      - encoding
+      - jotai
+      - localforage
+      - react
+      - supports-color
+      - typescript
+      - utf-8-validate
+    optional: true
+
+  '@pancakeswap/stable-swap-sdk@1.1.4(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/swap-sdk-core': 1.3.0
+      '@pancakeswap/tokens': 0.6.28(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      tiny-invariant: 1.3.3
+    transitivePeerDependencies:
+      - '@reduxjs/toolkit'
+      - bufferutil
+      - jotai
+      - localforage
+      - react
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
+
   '@pancakeswap/swap-sdk-core@1.2.0':
     dependencies:
       big.js: 5.2.2
@@ -21985,6 +22206,15 @@ snapshots:
       tiny-invariant: 1.3.3
       tiny-warning: 1.0.3
       toformat: 2.0.0
+
+  '@pancakeswap/swap-sdk-core@1.3.0':
+    dependencies:
+      big.js: 5.2.2
+      decimal.js-light: 2.5.1
+      tiny-invariant: 1.3.3
+      tiny-warning: 1.0.3
+      toformat: 2.0.0
+    optional: true
 
   '@pancakeswap/swap-sdk-evm@1.0.5(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@5.0.10)(zod@3.22.4)':
     dependencies:
@@ -21999,6 +22229,48 @@ snapshots:
       - utf-8-validate
       - zod
 
+  '@pancakeswap/swap-sdk-evm@1.0.6(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/swap-sdk-core': 1.3.0
+      tiny-invariant: 1.3.3
+      tiny-warning: 1.0.3
+      viem: 2.21.22(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
+
+  '@pancakeswap/token-lists@0.0.14(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)':
+    dependencies:
+      '@pancakeswap/swap-sdk-core': 1.3.0
+      ajv: 6.12.6
+      lodash: 4.17.21
+    optionalDependencies:
+      '@reduxjs/toolkit': 1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0)
+      jotai: 2.5.1(@types/react@18.2.37)(react@18.2.0)
+      localforage: 1.10.0
+      react: 18.2.0
+    optional: true
+
+  '@pancakeswap/tokens@0.6.28(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(bufferutil@4.0.8)(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/sdk': 5.8.9(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/token-lists': 0.0.14(@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0))(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(localforage@1.10.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@reduxjs/toolkit'
+      - bufferutil
+      - jotai
+      - localforage
+      - react
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
+
   '@pancakeswap/v2-sdk@1.0.5(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@5.0.10)(zod@3.22.4)':
     dependencies:
       '@pancakeswap/chains': 0.4.6
@@ -22011,6 +22283,20 @@ snapshots:
       - typescript
       - utf-8-validate
       - zod
+
+  '@pancakeswap/v2-sdk@1.0.6(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/swap-sdk-core': 1.3.0
+      '@pancakeswap/swap-sdk-evm': 1.0.6(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      tiny-invariant: 1.3.3
+      viem: 2.21.22(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
 
   '@pancakeswap/v3-sdk@3.8.11(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@5.0.10)(zod@3.22.4)':
     dependencies:
@@ -22028,6 +22314,37 @@ snapshots:
       - typescript
       - utf-8-validate
       - zod
+
+  '@pancakeswap/v3-sdk@3.8.12(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/chains': 0.4.6
+      '@pancakeswap/sdk': 5.8.9(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      '@pancakeswap/swap-sdk-core': 1.3.0
+      big.js: 5.2.2
+      decimal.js-light: 2.5.1
+      tiny-invariant: 1.3.3
+      tiny-warning: 1.0.3
+      toformat: 2.0.0
+      viem: 2.21.22(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
+
+  '@pancakeswap/v4-sdk@0.1.5(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)':
+    dependencies:
+      '@pancakeswap/swap-sdk-core': 1.3.0
+      '@pancakeswap/v3-sdk': 3.8.12(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+      tiny-invariant: 1.3.3
+      viem: 2.21.22(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@6.0.3)(zod@3.22.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    optional: true
 
   '@panva/hkdf@1.2.1': {}
 
@@ -22580,6 +22897,24 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  '@react-native-community/cli-server-api@12.3.6(bufferutil@4.0.8)(utf-8-validate@6.0.3)':
+    dependencies:
+      '@react-native-community/cli-debugger-ui': 12.3.6
+      '@react-native-community/cli-tools': 12.3.6
+      compression: 1.7.4
+      connect: 3.7.0
+      errorhandler: 1.5.1
+      nocache: 3.0.4
+      pretty-format: 26.6.2
+      serve-static: 1.15.0
+      ws: 7.5.9(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    optional: true
+
   '@react-native-community/cli-tools@12.3.6':
     dependencies:
       appdirsjs: 1.2.7
@@ -22624,6 +22959,33 @@ snapshots:
       - encoding
       - supports-color
       - utf-8-validate
+
+  '@react-native-community/cli@12.3.6(bufferutil@4.0.8)(utf-8-validate@6.0.3)':
+    dependencies:
+      '@react-native-community/cli-clean': 12.3.6
+      '@react-native-community/cli-config': 12.3.6
+      '@react-native-community/cli-debugger-ui': 12.3.6
+      '@react-native-community/cli-doctor': 12.3.6
+      '@react-native-community/cli-hermes': 12.3.6
+      '@react-native-community/cli-plugin-metro': 12.3.6
+      '@react-native-community/cli-server-api': 12.3.6(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      '@react-native-community/cli-tools': 12.3.6
+      '@react-native-community/cli-types': 12.3.6
+      chalk: 4.1.2
+      commander: 9.5.0
+      deepmerge: 4.3.1
+      execa: 5.1.1
+      find-up: 4.1.0
+      fs-extra: 8.1.0
+      graceful-fs: 4.2.11
+      prompts: 2.4.2
+      semver: 7.6.3
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    optional: true
 
   '@react-native/assets-registry@0.73.1': {}
 
@@ -22809,6 +23171,28 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  '@react-native/community-cli-plugin@0.73.17(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(utf-8-validate@6.0.3)':
+    dependencies:
+      '@react-native-community/cli-server-api': 12.3.6(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      '@react-native-community/cli-tools': 12.3.6
+      '@react-native/dev-middleware': 0.73.8(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      '@react-native/metro-babel-transformer': 0.73.15(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))
+      chalk: 4.1.2
+      execa: 5.1.1
+      metro: 0.80.8(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      metro-config: 0.80.8(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      metro-core: 0.80.8
+      node-fetch: 2.7.0
+      readline: 1.3.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/preset-env'
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    optional: true
+
   '@react-native/debugger-frontend@0.73.3': {}
 
   '@react-native/dev-middleware@0.73.8(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
@@ -22829,6 +23213,26 @@ snapshots:
       - encoding
       - supports-color
       - utf-8-validate
+
+  '@react-native/dev-middleware@0.73.8(bufferutil@4.0.8)(utf-8-validate@6.0.3)':
+    dependencies:
+      '@isaacs/ttlcache': 1.4.1
+      '@react-native/debugger-frontend': 0.73.3
+      chrome-launcher: 0.15.2
+      chromium-edge-launcher: 1.0.0
+      connect: 3.7.0
+      debug: 2.6.9
+      node-fetch: 2.7.0
+      open: 7.4.2
+      serve-static: 1.15.0
+      temp-dir: 2.0.0
+      ws: 6.2.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    optional: true
 
   '@react-native/gradle-plugin@0.73.4': {}
 
@@ -22869,6 +23273,13 @@ snapshots:
       invariant: 2.2.4
       nullthrows: 1.1.1
       react-native: 0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)
+
+  '@react-native/virtualized-lists@0.73.4(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))':
+    dependencies:
+      invariant: 2.2.4
+      nullthrows: 1.1.1
+      react-native: 0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3)
+    optional: true
 
   '@react-native/virtualized-lists@0.73.4(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@19.0.0-rc-66855b96-20241106)(utf-8-validate@5.0.10))':
     dependencies:
@@ -22921,6 +23332,17 @@ snapshots:
     optionalDependencies:
       react: 18.2.0
       react-redux: 8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))(react@18.2.0)(redux@4.2.1)
+
+  '@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1))(react@18.2.0)':
+    dependencies:
+      immer: 9.0.21
+      redux: 4.2.1
+      redux-thunk: 2.4.2(redux@4.2.1)
+      reselect: 4.1.8
+    optionalDependencies:
+      react: 18.2.0
+      react-redux: 8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1)
+    optional: true
 
   '@rollup/plugin-commonjs@26.0.1(rollup@3.29.4)':
     dependencies:
@@ -28514,7 +28936,7 @@ snapshots:
 
   capnp-ts@0.7.0:
     dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@9.4.0)
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
@@ -32904,6 +33326,22 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  metro-config@0.80.8(bufferutil@4.0.8)(utf-8-validate@6.0.3):
+    dependencies:
+      connect: 3.7.0
+      cosmiconfig: 5.2.1
+      jest-validate: 29.7.0
+      metro: 0.80.8(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      metro-cache: 0.80.8
+      metro-core: 0.80.8
+      metro-runtime: 0.80.8
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    optional: true
+
   metro-core@0.80.8:
     dependencies:
       lodash.throttle: 4.1.1
@@ -32990,6 +33428,27 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  metro-transform-worker@0.80.8(bufferutil@4.0.8)(utf-8-validate@6.0.3):
+    dependencies:
+      '@babel/core': 7.23.9
+      '@babel/generator': 7.23.6
+      '@babel/parser': 7.23.9
+      '@babel/types': 7.24.0
+      metro: 0.80.8(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      metro-babel-transformer: 0.80.8
+      metro-cache: 0.80.8
+      metro-cache-key: 0.80.8
+      metro-minify-terser: 0.80.8
+      metro-source-map: 0.80.8
+      metro-transform-plugins: 0.80.8
+      nullthrows: 1.1.1
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    optional: true
+
   metro@0.80.8(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@babel/code-frame': 7.23.5
@@ -33040,6 +33499,58 @@ snapshots:
       - encoding
       - supports-color
       - utf-8-validate
+
+  metro@0.80.8(bufferutil@4.0.8)(utf-8-validate@6.0.3):
+    dependencies:
+      '@babel/code-frame': 7.23.5
+      '@babel/core': 7.23.9
+      '@babel/generator': 7.23.6
+      '@babel/parser': 7.23.9
+      '@babel/template': 7.23.9
+      '@babel/traverse': 7.23.9
+      '@babel/types': 7.24.0
+      accepts: 1.3.8
+      chalk: 4.1.2
+      ci-info: 2.0.0
+      connect: 3.7.0
+      debug: 2.6.9
+      denodeify: 1.2.1
+      error-stack-parser: 2.1.4
+      graceful-fs: 4.2.11
+      hermes-parser: 0.20.1
+      image-size: 1.1.1
+      invariant: 2.2.4
+      jest-worker: 29.7.0
+      jsc-safe-url: 0.2.4
+      lodash.throttle: 4.1.1
+      metro-babel-transformer: 0.80.8
+      metro-cache: 0.80.8
+      metro-cache-key: 0.80.8
+      metro-config: 0.80.8(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      metro-core: 0.80.8
+      metro-file-map: 0.80.8
+      metro-resolver: 0.80.8
+      metro-runtime: 0.80.8
+      metro-source-map: 0.80.8
+      metro-symbolicate: 0.80.8
+      metro-transform-plugins: 0.80.8
+      metro-transform-worker: 0.80.8(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      mime-types: 2.1.35
+      node-fetch: 2.7.0
+      nullthrows: 1.1.1
+      rimraf: 3.0.2
+      serialize-error: 2.1.0
+      source-map: 0.5.7
+      strip-ansi: 6.0.1
+      throat: 5.0.0
+      ws: 7.5.9(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    optional: true
 
   micro-ftch@0.3.1: {}
 
@@ -34615,6 +35126,15 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
+  react-devtools-core@4.28.5(bufferutil@4.0.8)(utf-8-validate@6.0.3):
+    dependencies:
+      shell-quote: 1.8.1
+      ws: 7.5.9(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    optional: true
+
   react-docgen-typescript@2.2.2(typescript@5.2.2):
     dependencies:
       typescript: 5.2.2
@@ -34867,6 +35387,56 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3):
+    dependencies:
+      '@jest/create-cache-key-function': 29.7.0
+      '@react-native-community/cli': 12.3.6(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      '@react-native-community/cli-platform-android': 12.3.6
+      '@react-native-community/cli-platform-ios': 12.3.6
+      '@react-native/assets-registry': 0.73.1
+      '@react-native/codegen': 0.73.3(@babel/preset-env@7.23.3(@babel/core@7.23.9))
+      '@react-native/community-cli-plugin': 0.73.17(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      '@react-native/gradle-plugin': 0.73.4
+      '@react-native/js-polyfills': 0.73.1
+      '@react-native/normalize-colors': 0.73.2
+      '@react-native/virtualized-lists': 0.73.4(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))
+      abort-controller: 3.0.0
+      anser: 1.4.10
+      ansi-regex: 5.0.1
+      base64-js: 1.5.1
+      chalk: 4.1.2
+      deprecated-react-native-prop-types: 5.0.0
+      event-target-shim: 5.0.1
+      flow-enums-runtime: 0.0.6
+      invariant: 2.2.4
+      jest-environment-node: 29.7.0
+      jsc-android: 250231.0.0
+      memoize-one: 5.2.1
+      metro-runtime: 0.80.8
+      metro-source-map: 0.80.8
+      mkdirp: 0.5.6
+      nullthrows: 1.1.1
+      pretty-format: 26.6.2
+      promise: 8.3.0
+      react: 18.2.0
+      react-devtools-core: 4.28.5(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      react-refresh: 0.14.0
+      react-shallow-renderer: 16.15.0(react@18.2.0)
+      regenerator-runtime: 0.13.11
+      scheduler: 0.24.0-canary-efb381bbf-20230505
+      stacktrace-parser: 0.1.10
+      whatwg-fetch: 3.6.20
+      ws: 6.2.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/preset-env'
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    optional: true
+
   react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@19.0.0-rc-66855b96-20241106)(utf-8-validate@5.0.10):
     dependencies:
       '@jest/create-cache-key-function': 29.7.0
@@ -34967,6 +35537,23 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
       react-native: 0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)
       redux: 4.2.1
+
+  react-redux@8.1.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3))(react@18.2.0)(redux@4.2.1):
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@types/hoist-non-react-statics': 3.3.5
+      '@types/use-sync-external-store': 0.0.3
+      hoist-non-react-statics: 3.3.2
+      react: 18.2.0
+      react-is: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.37
+      '@types/react-dom': 18.2.15
+      react-dom: 18.2.0(react@18.2.0)
+      react-native: 0.73.6(@babel/core@7.23.9)(@babel/preset-env@7.23.3(@babel/core@7.23.9))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@6.0.3)
+      redux: 4.2.1
+    optional: true
 
   react-refresh@0.14.0: {}
 
@@ -38400,6 +38987,14 @@ snapshots:
       bufferutil: 4.0.8
       utf-8-validate: 5.0.10
 
+  ws@6.2.2(bufferutil@4.0.8)(utf-8-validate@6.0.3):
+    dependencies:
+      async-limiter: 1.0.1
+    optionalDependencies:
+      bufferutil: 4.0.8
+      utf-8-validate: 6.0.3
+    optional: true
+
   ws@7.4.6(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     optionalDependencies:
       bufferutil: 4.0.8
@@ -38414,6 +39009,12 @@ snapshots:
     optionalDependencies:
       bufferutil: 4.0.8
       utf-8-validate: 5.0.10
+
+  ws@7.5.9(bufferutil@4.0.8)(utf-8-validate@6.0.3):
+    optionalDependencies:
+      bufferutil: 4.0.8
+      utf-8-validate: 6.0.3
+    optional: true
 
   ws@8.11.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     optionalDependencies:

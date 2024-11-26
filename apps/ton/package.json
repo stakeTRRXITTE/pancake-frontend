@@ -10,23 +10,26 @@
     "format:write": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\""
   },
   "dependencies": {
-    "@pancakeswap/uikit": "workspace:*",
     "@pancakeswap/hooks": "workspace:*",
-    "@pancakeswap/widgets-internal": "workspace:*",
     "@pancakeswap/localization": "workspace:*",
-    "@vanilla-extract/next-plugin": "^2.3.0",
-    "@vanilla-extract/vite-plugin": "^4.0.2",
+    "@pancakeswap/price-api-sdk": "^5.0.1",
+    "@pancakeswap/uikit": "workspace:*",
     "@tanstack/react-query": "^5.52.1",
-    "styled-components": "6.0.7",
-    "styled-system": "^5.1.5",
-    "js-cookie": "^3.0.1",
     "@ton/core": "^0.59.0",
     "@tonconnect/ui-react": "^2.0.9",
+    "@vanilla-extract/next-plugin": "^2.3.0",
+    "@vanilla-extract/vite-plugin": "^4.0.2",
+    "evm": "link:@pancakeswap/smart-router/evm",
     "jotai": "catalog:",
+    "js-cookie": "^3.0.1",
     "next": "catalog:",
     "next-themes": "^0.2.1",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "styled-components": "6.0.7",
+    "styled-system": "^5.1.5",
+    "@datadog/browser-logs": "^5.8.0",
+    "@datadog/browser-rum": "^5.8.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "catalog:",
@@ -34,13 +37,13 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/styled-system": "^5.1.17",
+    "eslint": "catalog:",
+    "prettier": "^2.8.3",
     "stylelint": "^14.5.3",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recommended": "^7.0.0",
     "stylelint-config-standard": "^25.0.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "eslint": "catalog:",
-    "typescript": "^5",
-    "prettier": "^2.8.3"
+    "typescript": "^5"
   }
 }

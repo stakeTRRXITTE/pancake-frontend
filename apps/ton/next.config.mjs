@@ -13,6 +13,8 @@ const nextConfig = {
   // Enable React Strict Mode for catching potential issues in your app
   reactStrictMode: true,
 
+  swcMinify: false,
+
   // Optimize image handling with Next.js' Image Optimization
   images: {
     domains: [], // Add domains for external images if needed
@@ -57,8 +59,8 @@ const nextConfig = {
     '@pancakeswap/localization',
     '@pancakeswap/hooks',
     '@pancakeswap/utils',
-    '@pancakeswap/uikit',
     '@pancakeswap/widgets-internal',
+    '@pancakeswap/uikit',
     // https://github.com/TanStack/query/issues/6560#issuecomment-1975771676
     '@tanstack/query-core',
   ],
