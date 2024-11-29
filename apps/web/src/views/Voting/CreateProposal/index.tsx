@@ -98,7 +98,7 @@ const CreateProposal = () => {
 
       const data: any = await client.proposal(web3 as any, account, {
         space: PANCAKE_SPACE,
-        type: ProposalTypeName.SINGLE_CHOICE, // TODO
+        type: ProposalTypeName.SINGLE_CHOICE,
         title: name,
         body,
         start: combineDateAndTime(startDate, startTime) || 0,
