@@ -18,6 +18,7 @@ import {
 } from '@pancakeswap/uikit'
 import truncateHash from '@pancakeswap/utils/truncateHash'
 import snapshot from '@snapshot-labs/snapshot.js'
+import BigNumber from 'bignumber.js'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import Container from 'components/Layout/Container'
 import isEmpty from 'lodash/isEmpty'
@@ -34,6 +35,8 @@ import { useAccount, useWalletClient } from 'wagmi'
 import Layout from '../components/Layout'
 import VoteDetailsModal from '../components/VoteDetailsModal'
 import { ADMINS, PANCAKE_SPACE, VOTE_THRESHOLD } from '../config'
+import { VECAKE_VOTING_POWER_BLOCK } from '../helpers'
+import useGetVotingPower from '../hooks/useGetVotingPower'
 import Choices, { ChoiceIdValue, MINIMUM_CHOICES, makeChoice } from './Choices'
 import { combineDateAndTime, getFormErrors } from './helpers'
 import { FormErrors, Label, SecondaryLabel } from './styles'
@@ -68,7 +71,7 @@ const CreateProposal = () => {
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const { name, body, choices, startDate, startTime, endDate, endTime, snapshot } = state
   const formErrors = getFormErrors(state, t)
-
+  const { veCakeBalance } = useGetVotingPower(state.snapshot)
   const { data: signer } = useWalletClient()
 
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
@@ -160,6 +163,16 @@ const CreateProposal = () => {
           : ['guide', 'fullscreen', 'preview', 'side-by-side', 'image'],
     }
   }, [account])
+
+  const isDisabled = useMemo(() => {
+    const defaultValid = isEmpty(formErrors)
+
+    if (BigInt(state.snapshot) >= VECAKE_VOTING_POWER_BLOCK) {
+      return defaultValid && new BigNumber(veCakeBalance ?? 0).gte(10000)
+    }
+
+    return defaultValid
+  }, [formErrors, state.snapshot, veCakeBalance])
 
   useEffect(() => {
     if (initialBlock > 0) {
@@ -292,7 +305,7 @@ const CreateProposal = () => {
                       width="100%"
                       isLoading={isLoading}
                       endIcon={isLoading ? <AutoRenewIcon spin color="currentColor" /> : null}
-                      disabled={!isEmpty(formErrors)}
+                      disabled={!isDisabled}
                       mb="16px"
                     >
                       {t('Publish')}
