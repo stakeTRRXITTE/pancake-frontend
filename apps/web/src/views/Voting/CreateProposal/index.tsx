@@ -35,7 +35,6 @@ import { useAccount, useWalletClient } from 'wagmi'
 import Layout from '../components/Layout'
 import VoteDetailsModal from '../components/VoteDetailsModal'
 import { ADMINS, PANCAKE_SPACE, VOTE_THRESHOLD } from '../config'
-import { VECAKE_VOTING_POWER_BLOCK } from '../helpers'
 import useGetVotingPower from '../hooks/useGetVotingPower'
 import Choices, { ChoiceIdValue, MINIMUM_CHOICES, makeChoice } from './Choices'
 import { combineDateAndTime, getFormErrors } from './helpers'
@@ -165,14 +164,8 @@ const CreateProposal = () => {
   }, [account])
 
   const isDisabled = useMemo(() => {
-    const defaultValid = isEmpty(formErrors)
-
-    if (BigInt(state.snapshot) >= VECAKE_VOTING_POWER_BLOCK) {
-      return defaultValid && new BigNumber(veCakeBalance ?? 0).gte(10000)
-    }
-
-    return defaultValid
-  }, [formErrors, state.snapshot, veCakeBalance])
+    return isEmpty(formErrors) && new BigNumber(veCakeBalance ?? 0).gte(10000)
+  }, [formErrors, veCakeBalance])
 
   useEffect(() => {
     if (initialBlock > 0) {
