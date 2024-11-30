@@ -126,20 +126,8 @@ export function useV3MintActionHandlers(
   )
 
   const onSetFullRange = useCallback(() => {
-    dispatch(setFullRange())
-    if (routerReplace) {
-      router.replace(
-        {
-          pathname: router.pathname,
-          query: { ...router.query, maxPrice: 'true', minPrice: 'true' },
-        },
-        undefined,
-        {
-          shallow: true,
-        },
-      )
-    }
-  }, [dispatch, routerReplace])
+    onBothRangeInput({ leftTypedValue: true, rightTypedValue: true })
+  }, [onBothRangeInput])
 
   return {
     onBothRangeInput,
