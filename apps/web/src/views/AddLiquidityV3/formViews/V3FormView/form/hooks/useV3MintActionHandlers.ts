@@ -3,7 +3,7 @@ import { Price, Token } from '@pancakeswap/swap-sdk-core'
 import { useCallback } from 'react'
 import { batch } from 'react-redux'
 import { CurrencyField as Field } from 'utils/types'
-import { typeInput, typeLeftRangeInput, typeRightRangeInput, typeStartPriceInput, setFullRange } from '../actions'
+import { typeInput, typeLeftRangeInput, typeRightRangeInput, typeStartPriceInput } from '../actions'
 import { useV3FormDispatch } from '../reducer'
 
 export function useV3MintActionHandlers(
