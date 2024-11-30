@@ -93,9 +93,5 @@ export function useRangeHopCallbacks(
     return undefined
   }, [baseToken, quoteToken, tickUpper, feeAmount, pool])
 
-  const getSetFullRange = useCallback(() => {
-    dispatch(setFullRange())
-  }, [dispatch])
-
-  return { getDecrementLower, getIncrementLower, getDecrementUpper, getIncrementUpper, getSetFullRange }
+  return { getDecrementLower, getIncrementLower, getDecrementUpper, getIncrementUpper }
 }

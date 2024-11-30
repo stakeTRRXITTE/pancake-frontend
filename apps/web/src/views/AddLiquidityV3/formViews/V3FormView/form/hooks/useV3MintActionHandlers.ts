@@ -20,8 +20,8 @@ export function useV3MintActionHandlers(
     leftTypedValue,
     rightTypedValue,
   }: {
-    leftTypedValue: Price<Token, Token> | undefined
-    rightTypedValue: Price<Token, Token> | undefined
+    leftTypedValue: Price<Token, Token> | true | undefined
+    rightTypedValue: Price<Token, Token> | true | undefined
   }) => void
 } {
   const router = useRouter()
@@ -47,8 +47,8 @@ export function useV3MintActionHandlers(
       leftTypedValue,
       rightTypedValue,
     }: {
-      leftTypedValue: Price<Token, Token> | undefined
-      rightTypedValue: Price<Token, Token> | undefined
+      leftTypedValue: Price<Token, Token> | true | undefined
+      rightTypedValue: Price<Token, Token> | true | undefined
     }) => {
       batch(() => {
         dispatch(typeLeftRangeInput({ typedValue: leftTypedValue }))
@@ -65,8 +65,8 @@ export function useV3MintActionHandlers(
             pathname: router.pathname,
             query: {
               ...rest,
-              ...(leftTypedValue && { minPrice: leftTypedValue.toFixed(18) }),
-              ...(rightTypedValue && { maxPrice: rightTypedValue.toFixed(18) }),
+              ...(leftTypedValue && { minPrice: leftTypedValue === true ? 'true' : leftTypedValue.toFixed(18) }),
+              ...(rightTypedValue && { maxPrice: rightTypedValue === true ? 'true' : rightTypedValue.toFixed(18) }),
             },
           },
           undefined,
@@ -81,12 +81,13 @@ export function useV3MintActionHandlers(
 
   const onLeftRangeInput = useCallback(
     (typedValue: Price<Token, Token> | undefined) => {
-      dispatch(typeLeftRangeInput({ typedValue }))
+      const _typedValue = typedValue?.equalTo(0) ? true : typedValue
+      dispatch(typeLeftRangeInput({ typedValue: _typedValue }))
       if (routerReplace) {
         router.replace(
           {
             pathname: router.pathname,
-            query: { ...router.query, minPrice: typedValue?.toFixed(18) },
+            query: { ...router.query, minPrice: typeof _typedValue === 'boolean' ? 'true' : typedValue?.toFixed(18) },
           },
           undefined,
           {
@@ -126,7 +127,19 @@ export function useV3MintActionHandlers(
 
   const onSetFullRange = useCallback(() => {
     dispatch(setFullRange())
-  }, [dispatch])
+    if (routerReplace) {
+      router.replace(
+        {
+          pathname: router.pathname,
+          query: { ...router.query, maxPrice: 'true', minPrice: 'true' },
+        },
+        undefined,
+        {
+          shallow: true,
+        },
+      )
+    }
+  }, [dispatch, routerReplace])
 
   return {
     onBothRangeInput,
