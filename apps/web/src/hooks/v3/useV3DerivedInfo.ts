@@ -286,10 +286,10 @@ export default function useV3DerivedInfo(
 
   // single deposit only if price is out of range
   const deposit0Disabled = Boolean(
-    typeof tickUpper === 'number' && poolForPosition && poolForPosition.tickCurrent > tickUpper,
+    typeof tickUpper === 'number' && poolForPosition && poolForPosition.tickCurrent >= tickUpper,
   )
   const deposit1Disabled = Boolean(
-    typeof tickLower === 'number' && poolForPosition && poolForPosition.tickCurrent < tickLower,
+    typeof tickLower === 'number' && poolForPosition && poolForPosition.tickCurrent <= tickLower,
   )
 
   // sorted for token order
