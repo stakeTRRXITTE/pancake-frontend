@@ -1,10 +1,15 @@
 import { Currency, CurrencyAmount } from '@pancakeswap/sdk'
-import { ReactNode } from 'react'
+import { ReactNode, useCallback } from 'react'
 
 import { useTranslation } from '@pancakeswap/localization'
 import { Text } from '@pancakeswap/uikit'
 import CurrencyInputPanelSimplify from 'components/TonSwap/CurrencyInputPanelSimplify'
+
+import { swapStateAtom } from 'atoms/swapStateAtom'
+import { useSwapActionHandlers } from 'hooks/swap/useSwapActionHandlers'
+import { useAtomValue } from 'jotai'
 import noop from 'lodash/noop'
+import { Field } from 'types'
 import { FlipButton } from './FlipButton'
 import { FormContainer } from './FormContainer'
 
@@ -21,20 +26,21 @@ export function FormMain({ inputAmount, outputAmount, tradeLoading, isUserInsuff
   // const account = '0x00' // dummy account value
   const { t } = useTranslation()
   // const warningSwapHandler = useWarningImport()
-  // const {
-  //   independentField,
-  //   typedValue,
-  //   [Field.INPUT]: { currencyId: inputCurrencyId },
-  //   [Field.OUTPUT]: { currencyId: outputCurrencyId },
-  // } = useSwapState()
+  const {
+    independentField,
+    typedValue,
+    [Field.INPUT]: { currencyId: inputCurrencyId },
+    [Field.OUTPUT]: { currencyId: outputCurrencyId },
+  } = useAtomValue(swapStateAtom)
+
   // const isWrapping = useIsWrapping()
   // const inputCurrency = useCurrency(inputCurrencyId)
   // const outputCurrency = useCurrency(outputCurrencyId)
-  // const { onCurrencySelection, onUserInput } = useSwapActionHandlers()
+  const { onCurrencySelection, onUserInput } = useSwapActionHandlers()
   // const [inputBalance] = useCurrencyBalances(account, [inputCurrency, outputCurrency])
   // const maxAmountInput = useMemo(() => maxAmountSpend(inputBalance), [inputBalance])
   // const loadedUrlParams = useDefaultsFromURLSearch()
-  // const handleTypeInput = useCallback((value: string) => onUserInput(Field.INPUT, value), [onUserInput])
+  const handleTypeInput = useCallback((value: string) => onUserInput(Field.INPUT, value), [onUserInput])
   // const handleTypeOutput = useCallback((value: string) => onUserInput(Field.OUTPUT, value), [onUserInput])
 
   // const handlePercentInput = useCallback(
@@ -132,14 +138,16 @@ export function FormMain({ inputAmount, outputAmount, tradeLoading, isUserInsuff
         inputLoading={false}
         currencyLoading={false}
         label={t('From')}
-        value="0"
+        value={typedValue}
         maxAmount={undefined}
         showQuickInputButton
         currency={inputAmount?.currency}
-        onUserInput={noop}
+        onUserInput={handleTypeInput}
         onPercentInput={noop}
         onMax={noop}
-        onCurrencySelect={noop}
+        onCurrencySelect={() => {
+          console.log('On currency select for input')
+        }}
         otherCurrency={outputAmount?.currency}
         commonBasesType={undefined}
         title={
@@ -174,6 +182,7 @@ export function FormMain({ inputAmount, outputAmount, tradeLoading, isUserInsuff
           </Text>
         }
         isUserInsufficientBalance={isUserInsufficientBalance}
+        disabled
       />
       {/* <CurrencyInputPanelSimplify
         id="swap-currency-output"
