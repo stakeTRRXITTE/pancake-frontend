@@ -9,6 +9,7 @@ const MyApp = ({ Component, pageProps }: AppProps<{ dehydratedState?: any }>) =>
       <Providers dehydratedState={pageProps.dehydratedState}>
         {/* <TonConnector> */}
         <Header />
+
         <Component {...pageProps} />
         {/* </TonConnector> */}
       </Providers>
