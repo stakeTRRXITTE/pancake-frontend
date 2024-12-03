@@ -1,8 +1,8 @@
-import { InterfaceOrder } from 'views/Swap/utils'
 import { SwapCommitButton } from './SwapCommitButton'
 
 export type CommitButtonProps = {
-  order: InterfaceOrder | undefined
+  // order: InterfaceOrder | undefined
+  order?: any
   tradeError?: Error | null
   tradeLoaded: boolean
   beforeCommit?: () => void

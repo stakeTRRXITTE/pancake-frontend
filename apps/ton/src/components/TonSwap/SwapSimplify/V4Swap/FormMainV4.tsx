@@ -18,7 +18,6 @@ interface Props {
   outputAmount?: CurrencyAmount<Currency>
   tradeLoading?: boolean
   pricingAndSlippage?: ReactNode
-  swapCommitButton?: ReactNode
   isUserInsufficientBalance?: boolean
 }
 

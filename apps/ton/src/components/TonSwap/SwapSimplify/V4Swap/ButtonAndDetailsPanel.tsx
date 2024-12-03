@@ -1,4 +1,4 @@
-import { SwapUIV2 } from '@pancakeswap/widgets-internal'
+import { SwapUIV2 } from 'components/widgets/swap-v2'
 import { useState } from 'react'
 import { styled } from 'styled-components'
 
@@ -14,8 +14,8 @@ export const PanelWrapper = styled.div`
 `
 interface ButtonAndDetailsPanelProps {
   swapCommitButton: React.ReactNode
-  pricingAndSlippage: React.ReactNode
-  tradeDetails: React.ReactNode
+  pricingAndSlippage?: React.ReactNode
+  tradeDetails?: React.ReactNode
   shouldRenderDetails?: boolean
 }
 

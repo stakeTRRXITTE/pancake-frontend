@@ -1,4 +1,4 @@
-import { TonConnectButton } from '@tonconnect/ui-react'
+// import { TonConnectButton } from '@tonconnect/ui-react'
 
 export const Header = () => {
   return (
@@ -13,7 +13,7 @@ export const Header = () => {
       }}
     >
       <span>TON Expansion</span>
-      <TonConnectButton />
+      {/* <TonConnectButton /> */}
     </header>
   )
 }

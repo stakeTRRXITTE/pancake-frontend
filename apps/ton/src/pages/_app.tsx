@@ -1,4 +1,3 @@
-import { TonConnector } from 'components/connector/TonConnector'
 import { Header } from 'components/Header'
 import { Providers } from 'components/Providers'
 import type { AppProps } from 'next/app'
@@ -8,10 +7,10 @@ const MyApp = ({ Component, pageProps }: AppProps<{ dehydratedState?: any }>) =>
   return (
     <>
       <Providers dehydratedState={pageProps.dehydratedState}>
-        <TonConnector>
-          <Header />
-          <Component {...pageProps} />
-        </TonConnector>
+        {/* <TonConnector> */}
+        <Header />
+        <Component {...pageProps} />
+        {/* </TonConnector> */}
       </Providers>
     </>
   )

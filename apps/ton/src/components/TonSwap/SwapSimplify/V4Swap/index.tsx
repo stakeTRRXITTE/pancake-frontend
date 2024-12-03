@@ -1,4 +1,6 @@
+import { Button } from '@pancakeswap/uikit'
 import { SwapUIV2 } from 'components/widgets/swap-v2'
+import { ButtonAndDetailsPanel } from './ButtonAndDetailsPanel'
 import { FormMain } from './FormMainV4'
 
 export function V4SwapForm() {
@@ -92,47 +94,47 @@ export function V4SwapForm() {
           tradeLoading={false}
           inputAmount={undefined}
           outputAmount={undefined}
-          // swapCommitButton={<CommitButton order={null} tradeLoaded tradeError={null} />}
           isUserInsufficientBalance={false}
         />
       </SwapUIV2.SwapTabAndInputPanelWrapper>
-      {/* <ButtonAndDetailsPanel
+      <ButtonAndDetailsPanel
         swapCommitButton={
-          <CommitButton order={bestOrder} tradeLoaded={tradeLoaded} tradeError={tradeError} {...commitHooks} />
+          <Button>Swap</Button>
+          // <CommitButton order={bestOrder} tradeLoaded={tradeLoaded} tradeError={tradeError} {...commitHooks} />
         }
-        pricingAndSlippage={
-          <FlexGap
-            alignItems="center"
-            flexWrap="wrap"
-            justifyContent="space-between"
-            width="calc(100% - 20px)"
-            gap="8px"
-          >
-            <FlexGap
-              onClick={(e) => {
-                e.stopPropagation()
-              }}
-              alignItems="center"
-              flexWrap="wrap"
-            >
-              <RefreshButton
-                onRefresh={refreshOrder}
-                refreshDisabled={refreshDisabled}
-                chainId={activeChainId}
-                loading={!tradeLoaded}
-              />
-              <PricingAndSlippage
-                priceLoading={!tradeLoaded}
-                price={executionPrice ?? undefined}
-                showSlippage={false}
-              />
-            </FlexGap>
-            <TradingFee loaded={tradeLoaded} order={bestOrder} />
-          </FlexGap>
-        }
-        tradeDetails={<TradeDetails loaded={tradeLoaded} order={bestOrder} />}
-        shouldRenderDetails={Boolean(executionPrice) && Boolean(bestOrder) && !isWrapping}
-      /> */}
+        // pricingAndSlippage={
+        //   <FlexGap
+        //     alignItems="center"
+        //     flexWrap="wrap"
+        //     justifyContent="space-between"
+        //     width="calc(100% - 20px)"
+        //     gap="8px"
+        //   >
+        //     <FlexGap
+        //       onClick={(e) => {
+        //         e.stopPropagation()
+        //       }}
+        //       alignItems="center"
+        //       flexWrap="wrap"
+        //     >
+        //       <RefreshButton
+        //         onRefresh={refreshOrder}
+        //         refreshDisabled={refreshDisabled}
+        //         chainId={activeChainId}
+        //         loading={!tradeLoaded}
+        //       />
+        //       <PricingAndSlippage
+        //         priceLoading={!tradeLoaded}
+        //         price={executionPrice ?? undefined}
+        //         showSlippage={false}
+        //       />
+        //     </FlexGap>
+        //     <TradingFee loaded={tradeLoaded} order={bestOrder} />
+        //   </FlexGap>
+        // }
+        // tradeDetails={<TradeDetails loaded={tradeLoaded} order={bestOrder} />}
+        // shouldRenderDetails={Boolean(executionPrice) && Boolean(bestOrder) && !isWrapping}
+      />
     </SwapUIV2.SwapFormWrapper>
   )
 }
