@@ -1,5 +1,14 @@
+import { Button } from '@pancakeswap/uikit'
+
 const HomPage = () => {
-  return <>Home Page</>
+  const test = () => {}
+
+  return (
+    <>
+      <>Hi</>
+      <Button onClick={test}>Test</Button>
+    </>
+  )
 }
 
 export default HomPage
