@@ -11,15 +11,18 @@
   },
   "dependencies": {
     "@pancakeswap/uikit": "workspace:*",
-    "styled-components": "6.0.7",
-    "styled-system": "^5.1.5",
+    "@ton-community/assets-sdk": "^0.0.5",
     "@ton/core": "^0.59.0",
+    "@ton/ton": "^15.1.0",
     "@tonconnect/ui-react": "^2.0.9",
     "jotai": "catalog:",
+    "lodash": "^4.17.21",
     "next": "catalog:",
     "next-themes": "^0.2.1",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "styled-components": "6.0.7",
+    "styled-system": "^5.1.5"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "catalog:",
@@ -27,7 +30,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "catalog:",
-    "typescript": "^5",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "typescript": "^5"
   }
 }

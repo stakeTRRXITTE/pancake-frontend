@@ -1,0 +1,16 @@
+import { TonContractNames, TonContractTypes } from 'ton/ton.enums'
+
+export const Contracts = {
+  [TonContractNames.USDC]: {
+    address: 'kQA8oT-HRBY-9-yFymg17hD5FE07--Z1gYc_sZTbzqpOZr1t',
+    type: TonContractTypes.JettonMinter,
+  },
+  [TonContractNames.CAKE]: {
+    address: 'kQA8oT-HRBY-9-yFymg17hD5FE07--Z1gYc_sZTbzqpOZr1t',
+    type: TonContractTypes.JettonMinter,
+  },
+  [TonContractNames.PCSRouter]: {
+    address: 'kQDSysXTXY7_HPNaP-Rp9uNU20bFc5e0TbSA3Z77S6gLA4TD',
+    type: TonContractTypes.PCSRouter,
+  },
+} as const
