@@ -5,6 +5,7 @@ import { StyledSwapContainer } from 'components/TonSwap/Swap/styles'
 import { V4SwapForm } from 'components/TonSwap/SwapSimplify/V4Swap'
 import styled from 'styled-components'
 import Page from 'views/Page'
+import { Footer } from './Footer'
 
 const Wrapper = styled(Box)`
   width: 100%;
@@ -31,6 +32,7 @@ export const TonSwapV2 = () => {
           <StyledSwapContainer justifyContent="center" width="100%" style={{ height: '100%' }} $isChartExpanded={false}>
             <Wrapper height="100%">
               <V4SwapForm />
+              <Footer />
             </Wrapper>
           </StyledSwapContainer>
         </Flex>
