@@ -29,7 +29,8 @@ const sentryWebpackPluginOptions =
         silent: true, // Logging when deploying to check if there is any problem
         validate: true,
         hideSourceMaps: false,
-        tryRun: true
+        tryRun: true,
+        disable: true
         // https://github.com/getsentry/sentry-webpack-plugin#options.
       }
     : {
