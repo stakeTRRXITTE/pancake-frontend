@@ -1,3 +1,5 @@
+import { Swap } from 'components/widgets'
+
 const Page: React.FC<
   React.PropsWithChildren<{
     removePadding?: boolean
@@ -16,17 +18,15 @@ const Page: React.FC<
   ...props
 }) => {
   return (
-    // TODO: Re-instate Swap Page here after resolving errors
-    <>{children}</>
-    // <Swap.Page
-    //   removePadding={removePadding}
-    //   noMinHeight={noMinHeight}
-    //   hideFooterOnDesktop={hideFooterOnDesktop}
-    //   helpUrl={showHelpLink ? helpUrl : undefined}
-    //   {...props}
-    // >
-    //   {children}
-    // </Swap.Page>
+    <Swap.Page
+      removePadding={removePadding}
+      noMinHeight={noMinHeight}
+      hideFooterOnDesktop={hideFooterOnDesktop}
+      helpUrl={showHelpLink ? helpUrl : undefined}
+      {...props}
+    >
+      {children}
+    </Swap.Page>
   )
 }
 

@@ -1,4 +1,4 @@
-import { swapStateAtom } from 'atoms/swapStateAtom'
+import { swapStateAtom } from 'atoms/swap/swapStateAtom'
 import { useSetAtom } from 'jotai'
 import { useCallback } from 'react'
 import { Field } from 'types'

@@ -5,7 +5,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import { Text } from '@pancakeswap/uikit'
 import CurrencyInputPanelSimplify from 'components/TonSwap/CurrencyInputPanelSimplify'
 
-import { swapStateAtom } from 'atoms/swapStateAtom'
+import { swapStateAtom } from 'atoms/swap/swapStateAtom'
 import { useSwapActionHandlers } from 'hooks/swap/useSwapActionHandlers'
 import { useAtomValue } from 'jotai'
 import noop from 'lodash/noop'
