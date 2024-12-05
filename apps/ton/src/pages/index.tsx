@@ -1,8 +1,9 @@
+import { TonSwapV2 } from 'views/TONSwap'
+
 const Home = () => {
   return (
     <div>
-      {/* <TonSwapV2 /> */}
-      <p>testing page crash without swap UI</p>
+      <TonSwapV2 />
     </div>
   )
 }
