@@ -1,10 +1,11 @@
 import { Currency, CurrencyAmount } from '@pancakeswap/sdk'
-import { ReactNode, useCallback } from 'react'
+import { ReactNode, useCallback, useMemo } from 'react'
 
 import { useTranslation } from '@pancakeswap/localization'
 import { Text } from '@pancakeswap/uikit'
 import CurrencyInputPanelSimplify from 'components/TonSwap/CurrencyInputPanelSimplify'
 
+import { formatAmount } from '@pancakeswap/utils/formatFractions'
 import { swapStateAtom } from 'atoms/swap/swapStateAtom'
 import { useSwapActionHandlers } from 'hooks/swap/useSwapActionHandlers'
 import { useAtomValue } from 'jotai'
@@ -90,15 +91,15 @@ export function FormMain({ inputAmount, outputAmount, tradeLoading, isUserInsuff
   //   [handleCurrencySelect, inputCurrencyId, outputCurrencyId],
   // )
 
-  // const isTypingInput = independentField === Field.INPUT
+  const isTypingInput = independentField === Field.INPUT
   // const inputValue = useMemo(
   //   () => typedValue && (isTypingInput ? typedValue : formatAmount(inputAmount) || ''),
   //   [typedValue, isTypingInput, inputAmount],
   // )
-  // const outputValue = useMemo(
-  //   () => typedValue && (isTypingInput ? formatAmount(outputAmount) || '' : typedValue),
-  //   [typedValue, isTypingInput, outputAmount],
-  // )
+  const outputValue = useMemo(
+    () => typedValue && (isTypingInput ? formatAmount(outputAmount) || '' : typedValue),
+    [typedValue, isTypingInput, outputAmount],
+  )
   // const inputLoading = typedValue ? !isTypingInput && tradeLoading : false
   // const outputLoading = typedValue ? isTypingInput && tradeLoading : false
 
@@ -165,7 +166,7 @@ export function FormMain({ inputAmount, outputAmount, tradeLoading, isUserInsuff
         inputLoading={false}
         currencyLoading={false}
         label={t('From')}
-        value="0"
+        value={outputValue}
         maxAmount={undefined}
         showQuickInputButton
         currency={outputAmount?.currency}
