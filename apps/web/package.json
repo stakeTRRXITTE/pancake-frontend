@@ -170,7 +170,7 @@
     "@types/simplemde": "^1.11.7",
     "@types/styled-system": "^5.1.17",
     "@types/uuid": "^8.0.0",
-    "@vanilla-extract/vite-plugin": "^4.0.2",
+    "@vanilla-extract/vite-plugin": "catalog:",
     "@vercel/flags": "^2.3.0",
     "@vercel/toolbar": "^0.1.13",
     "@vitejs/plugin-react": "4.2.1",
