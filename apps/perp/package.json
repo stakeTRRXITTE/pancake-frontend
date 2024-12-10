@@ -52,6 +52,7 @@
     "@pancakeswap/widgets-internal": "workspace:*",
     "@reduxjs/toolkit": "^1.9.1",
     "@tanstack/react-query": "^5.52.1",
+    "@types/ws": "^8.5.13",
     "@vanilla-extract/next-plugin": "^2.3.0",
     "@wagmi/core": "2.10.5",
     "bignumber.js": "^9.1.2",
@@ -80,7 +81,8 @@
     "styled-components": "6.0.7",
     "trustWallet": "link:@pancakeswap/wagmi/connectors/trustWallet",
     "viem": "catalog:",
-    "wagmi": "catalog:"
+    "wagmi": "catalog:",
+    "ws": "^8.17.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "14.2.3",
