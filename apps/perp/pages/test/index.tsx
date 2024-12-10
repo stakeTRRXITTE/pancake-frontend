@@ -1,8 +1,9 @@
 import { useSetup } from 'hyperLiquid/hooks/useSetup'
 
 const TestPage = () => {
-  // test for mainnet
-  useSetup(false, true)
+  // For testnet
+  const { address, info, exchange } = useSetup(false, true)
+  console.log(address, info, exchange)
 
   return (
     <>
