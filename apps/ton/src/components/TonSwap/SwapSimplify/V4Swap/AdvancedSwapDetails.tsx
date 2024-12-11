@@ -17,11 +17,12 @@ import { formatAmount, formatFraction } from '@pancakeswap/utils/formatFractions
 import { useUserSlippage } from '@pancakeswap/utils/user'
 import React, { memo, useState } from 'react'
 
-import { NumberDisplay } from '@pancakeswap/widgets-internal'
 import { RowBetween, RowFixed } from 'components/Layout/Row'
-import { RoutingSettingsButton } from 'components/Menu/GlobalSettings/SettingsModalV2'
-import { Field } from 'state/swap/actions'
+// import { RoutingSettingsButton } from 'components/Menu/GlobalSettings/SettingsModalV2'
+
+import { NumberDisplay } from 'components/widgets/NumberDisplay'
 import { styled } from 'styled-components'
+import { Field } from 'types'
 import FormattedPriceImpact from '../../Swap/components/FormattedPriceImpact'
 import { RouterViewer } from '../../Swap/components/RouterViewer'
 import SwapRoute from '../../Swap/components/SwapRoute'
@@ -318,9 +319,9 @@ export const AdvancedSwapDetails = memo(function AdvancedSwapDetails({
                       path={path}
                       outputCurrency={outputAmount?.currency}
                     />
-                    <Flex mt="3em" width="100%" justifyContent="center">
+                    {/* <Flex mt="3em" width="100%" justifyContent="center">
                       <RoutingSettingsButton />
-                    </Flex>
+                    </Flex> */}
                   </Modal>
                 </ModalV2>
               </RowBetween>

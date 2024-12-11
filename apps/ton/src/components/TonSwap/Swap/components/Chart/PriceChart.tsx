@@ -1,19 +1,19 @@
+import { useTranslation } from '@pancakeswap/localization'
 import {
   ButtonMenu,
   ButtonMenuItem,
+  CandleGraphIcon,
   ExpandIcon,
   Flex,
   IconButton,
   LineGraphIcon,
-  CandleGraphIcon,
   PairPriceChartType,
   ShrinkIcon,
   SyncAltIcon,
   Text,
   useMatchBreakpoints,
 } from '@pancakeswap/uikit'
-import { CurrencyLogo, DoubleCurrencyLogo } from 'components/Logo'
-import { useTranslation } from '@pancakeswap/localization'
+import { CurrencyLogo, DoubleCurrencyLogo } from 'components/widgets/CurrencyLogo'
 import { useCallback, useState } from 'react'
 import SwapChart from './SwapChart'
 import { StyledPriceChart } from './styles'

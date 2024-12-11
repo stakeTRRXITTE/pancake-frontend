@@ -10,8 +10,8 @@ import {
   Text,
 } from '@pancakeswap/uikit'
 import { memo, useMemo, useState } from 'react'
-import { usePairRate } from 'state/swap/hooks'
-import PairPriceDisplay from '../../../../components/PairPriceDisplay'
+// import { usePairRate } from 'state/swap/hooks'
+// import PairPriceDisplay from '../../../../components/PairPriceDisplay'
 import NoChartAvailable from './NoChartAvailable'
 import { getTimeWindowChange } from './utils'
 
@@ -27,12 +27,15 @@ const SwapChart = ({
 }) => {
   const [timeWindow, setTimeWindow] = useState(PairDataTimeWindowEnum.DAY)
 
-  const { data: pairPrices = [] } = usePairRate({
-    token0Address,
-    token1Address,
-    timeWindow,
-    currentSwapPrice,
-  })
+  // const { data: pairPrices = [] } = usePairRate({
+  //   token0Address,
+  //   token1Address,
+  //   timeWindow,
+  //   currentSwapPrice,
+  // })
+
+  // temporary
+  const pairPrices: any[] = []
 
   const [hoverValue, setHoverValue] = useState<number | undefined>()
   const [hoverDate, setHoverDate] = useState<string | undefined>()
@@ -123,7 +126,7 @@ const SwapChart = ({
         flexWrap="wrap"
       >
         <Flex flexDirection="column" pt="12px">
-          <PairPriceDisplay
+          {/* <PairPriceDisplay
             value={pairPrices?.length > 0 ? valueToDisplay : undefined}
             inputSymbol={inputCurrency?.symbol}
             outputSymbol={outputCurrency?.symbol}
@@ -131,7 +134,7 @@ const SwapChart = ({
             <Text color={isChangePositive ? 'success' : 'failure'} fontSize="20px" ml="4px" bold>
               {changeText}
             </Text>
-          </PairPriceDisplay>
+          </PairPriceDisplay> */}
           <Text small color="secondary">
             {hoverDate || currentDate}
           </Text>

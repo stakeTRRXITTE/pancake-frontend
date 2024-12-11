@@ -26,6 +26,7 @@
     "@tonconnect/ui-react": "^2.0.9",
     "@vanilla-extract/next-plugin": "^2.3.0",
     "@vanilla-extract/vite-plugin": "catalog:",
+    "bignumber.js": "^9.1.2",
     "jotai": "catalog:",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",

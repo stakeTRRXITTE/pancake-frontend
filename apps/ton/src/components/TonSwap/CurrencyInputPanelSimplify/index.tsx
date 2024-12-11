@@ -155,7 +155,7 @@ interface CurrencyInputPanelProps {
   currency?: Currency | null
   disableCurrencySelect?: boolean
   hideBalance?: boolean
-  pair?: Pair | StablePair | null
+  pair?: Pair | null
   otherCurrency?: Currency | null
   id: string
   showCommonBases?: boolean
@@ -309,7 +309,7 @@ const CurrencyInputPanelSimplify = memo(function CurrencyInputPanel({
                   ) : (
                     <CurrencyLogo
                       imageRef={tokenImageRef}
-                      currency={currency}
+                      currency={currency as any}
                       size={`${LOGO_SIZE.MAX}px`}
                       style={{
                         marginRight: '8px',

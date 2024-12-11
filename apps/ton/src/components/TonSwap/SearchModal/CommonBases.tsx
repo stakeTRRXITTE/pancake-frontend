@@ -10,7 +10,7 @@ import { AutoRow } from 'components/Layout/Row'
 import { CommonBasesType } from './types'
 
 const SUGGESTED_BASES: { [chainId in ChainId]?: Token[] } = {
-  1: [new Token(1, '0x6b175474e89094c44da98b954eedeac495271d0f', 18, 'DAI', 'Dai Stablecoin')],
+  1: [new Token(1, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')],
 }
 
 const ButtonWrapper = styled.div`
@@ -58,7 +58,7 @@ export default function CommonBases({
   selectedCurrency?: Currency | null
   onSelect: (currency: Currency) => void
 }) {
-  const native = useNativeCurrency()
+  const native: any = useNativeCurrency()
   const { t } = useTranslation()
   const pinTokenDescText = commonBasesType === CommonBasesType.SWAP_LIMITORDER ? t('Select token') : t('Common bases')
 
@@ -91,7 +91,7 @@ export default function CommonBases({
           return (
             <ButtonWrapper key={`buttonBase#${token.address}`}>
               <BaseWrapper onClick={() => !selected && onSelect(token)} disable={selected}>
-                <CurrencyLogo currency={token} style={{ borderRadius: '50%' }} />
+                <CurrencyLogo currency={token as any} style={{ borderRadius: '50%' }} />
                 <Text p="2px 6px">{token.symbol}</Text>
               </BaseWrapper>
             </ButtonWrapper>

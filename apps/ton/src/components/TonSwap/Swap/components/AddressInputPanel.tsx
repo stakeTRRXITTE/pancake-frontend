@@ -1,14 +1,13 @@
-import { useDebounce } from '@pancakeswap/hooks'
 import { useTranslation } from '@pancakeswap/localization'
-import { ChainId } from '@pancakeswap/chains'
-import { AutoColumn, BscScanIcon, Link, Text } from '@pancakeswap/uikit'
+import { AutoColumn, Text } from '@pancakeswap/uikit'
 import { useActiveChainId } from 'hooks/useActiveChainId'
-import { useGetENSAddressByName } from 'hooks/useGetENSAddressByName'
+// import { useGetENSAddressByName } from 'hooks/useGetENSAddressByName'
 import { useCallback } from 'react'
 import { styled } from 'styled-components'
-import { safeGetAddress } from 'utils'
-import { RowBetween } from '../../../components/Layout/Row'
-import { getBlockExploreLink, getBlockExploreName } from '../../../utils'
+// import { safeGetAddress } from 'utils'
+import { Address } from '@ton/core'
+import { RowBetween } from 'components/Layout/Row'
+// import { getBlockExploreLink, getBlockExploreName } from '../../../utils'
 
 const InputPanel = styled.div`
   display: flex;
@@ -82,10 +81,10 @@ export default function AddressInputPanel({
   const { chainId } = useActiveChainId()
 
   const { t } = useTranslation()
-  const debounceEnsName = useDebounce(value, 500)
-  const recipientENSAddress = useGetENSAddressByName(debounceEnsName)
+  // const debounceEnsName = useDebounce(value, 500)
+  // const recipientENSAddress = useGetENSAddressByName(debounceEnsName)
 
-  const address = safeGetAddress(value) ? value : safeGetAddress(recipientENSAddress)
+  const address = Address.parse(value) || value
 
   const handleInput = useCallback(
     (event) => {
@@ -105,7 +104,7 @@ export default function AddressInputPanel({
           <AutoColumn gap="md">
             <RowBetween>
               <Text>{t('Recipient')}</Text>
-              {address && chainId && (
+              {/* {address && chainId && (
                 <Link external small href={getBlockExploreLink(address, 'address', chainId)}>
                   (
                   {t('View on %site%', {
@@ -113,7 +112,7 @@ export default function AddressInputPanel({
                   })}
                   {chainId === ChainId.BSC && <BscScanIcon color="primary" ml="4px" />})
                 </Link>
-              )}
+              )} */}
             </RowBetween>
             <Input
               className="recipient-address-input"

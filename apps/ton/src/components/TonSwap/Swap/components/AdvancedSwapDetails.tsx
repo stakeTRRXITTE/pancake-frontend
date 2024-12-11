@@ -5,10 +5,11 @@ import { AutoColumn, Flex, Link, Modal, ModalV2, QuestionHelper, SearchIcon, Tex
 import { formatAmount, formatFraction } from '@pancakeswap/utils/formatFractions'
 import React, { memo, useState } from 'react'
 
-import { NumberDisplay } from '@pancakeswap/widgets-internal'
 import { RowBetween, RowFixed } from 'components/Layout/Row'
-import { RoutingSettingsButton } from 'components/Menu/GlobalSettings/SettingsModal'
-import { Field } from 'state/swap/actions'
+// import { RoutingSettingsButton } from 'components/Menu/GlobalSettings/SettingsModal'
+
+import { NumberDisplay } from 'components/widgets/NumberDisplay'
+import { Field } from 'types'
 import { SlippageAdjustedAmounts } from '../V3Swap/utils/exchange'
 import { useFeeSaved } from '../hooks/useFeeSaved'
 import FormattedPriceImpact from './FormattedPriceImpact'
@@ -58,8 +59,8 @@ export const TradeSummary = memo(function TradeSummary({
         <RowFixed>
           <Text fontSize="14px">
             {isExactIn
-              ? `${formatAmount(slippageAdjustedAmounts[Field.OUTPUT], 4)} ${outputAmount?.currency?.symbol}` ?? '-'
-              : `${formatAmount(slippageAdjustedAmounts[Field.INPUT], 4)} ${inputAmount?.currency?.symbol}` ?? '-'}
+              ? `${formatAmount(slippageAdjustedAmounts[Field.OUTPUT], 4)} ${outputAmount?.currency?.symbol}`
+              : `${formatAmount(slippageAdjustedAmounts[Field.INPUT], 4)} ${inputAmount?.currency?.symbol}`}
           </Text>
         </RowFixed>
       </RowBetween>
@@ -264,9 +265,9 @@ export const AdvancedSwapDetails = memo(function AdvancedSwapDetails({
                       path={path}
                       outputCurrency={outputAmount?.currency}
                     />
-                    <Flex mt="3em" width="100%" justifyContent="center">
+                    {/* <Flex mt="3em" width="100%" justifyContent="center">
                       <RoutingSettingsButton />
-                    </Flex>
+                    </Flex> */}
                   </Modal>
                 </ModalV2>
               </RowBetween>

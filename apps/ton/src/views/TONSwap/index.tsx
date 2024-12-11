@@ -1,7 +1,7 @@
 import { Box, Flex } from '@pancakeswap/uikit'
 import { Header } from 'components/Header'
 
-import { CenteredContainer } from 'components/styles'
+import { StyledSwapContainer } from 'components/styles'
 import { V4SwapForm } from 'components/TonSwap/SwapSimplify/V4Swap'
 import styled from 'styled-components'
 import Page from 'views/Page'
@@ -30,12 +30,12 @@ export const TonSwapV2 = () => {
 
       <Flex width="100%" height="100%" justifyContent="center" position="relative">
         <Flex flexDirection="column" alignItems="center" height="100%" width="100%">
-          <CenteredContainer justifyContent="center" width="100%" style={{ height: '100%' }} $isChartExpanded={false}>
+          <StyledSwapContainer justifyContent="center" width="100%" style={{ height: '100%' }} $isChartExpanded={false}>
             <Wrapper>
               <V4SwapForm />
               <Footer />
             </Wrapper>
-          </CenteredContainer>
+          </StyledSwapContainer>
         </Flex>
       </Flex>
     </Page>

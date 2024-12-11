@@ -160,7 +160,7 @@ export default function CurrencySearchModal({
 
           {showCurrencyInHeader && selectedCurrency ? (
             <>
-              <CurrencyLogo currency={selectedCurrency} style={{ borderRadius: '50%' }} />
+              <CurrencyLogo currency={selectedCurrency as any} style={{ borderRadius: '50%' }} />
               <Text p="2px 6px" bold>
                 {selectedCurrency.symbol}
               </Text>

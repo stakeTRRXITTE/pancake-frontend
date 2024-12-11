@@ -1,14 +1,12 @@
-import { ChainId } from '@pancakeswap/chains'
-import { useDebounce } from '@pancakeswap/hooks'
 import { useTranslation } from '@pancakeswap/localization'
-import { AutoColumn, BscScanIcon, FlexGap, Link, SwapCSS, Text } from '@pancakeswap/uikit'
+import { AutoColumn, FlexGap, SwapCSS, Text } from '@pancakeswap/uikit'
 
 import { useActiveChainId } from 'hooks/useActiveChainId'
-import { useGetENSAddressByName } from 'hooks/useGetENSAddressByName'
+
+import { Address } from '@ton/core'
 import { useCallback } from 'react'
 import { styled } from 'styled-components'
-import { safeGetAddress } from 'utils'
-import { getBlockExploreLink, getBlockExploreName } from '../../../utils'
+// import { getBlockExploreLink, getBlockExploreName } from '../../../utils'
 
 const Divider = styled.div`
   width: 1px;
@@ -89,10 +87,10 @@ export default function AddressInputPanel({
   const { chainId } = useActiveChainId()
 
   const { t } = useTranslation()
-  const debounceEnsName = useDebounce(value, 500)
-  const recipientENSAddress = useGetENSAddressByName(debounceEnsName)
+  // const debounceEnsName = useDebounce(value, 500)
+  // const recipientENSAddress = useGetENSAddressByName(debounceEnsName)
 
-  const address = safeGetAddress(value) ? value : safeGetAddress(recipientENSAddress)
+  const address = Address.parse(value) || value
 
   const handleInput = useCallback(
     (event) => {
@@ -114,7 +112,7 @@ export default function AddressInputPanel({
               <Text bold color="textSubtle">
                 {t('Recipient')}
               </Text>
-              {address && chainId && (
+              {/* {address && chainId && (
                 <Link external small href={getBlockExploreLink(address, 'address', chainId)}>
                   (
                   {t('View on %site%', {
@@ -122,7 +120,7 @@ export default function AddressInputPanel({
                   })}
                   {chainId === ChainId.BSC && <BscScanIcon color="primary" ml="4px" />})
                 </Link>
-              )}
+              )} */}
             </FlexGap>
             <Divider />
             <Text

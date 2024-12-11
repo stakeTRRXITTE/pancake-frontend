@@ -1,11 +1,11 @@
 import { Swap } from 'components/widgets'
+import { PropsWithChildren } from 'react'
 
-const Page: React.FC<
-  React.PropsWithChildren<{
-    removePadding?: boolean
-    noMinHeight?: boolean
-  }>
-> = ({ children, removePadding = false, noMinHeight = false, ...props }) => {
+interface PageProps extends PropsWithChildren {
+  removePadding?: boolean
+  noMinHeight?: boolean
+}
+const Page = ({ children, removePadding = false, noMinHeight = false, ...props }: PageProps) => {
   return (
     <Swap.Page removePadding={removePadding} noMinHeight={noMinHeight} {...props}>
       {children}
