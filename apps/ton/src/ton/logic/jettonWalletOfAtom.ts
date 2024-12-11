@@ -11,7 +11,7 @@ type JettonWalletQueryParams = {
 export const jettonWalletOfAtom = atomFamily((params: JettonWalletQueryParams) => {
   return atom(async (get) => {
     const contract = get(contractAtom(params.contractName))
-    const address = await contract.get_wallet_address(params.ownerAddress)
+    const address = await contract.getWalletAddress(params.ownerAddress)
     return address
   })
 }, isEqual)

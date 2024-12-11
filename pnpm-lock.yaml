@@ -935,6 +935,9 @@ importers:
       jotai:
         specifier: 'catalog:'
         version: 2.5.1(@types/react@18.2.37)(react@18.2.0)
+      jotai-valtio:
+        specifier: ^0.5.0
+        version: 0.5.0(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(valtio@2.1.2(@types/react@18.2.37)(react@18.2.0))
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -956,6 +959,9 @@ importers:
       styled-system:
         specifier: ^5.1.5
         version: 5.1.5
+      valtio:
+        specifier: ^2.1.2
+        version: 2.1.2(@types/react@18.2.37)(react@18.2.0)
     devDependencies:
       '@next/eslint-plugin-next':
         specifier: 'catalog:'
@@ -12830,6 +12836,12 @@ packages:
   jose@5.2.1:
     resolution: {integrity: sha512-qiaQhtQRw6YrOaOj0v59h3R6hUY9NvxBmmnMfKemkqYmBB0tEc97NbLP7ix44VP5p9/0YHG8Vyhzuo5YBNwviA==}
 
+  jotai-valtio@0.5.0:
+    resolution: {integrity: sha512-4XVKGhPe3/XFkMwuYLGk8CkWISsog5KRnHtB3bSo0cr7+xb5wm0uJl142pe+Kbls7dQGrYXLt1eurYdibfalnQ==}
+    peerDependencies:
+      jotai: '>=2.0.0'
+      valtio: '>=1.0.0'
+
   jotai@2.5.1:
     resolution: {integrity: sha512-vanPCCSuHczUXNbVh/iUunuMfrWRL4FdBtAbTRmrfqezJcKb8ybBTg8iivyYuUHapjcDETyJe1E4inlo26bVHA==}
     engines: {node: '>=12.20.0'}
@@ -14733,6 +14745,9 @@ packages:
 
   proxy-compare@2.5.1:
     resolution: {integrity: sha512-oyfc0Tx87Cpwva5ZXezSp5V9vht1c7dZBhvuV/y3ctkgMVUmiAGDVeeB0dKhGSyT0v1ZTEQYpe/RXlBVBNuCLA==}
+
+  proxy-compare@3.0.1:
+    resolution: {integrity: sha512-V9plBAt3qjMlS1+nC8771KNf6oJ12gExvaxnNzN/9yVRLdTv/lc+oJlnSzrdYDAvBfTStPCoiaCOTmTs0adv7Q==}
 
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
@@ -16941,6 +16956,18 @@ packages:
     peerDependencies:
       '@types/react': '>=16.8'
       react: '>=16.8'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+
+  valtio@2.1.2:
+    resolution: {integrity: sha512-fhekN5Rq7dvHULHHBlJeXHrQDl0Jj9GXfNavCm3gkD06crGchaG1nf/J7gSlfZU2wPcRdVS5jBKWHtE2NNz97A==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      react: '>=18.0.0'
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -33158,6 +33185,11 @@ snapshots:
 
   jose@5.2.1: {}
 
+  jotai-valtio@0.5.0(jotai@2.5.1(@types/react@18.2.37)(react@18.2.0))(valtio@2.1.2(@types/react@18.2.37)(react@18.2.0)):
+    dependencies:
+      jotai: 2.5.1(@types/react@18.2.37)(react@18.2.0)
+      valtio: 2.1.2(@types/react@18.2.37)(react@18.2.0)
+
   jotai@2.5.1(@types/react@18.2.37)(react@18.2.0):
     optionalDependencies:
       '@types/react': 18.2.37
@@ -35473,6 +35505,8 @@ snapshots:
       ipaddr.js: 1.9.1
 
   proxy-compare@2.5.1: {}
+
+  proxy-compare@3.0.1: {}
 
   proxy-from-env@1.1.0: {}
 
@@ -38433,6 +38467,13 @@ snapshots:
       use-sync-external-store: 1.2.0(react@19.0.0-rc-66855b96-20241106)
     optionalDependencies:
       react: 19.0.0-rc-66855b96-20241106
+
+  valtio@2.1.2(@types/react@18.2.37)(react@18.2.0):
+    dependencies:
+      proxy-compare: 3.0.1
+    optionalDependencies:
+      '@types/react': 18.2.37
+      react: 18.2.0
 
   value-equal@1.0.1: {}
 

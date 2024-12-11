@@ -1,4 +1,5 @@
-import { Address, beginCell, TupleItem } from '@ton/core'
+import { Address, beginCell, TupleItem, TupleReader } from '@ton/core'
+import snakeCase from 'lodash/snakeCase'
 import { ContractClasses } from 'ton/def/contractClass.def'
 import { TonContractTypes } from 'ton/ton.enums'
 import { TonFunctionDef } from 'ton/ton.types'
@@ -31,7 +32,6 @@ export class ContractProxy {
     const call = async (...args: any[]) => {
       return this.callReadFunction(fn, ...args)
     }
-    logger.debug('fn', call)
 
     return call
   }
@@ -39,50 +39,73 @@ export class ContractProxy {
   private static getParams(fn: TonFunctionDef, args: any[]): TupleItem[] {
     const params: TupleItem[] = []
 
-    for (let i = 0; i < fn.inputs.length; i++) {
-      const input = fn.inputs[i]
-      switch (input.type) {
-        case 'address': {
-          logger.debug('try store', args[i])
-          params.push({
-            type: 'slice',
-            cell: beginCell().storeAddress(args[i]).endCell(),
-          })
-          break
+    try {
+      for (let i = 0; i < fn.inputs.length; i++) {
+        const input = fn.inputs[i]
+        switch (input.type) {
+          case 'address': {
+            logger.debug('try store', args[i])
+            const address = Address.parse(args[i])
+            params.push({
+              type: 'slice',
+              cell: beginCell().storeAddress(address).endCell(),
+            })
+            break
+          }
+          case 'int':
+            params.push({
+              type: 'int',
+              value: args[i],
+            })
+            break
+          default:
+            throw new Error(`Not support type ${input.type}`)
         }
-        case 'int':
-          params.push({
-            type: 'int',
-            value: args[i],
-          })
-          break
-        default:
-          throw new Error(`Not support type ${input.type}`)
       }
+      return params
+    } catch (ex) {
+      console.error('Error when parse args', ex)
+      throw ex
     }
-    return params
   }
 
   private async callReadFunction(fn: TonFunctionDef, ...args: any[]) {
     try {
       const client = TonContext.instance.getClient()
+      logger.debug('contract address:', this.address, `https://testnet.tonscan.org/address/${this.address}`)
       const contract = Address.parse(this.address)
-      logger.debug('call function', fn.method, 'with params')
+      const methodName = snakeCase(fn.method)
+      logger.debug('--call function--', methodName, 'with params', args)
       const params = ContractProxy.getParams(fn, args)
-      console.log(params)
-      const result = await client.runMethod(contract, fn.method, params)
-      logger.debug('result', result)
-      return result
+      const result = await client.runMethod(contract, methodName, params)
+      const resolvedResult = recoverResults(fn, result.stack)
+      logger.debug('result', resolvedResult)
+      return resolvedResult
     } catch (ex) {
       console.error(`Error when calling ${fn.method} with args ${args}`)
-      // @ts-ignore
-      const msg = ex?.message
-      if (msg) {
-        console.error(msg)
-      } else {
-        console.error(ex)
-      }
       throw ex
     }
   }
+}
+
+function recoverResults(fn: TonFunctionDef, stack: TupleReader): any[] {
+  const res: any[] = []
+  for (let i = 0; i < fn.outputs.length; i++) {
+    const output = fn.outputs[i]
+    switch (output.type) {
+      case 'address': {
+        const address = stack.readAddress()
+        res.push(address.toString())
+        break
+      }
+      case 'int': {
+        const val = stack.readBigNumber()
+        res.push(val)
+        break
+      }
+      default:
+        throw new Error(`Not support type ${output.type}`)
+    }
+  }
+  return res.length === 1 ? res[0] : res
 }

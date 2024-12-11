@@ -1,32 +1,35 @@
 import { atom } from 'jotai'
 import { atomFamily } from 'jotai/utils'
 import isEqual from 'lodash/isEqual'
+import { addressAtom } from 'ton/atom/addressAtom'
 import { contractOfTypeAtom } from 'ton/atom/contractOfTypeAtom'
-import { walletAddressAtom } from 'ton/atom/walletAddressAtom'
 import { TonContractNames, TonContractTypes } from 'ton/ton.enums'
-import { Maybe } from 'ton/utils/Maybe'
+import { Logger } from 'ton/utils/Logger'
 import { jettonWalletOfAtom } from './jettonWalletOfAtom'
 
+const logger = Logger.getLogger('balanceOfAtom')
 export const balanceOfAtom = atomFamily((jetton: TonContractNames) => {
   return atom(async (get) => {
-    const userAddress = get(walletAddressAtom)
+    const userAddress = get(addressAtom)
+
+    if (!userAddress) {
+      return 0
+    }
 
     const jettonAddress = await get(
       jettonWalletOfAtom({
         contractName: jetton,
-        ownerAddress: userAddress.unwrap(),
+        ownerAddress: userAddress,
       }),
     )
 
-    return jettonAddress.mapAsync(async (jettonAddr) => {
-      const jettonContract = get(
-        contractOfTypeAtom({
-          type: TonContractTypes.Jetton,
-          address: jettonAddr,
-        }),
-      )
-      const balance = await jettonContract.get_balance()
-      return balance
-    })
+    const jettonContract = get(
+      contractOfTypeAtom({
+        type: TonContractTypes.Jetton,
+        address: jettonAddress,
+      }),
+    )
+    const balance = await jettonContract.getBalance()
+    return balance
   })
 }, isEqual)

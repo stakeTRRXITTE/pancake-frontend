@@ -1,5 +1,3 @@
-import type { Maybe } from './utils/Maybe'
-
 export type TonFunctionDef = {
   method: string
   inputs: readonly TonInputDef[] // Changed to readonly array
@@ -37,8 +35,8 @@ type InputTypes<T extends readonly TonInputDef[]> = T extends readonly [infer Fi
 type OutputTypes<T extends readonly TonOutputDef[]> = T extends readonly [infer First, ...infer Rest]
   ? First extends TonOutputDef
     ? Rest extends readonly TonOutputDef[]
-      ? [Promise<Maybe<MapType<First['type']>>>, ...OutputTypes<Rest>]
-      : [Promise<Maybe<MapType<First['type']>>>]
+      ? [Promise<MapType<First['type']>>, ...OutputTypes<Rest>]
+      : [Promise<MapType<First['type']>>]
     : []
   : []
 
