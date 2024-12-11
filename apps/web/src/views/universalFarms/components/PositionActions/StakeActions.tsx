@@ -82,10 +82,10 @@ export const V3ModifyStakeActions: React.FC<V3LiquidityActionsProps> = ({
   decreaseLink,
 }) => {
   const onDecrease = useCallback(() => {
-    window.open(decreaseLink, '_blank', 'noopener noreferrer')
+    window.open(decreaseLink, '_blank', 'noopener')
   }, [decreaseLink])
   const onIncrease = useCallback(() => {
-    window.open(increaseLink, '_blank', 'noopener noreferrer')
+    window.open(increaseLink, '_blank', 'noopener')
   }, [increaseLink])
 
   return <ModifyStakeActions decreaseDisabled={decreaseDisabled} onIncrease={onIncrease} onDecrease={onDecrease} />

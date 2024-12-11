@@ -17,7 +17,6 @@ interface ButtonAndDetailsPanelProps {
   pricingAndSlippage: React.ReactNode
   tradeDetails: React.ReactNode
   shouldRenderDetails?: boolean
-  mevSlot?: React.ReactNode
 }
 
 export const ButtonAndDetailsPanel: React.FC<ButtonAndDetailsPanelProps> = ({
@@ -25,7 +24,6 @@ export const ButtonAndDetailsPanel: React.FC<ButtonAndDetailsPanelProps> = ({
   pricingAndSlippage,
   tradeDetails,
   shouldRenderDetails,
-  mevSlot,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -39,7 +37,6 @@ export const ButtonAndDetailsPanel: React.FC<ButtonAndDetailsPanelProps> = ({
           content={tradeDetails}
         />
       )}
-      {!isOpen && mevSlot}
     </PanelWrapper>
   )
 }

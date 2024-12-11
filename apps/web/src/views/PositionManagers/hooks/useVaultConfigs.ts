@@ -1,9 +1,10 @@
-import { VaultConfig } from '@pancakeswap/position-managers'
+import { VAULTS_CONFIG_BY_CHAIN, VaultConfig } from '@pancakeswap/position-managers'
+import { useMemo } from 'react'
+
 import { useActiveChainId } from 'hooks/useActiveChainId'
-import { usePositionManager } from 'views/PositionManagers/hooks/usePositionManager'
 
 export function useVaultConfigs(): VaultConfig[] {
   const { chainId } = useActiveChainId()
-  const data = usePositionManager(chainId)
-  return data
+
+  return useMemo(() => (chainId && VAULTS_CONFIG_BY_CHAIN[chainId]) || [], [chainId])
 }

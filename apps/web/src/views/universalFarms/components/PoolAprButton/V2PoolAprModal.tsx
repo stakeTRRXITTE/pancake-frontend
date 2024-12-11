@@ -1,17 +1,16 @@
 import { Protocol } from '@pancakeswap/farms'
 import { useTranslation } from '@pancakeswap/localization'
-import { LegacyStableSwapPair } from '@pancakeswap/smart-router/legacy-router'
+import { LegacyRouter, LegacyStableSwapPair } from '@pancakeswap/smart-router/legacy-router'
 import { ModalV2, RoiCalculatorModal, UseModalV2Props } from '@pancakeswap/uikit'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
 import BigNumber from 'bignumber.js'
 import { useCakePrice } from 'hooks/useCakePrice'
 import { useMemo } from 'react'
 import { useAccountPositionDetailByPool } from 'state/farmsV4/hooks'
-import { useStableSwapPairsByChainId } from 'state/farmsV4/state/accountPositions/hooks'
 import { StablePoolInfo, V2PoolInfo } from 'state/farmsV4/state/type'
-import { isAddressEqual } from 'utils'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { Address } from 'viem'
+import { isAddressEqual } from 'utils'
 import { useMasterChefV2Data } from 'views/Farms/hooks/useMasterChefV2Data'
 import { useV2LpTokenTotalSupply } from 'views/Farms/hooks/useV2LpTokenTotalSupply'
 import { useBCakeWrapperRewardPerSecond } from 'views/universalFarms/hooks/useBCakeWrapperInfo'
@@ -46,8 +45,6 @@ const AprModal: React.FC<Omit<V2PoolAprModalProps, 'modal'>> = ({ poolInfo, comb
     poolInfo,
   )
 
-  const pairs = useStableSwapPairsByChainId(poolInfo?.chainId, poolInfo?.protocol === 'stable')
-
   const stakingTokenBalance = useMemo(() => {
     return BIG_ZERO.plus(userPosition?.farmingBalance?.quotient.toString() ?? 0).plus(
       userPosition?.nativeBalance?.quotient.toString() ?? 0,
@@ -71,12 +68,12 @@ const AprModal: React.FC<Omit<V2PoolAprModalProps, 'modal'>> = ({ poolInfo, comb
 
   const stableConfig = useMemo((): LegacyStableSwapPair | undefined => {
     if (poolInfo.protocol === 'stable') {
-      return pairs?.find((pair) => {
+      return LegacyRouter.stableSwapPairsByChainId[poolInfo.chainId]?.find((pair) => {
         return isAddressEqual(pair.stableSwapAddress, poolInfo?.lpAddress as Address)
       })
     }
     return undefined
-  }, [pairs, poolInfo?.lpAddress, poolInfo.protocol])
+  }, [poolInfo.chainId, poolInfo?.lpAddress, poolInfo.protocol])
 
   const { data: farmCakePerSecond } = useBCakeWrapperRewardPerSecond(poolInfo.chainId, poolInfo.bCakeWrapperAddress)
   const { data: masterChefV2Data } = useMasterChefV2Data(poolInfo.chainId)

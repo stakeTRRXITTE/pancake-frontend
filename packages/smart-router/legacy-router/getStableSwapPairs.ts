@@ -1,13 +1,14 @@
 import { ChainId } from '@pancakeswap/chains'
 import { CurrencyAmount } from '@pancakeswap/sdk'
-import { getStableSwapPools } from '@pancakeswap/stable-swap-sdk'
+import { getStableSwapPools, STABLE_SUPPORTED_CHAIN_IDS } from '@pancakeswap/stable-swap-sdk'
 import { deserializeToken } from '@pancakeswap/token-lists'
+import fromPairs_ from 'lodash/fromPairs.js'
 
 import { createStableSwapPair } from './stableSwap'
 import { StableSwapPair } from './types'
 
-export async function getStableSwapPairs(chainId: ChainId): Promise<StableSwapPair[]> {
-  const pools = await getStableSwapPools(chainId)
+export function getStableSwapPairs(chainId: ChainId): StableSwapPair[] {
+  const pools = getStableSwapPools(chainId)
   return pools.map(
     ({
       token: serializedToken,
@@ -39,3 +40,7 @@ export async function getStableSwapPairs(chainId: ChainId): Promise<StableSwapPa
     },
   )
 }
+
+export const stableSwapPairsByChainId = fromPairs_(
+  STABLE_SUPPORTED_CHAIN_IDS.map((chainId) => [chainId, getStableSwapPairs(chainId)]),
+)

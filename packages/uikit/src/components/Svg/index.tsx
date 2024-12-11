@@ -47,8 +47,6 @@ export { default as CheckmarkCircleFillIcon } from "./Icons/CheckmarkCircleFill"
 export { default as ChevronDownIcon } from "./Icons/ChevronDown";
 export { default as ChevronLeftIcon } from "./Icons/ChevronLeft";
 export { default as ChevronRightIcon } from "./Icons/ChevronRight";
-export { default as ChevronsCollapseIcon } from "./Icons/ChevronsCollapse";
-export { default as ChevronsExpandIcon } from "./Icons/ChevronsExpand";
 export { default as ChevronUpIcon } from "./Icons/ChevronUp";
 export { default as CircleOutlineIcon } from "./Icons/CircleOutline";
 export { default as CloseIcon } from "./Icons/Close";
@@ -167,7 +165,6 @@ export { default as SafePalIcon } from "./Icons/SafePal";
 export { default as SearchIcon } from "./Icons/Search";
 export { default as SellIcon } from "./Icons/Sell";
 export { default as ShareIcon } from "./Icons/Share";
-export { ShieldIcon } from "./Icons/ShieldIcon";
 export { default as ShoppingBasketIcon } from "./Icons/ShoppingBasket";
 export { default as ShoppingBasketFilledIcon } from "./Icons/ShoppingBasketFilled";
 export { default as ShrinkIcon } from "./Icons/Shrink";

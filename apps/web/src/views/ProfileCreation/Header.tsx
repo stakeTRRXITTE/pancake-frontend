@@ -1,7 +1,6 @@
 import { TranslateFunction, useTranslation } from '@pancakeswap/localization'
-import { Breadcrumbs, Button, Heading, Text } from '@pancakeswap/uikit'
+import { Breadcrumbs, Button, Heading, Link, Text } from '@pancakeswap/uikit'
 import { styled } from 'styled-components'
-import { NextLinkFromReactRouter } from '@pancakeswap/widgets-internal'
 import useProfileCreation from './contexts/hook'
 
 const Wrapper = styled.div`
@@ -33,11 +32,11 @@ const Header: React.FC<React.PropsWithChildren> = () => {
       <Text color="textSubtle" mb="8px">
         {t('Total cost: 1.5 CAKE')}
       </Text>
-      <NextLinkFromReactRouter to="/profile">
+      <Link href="/profile">
         <Button mb="24px" scale="sm" variant="secondary">
           {t('Back to profile')}
         </Button>
-      </NextLinkFromReactRouter>
+      </Link>
       <Breadcrumbs>
         {steps(t).map((translationKey, index) => {
           return (

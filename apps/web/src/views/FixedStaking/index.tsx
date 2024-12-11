@@ -10,7 +10,6 @@ import partition from 'lodash/partition'
 import { useMemo, useState } from 'react'
 import { Address } from 'viem'
 
-import { isAddressEqual } from 'utils'
 import { FixedStakingCard } from './components/FixedStakingCard'
 import FixedStakingRow from './components/FixedStakingRow'
 import { useStakedPools, useStakedPositionsByUser } from './hooks/useStakedPools'
@@ -98,8 +97,8 @@ const FixedStaking = () => {
             {sortedPoolGroup.map((key) => (
               <FixedStakingRow
                 key={key}
-                stakedPositions={stakedPositions.filter(({ pool: stakedPool }) =>
-                  isAddressEqual(stakedPool.token.address, poolGroup[key].token.address),
+                stakedPositions={stakedPositions.filter(
+                  ({ pool: stakedPool }) => stakedPool.token.address === poolGroup[key].token.address,
                 )}
                 pool={poolGroup[key]}
               />
@@ -111,8 +110,8 @@ const FixedStaking = () => {
               <FixedStakingCard
                 key={key}
                 pool={poolGroup[key]}
-                stakedPositions={stakedPositions.filter(({ pool: stakedPool }) =>
-                  isAddressEqual(stakedPool.token.address, poolGroup[key].token.address),
+                stakedPositions={stakedPositions.filter(
+                  ({ pool: stakedPool }) => stakedPool.token.address === poolGroup[key].token.address,
                 )}
               />
             ))}

@@ -44,12 +44,12 @@ export function useWatchBlock({ chainId, enabled }: Params) {
   })
 
   useEffect(() => {
-    if (!queryEnabled || !initialBlock) {
+    if (!initialBlock) {
       return
     }
 
     const { number: blockNumber, timestamp: blockTimestamp } = initialBlock
-    updateBlockQueryData(queryClient, chainId, initialBlock)
+    queryClient.setQueryData(getBlockNumberQueryKey(chainId), blockNumber)
 
     const initialBlockNumberQueryKey = getInitialBlockNumberQueryKey(chainId)
     if (
@@ -68,7 +68,7 @@ export function useWatchBlock({ chainId, enabled }: Params) {
     ) {
       queryClient.setQueryData(initialBlockTimestampQueryKey, Number(blockTimestamp))
     }
-  }, [chainId, initialBlock, queryEnabled, queryClient])
+  }, [chainId, initialBlock, queryClient])
 
   useWatchBlocks({
     chainId,

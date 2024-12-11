@@ -48,7 +48,6 @@ import { usePoolsWithMultiChains } from 'hooks/v3/usePools'
 import { PositionDetail } from 'state/farmsV4/state/accountPositions/type'
 import { V3_MIGRATION_SUPPORTED_CHAINS } from 'config/constants/supportChains'
 import { useIntersectionObserver } from '@pancakeswap/hooks'
-import ConnectWalletButton from 'components/ConnectWalletButton'
 import {
   Card,
   IPoolsFilterPanelProps,
@@ -308,24 +307,19 @@ const useStablePositions = ({
   }
 }
 
-const EmptyListPlaceholder = ({ text, imageUrl }: { text: string; imageUrl?: string }) => {
-  const { address: account } = useAccount()
-
-  return (
-    <FlexGap alignItems="center" flexDirection="column" gap="16px">
-      <img
-        width={156}
-        height={179}
-        alt="empty placeholder"
-        src={imageUrl ?? `${ASSET_CDN}/web/universalFarms/empty_list_bunny.png`}
-      />
-      <Text fontSize="14px" color="textSubtle" textAlign="center">
-        {text}
-      </Text>
-      {!account ? <ConnectWalletButton /> : null}
-    </FlexGap>
-  )
-}
+const EmptyListPlaceholder = ({ text, imageUrl }: { text: string; imageUrl?: string }) => (
+  <FlexGap alignItems="center" flexDirection="column" gap="16px">
+    <img
+      width={156}
+      height={179}
+      alt="empty placeholder"
+      src={imageUrl ?? `${ASSET_CDN}/web/universalFarms/empty_list_bunny.png`}
+    />
+    <Text fontSize="14px" color="textSubtle" textAlign="center">
+      {text}
+    </Text>
+  </FlexGap>
+)
 
 const allChainIds = MAINNET_CHAINS.map((chain) => chain.id)
 const NUMBER_OF_FARMS_VISIBLE = 10

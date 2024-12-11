@@ -1,12 +1,11 @@
 import { FarmWithStakedValue } from '@pancakeswap/farms'
 import { useTranslation } from '@pancakeswap/localization'
-import { VaultConfig } from '@pancakeswap/position-managers'
+import { VAULTS_CONFIG_BY_CHAIN, VaultConfig } from '@pancakeswap/position-managers'
 import { Flex, Spinner } from '@pancakeswap/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import noop from 'lodash/noop'
 import React, { useMemo } from 'react'
 import { styled } from 'styled-components'
-import { usePositionManager } from 'views/PositionManagers/hooks/usePositionManager'
+import noop from 'lodash/noop'
 import EmptyText from '../MigrationTable/EmptyText'
 import TableStyle from '../MigrationTable/StyledTable'
 import TableHeader from '../MigrationTable/TableHeader'
@@ -42,13 +41,12 @@ export const PosManagerMigrationFarmTable: React.FC<React.PropsWithChildren<ITab
 }) => {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
-  const VAULTS_CONFIG_BY_CHAIN = usePositionManager(chainId)
 
   const rows = useMemo(() => {
     if (!chainId || columnSchema !== V3Step1DesktopColumnSchema) return []
 
     const needToMigrateList: VaultConfig[] =
-      VAULTS_CONFIG_BY_CHAIN?.filter(
+      VAULTS_CONFIG_BY_CHAIN[chainId]?.filter(
         (vault) => vault.address && vault?.bCakeWrapperAddress && vault?.bCakeWrapperAddress !== vault.address,
       ) ?? []
 
@@ -67,7 +65,7 @@ export const PosManagerMigrationFarmTable: React.FC<React.PropsWithChildren<ITab
       onStake: noop,
       onUnStake: noop,
     }))
-  }, [VAULTS_CONFIG_BY_CHAIN, chainId, columnSchema])
+  }, [chainId, columnSchema])
 
   return (
     <Container>

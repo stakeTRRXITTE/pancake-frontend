@@ -88,7 +88,7 @@ export const useAllTypeBestTrade = () => {
         : undefined
       : finalOrder) as InterfaceOrder | undefined,
     tradeLoaded,
-    tradeError: finalOrder ? finalOrder.error : error,
+    tradeError: finalOrder?.error,
     refreshDisabled:
       finalOrder?.type === OrderType.DUTCH_LIMIT
         ? bestOrder.isLoading || !bestOrder.isStale

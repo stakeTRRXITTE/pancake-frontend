@@ -25,7 +25,6 @@ import { warningSeverity } from 'utils/exchange'
 import { paymasterInfo } from 'config/paymaster'
 import { usePaymaster } from 'hooks/usePaymaster'
 import { InterfaceOrder, isXOrder } from 'views/Swap/utils'
-import { isAddressEqual } from 'utils'
 import FormattedPriceImpact from '../../components/FormattedPriceImpact'
 import { StyledBalanceMaxMini, SwapCallbackError } from '../../components/styleds'
 import { SlippageAdjustedAmounts, formatExecutionPrice } from '../utils/exchange'
@@ -101,7 +100,7 @@ export const SwapModalFooter = memo(function SwapModalFooter({
       inputAmount.currency?.wrapped.address &&
       !inputAmount.currency.isNative &&
       gasToken.isToken &&
-      isAddressEqual(inputAmount.currency.wrapped.address, gasToken.wrapped.address),
+      inputAmount.currency.wrapped.address === gasToken.wrapped.address,
     [inputAmount, gasToken, isPaymasterAvailable, isPaymasterTokenActive, gasTokenInfo],
   )
 

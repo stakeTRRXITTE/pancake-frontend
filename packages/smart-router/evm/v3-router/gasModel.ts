@@ -153,10 +153,9 @@ export async function createGasModel({
     }
     return {
       gasEstimate: baseGasUse,
-      gasCostInToken:
-        isQuoteNative && quoteCurrency.isNative
-          ? CurrencyAmount.fromRawAmount(Native.onChain(chainId), gasCostInToken.quotient)
-          : gasCostInToken,
+      gasCostInToken: isQuoteNative
+        ? CurrencyAmount.fromRawAmount(Native.onChain(chainId), gasCostInToken.quotient)
+        : gasCostInToken,
       gasCostInUSD,
     }
   }

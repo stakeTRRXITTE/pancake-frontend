@@ -192,10 +192,7 @@ const V2Earnings = ({ pool }: { pool: PoolInfo | null | undefined }) => {
 }
 
 const V3Earnings = ({ tokenId, chainId }: { tokenId?: bigint; chainId: number }) => {
-  const { earningsAmount, earningsBusd } = useV3CakeEarning(
-    useMemo(() => (tokenId ? [tokenId] : []), [tokenId]),
-    chainId,
-  )
+  const { earningsAmount, earningsBusd } = useV3CakeEarning(tokenId ? [tokenId] : [], chainId)
   return <Earnings earningsAmount={earningsAmount} earningsBusd={earningsBusd} />
 }
 

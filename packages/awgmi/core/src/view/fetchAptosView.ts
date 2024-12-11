@@ -18,6 +18,6 @@ export const fetchAptosView = async ({ networkName, params }: FetchAptosViewArgs
     return data
   } catch (error) {
     console.error('Fetch Aptos View Error: ', error)
-    throw error
+    return null
   }
 }

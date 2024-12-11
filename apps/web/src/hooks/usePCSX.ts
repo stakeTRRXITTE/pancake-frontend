@@ -17,7 +17,7 @@ export const usePCSX = () => {
     (updater: boolean | ((current: boolean) => boolean)) => {
       setX(typeof updater === 'function' ? updater(enabled) : updater)
     },
-    [enabled, setX],
+    [enabled],
   )
   return [enabled, setUserX, featureEnabled, reset] as const
 }

@@ -18,7 +18,6 @@ import {
 } from '@pancakeswap/uikit'
 import { BigNumber } from 'bignumber.js'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import fromPairs from 'lodash/fromPairs'
 import { useEffect, useMemo, useState } from 'react'
 import { Proposal, ProposalState, ProposalTypeName, Vote } from 'state/types'
 import { VECAKE_VOTING_POWER_BLOCK } from 'views/Voting/helpers'
@@ -57,14 +56,26 @@ const VoteComponent: React.FC<React.PropsWithChildren<VoteProps>> = ({
     if (type === ProposalTypeName.WEIGHTED && account) {
       let newData: null | WeightedVoteState = null
       const voteData = votes.find((i) => i.voter.toLowerCase() === account.toLowerCase())
-      const pairs = choices.map((_, index) => [index + 1, voteData?.choice[index + 1] ?? 0])
-      newData = fromPairs(pairs)
+
+      if (voteData) {
+        newData = choices.reduce((acc, _, index) => {
+          // eslint-disable-next-line no-param-reassign
+          acc[index + 1] = voteData?.choice[index + 1] ?? 0
+          return acc
+        }, {})
+      } else {
+        newData = choices.reduce((acc, _, index) => {
+          // eslint-disable-next-line no-param-reassign
+          acc[index + 1] = 0
+          return acc
+        }, {})
+      }
 
       if (newData) {
         setVote(newData)
       }
     }
-  }, [account, proposal, votes])
+  }, [account])
 
   const handleSuccess = async () => {
     toastSuccess(t('Vote cast!'))

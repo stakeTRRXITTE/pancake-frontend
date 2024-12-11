@@ -14,7 +14,7 @@ interface RevenueSharingPool {
   balanceOfAt: string
   totalSupplyAt: string
   nextDistributionTimestamp: number
-  lastDistributionTimestamp: number
+  lastTokenTimestamp: number
   availableClaim: string
 }
 
@@ -22,7 +22,7 @@ const initialData: RevenueSharingPool = {
   balanceOfAt: '0',
   totalSupplyAt: '0',
   nextDistributionTimestamp: 0,
-  lastDistributionTimestamp: 0,
+  lastTokenTimestamp: 0,
   availableClaim: '0',
 }
 
@@ -31,7 +31,7 @@ const useRevenueSharingPool = (): RevenueSharingPool => {
   const contract = useRevenueSharingPoolContract({ chainId })
   const contractAddress = getRevenueSharingPoolAddress(chainId)
   const blockTimestamp = useInitialBlockTimestamp()
-  const currentBlockTimestamp = useCurrentBlockTimestamp()
+  const currencyBlockTimestamp = useCurrentBlockTimestamp()
 
   const { data } = useQuery({
     queryKey: ['/revenue-sharing-pool', account, chainId],
@@ -40,8 +40,7 @@ const useRevenueSharingPool = (): RevenueSharingPool => {
       if (!account) return undefined
       try {
         const now = Math.floor(blockTimestamp / ONE_WEEK_DEFAULT) * ONE_WEEK_DEFAULT
-        const lastDistributionTimestamp = Math.floor(currentBlockTimestamp / ONE_WEEK_DEFAULT) * ONE_WEEK_DEFAULT
-        const nextDistributionTimestamp = new BigNumber(lastDistributionTimestamp).plus(ONE_WEEK_DEFAULT).toNumber()
+        const lastTokenTimestamp = Math.floor(currencyBlockTimestamp / ONE_WEEK_DEFAULT) * ONE_WEEK_DEFAULT
 
         const revenueCalls = [
           {
@@ -62,21 +61,23 @@ const useRevenueSharingPool = (): RevenueSharingPool => {
         const [revenueResult, claimResult] = await Promise.all([
           client.multicall({
             contracts: revenueCalls,
-            allowFailure: false,
+            allowFailure: true,
           }),
           contract.simulate.claim([account]),
         ])
 
+        const nextDistributionTimestamp = new BigNumber(lastTokenTimestamp).plus(ONE_WEEK_DEFAULT).toNumber()
+
         return {
-          balanceOfAt: (revenueResult[0] as any).toString(),
-          totalSupplyAt: (revenueResult[1] as any).toString(),
+          balanceOfAt: (revenueResult[0].result as any).toString(),
+          totalSupplyAt: (revenueResult[1].result as any).toString(),
           nextDistributionTimestamp,
-          lastDistributionTimestamp,
+          lastTokenTimestamp,
           availableClaim: claimResult.result.toString(),
         }
       } catch (error) {
         console.error('[ERROR] Fetching Revenue Sharing Pool', error)
-        throw error
+        return initialData
       }
     },
 

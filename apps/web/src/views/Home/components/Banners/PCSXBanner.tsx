@@ -89,7 +89,7 @@ const Desc = () => {
 
 export const PCSXBanner = () => {
   const { t } = useTranslation()
-  const { isMobile, isSm } = useMatchBreakpoints()
+  const { isMobile, isSm, isDesktop } = useMatchBreakpoints()
 
   const PlayNowAction = (
     <LinkExternalAction

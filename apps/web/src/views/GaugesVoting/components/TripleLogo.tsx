@@ -12,7 +12,6 @@ import { ChainLogo, CurrencyLogo } from '@pancakeswap/widgets-internal'
 import { useMemo } from 'react'
 import styled from 'styled-components'
 import { Address } from 'viem'
-import { isAddressEqual } from 'utils'
 
 const StyledDualLogo = styled.div`
   display: flex;
@@ -30,7 +29,7 @@ function getCurrency(chainId: ChainId, address?: Address) {
   if (!address) {
     return undefined
   }
-  if (isAddressEqual(WNATIVE[chainId].address, address)) {
+  if (WNATIVE[chainId].address === address) {
     return Native.onChain(chainId)
   }
   return new Token(Number(chainId), address, 18, '', '')

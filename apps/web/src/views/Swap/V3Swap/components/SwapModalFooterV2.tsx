@@ -28,7 +28,6 @@ import { PancakeSwapXTag } from 'components/PancakeSwapXTag'
 import { paymasterInfo } from 'config/paymaster'
 import { usePaymaster } from 'hooks/usePaymaster'
 import { InterfaceOrder, isXOrder } from 'views/Swap/utils'
-import { isAddressEqual } from 'utils'
 import FormattedPriceImpact from '../../components/FormattedPriceImpact'
 import { StyledBalanceMaxMini, SwapCallbackError } from '../../components/styleds'
 import { SlippageAdjustedAmounts, formatExecutionPrice } from '../utils/exchange'
@@ -110,7 +109,7 @@ export const SwapModalFooterV2 = memo(function SwapModalFooterV2({
       inputAmount.currency?.wrapped.address &&
       !inputAmount.currency.isNative &&
       gasToken.isToken &&
-      isAddressEqual(inputAmount.currency.wrapped.address, gasToken.wrapped.address),
+      inputAmount.currency.wrapped.address === gasToken.wrapped.address,
     [inputAmount, gasToken, isPaymasterAvailable, isPaymasterTokenActive, gasTokenInfo],
   )
 

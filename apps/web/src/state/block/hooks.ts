@@ -1,13 +1,12 @@
 import { FAST_INTERVAL, SLOW_INTERVAL } from 'config/constants'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { useBlockNumber as useWagmiBlockNumber, useBlock as useWagmiBlock } from 'wagmi'
+import { useQuery } from '@tanstack/react-query'
+import { useBlockNumber as useWagmiBlockNumber } from 'wagmi'
 import {
   useWatchBlock,
   useBlockNumber,
   useBlockTimestamp,
   useInitialBlockNumber,
   useInitialBlockTimestamp as useInitBlockTimestamp,
-  getInitialBlockTimestampQueryKey,
 } from '@pancakeswap/wagmi'
 
 import { useActiveChainId } from 'hooks/useActiveChainId'
@@ -50,17 +49,15 @@ export const useCurrentBlock = (): number => {
   return Number(currentBlock)
 }
 
-export function useCurrentBlockTimestamp(chainId?: number) {
-  const { chainId: activeChainId } = useActiveChainId()
-  const isTargetDifferent = Boolean(chainId && activeChainId !== chainId)
-  useWatchBlock({ chainId, enabled: isTargetDifferent })
+export function useCurrentBlockTimestamp() {
+  const { chainId } = useActiveChainId()
   const { data: timestamp } = useBlockTimestamp({
-    chainId: chainId ?? activeChainId,
+    chainId,
   })
   return timestamp
 }
 
-export const useChainCurrentBlock = (chainId?: number) => {
+export const useChainCurrentBlock = (chainId: number) => {
   const { chainId: activeChainId } = useActiveChainId()
   const activeChainBlockNumber = useCurrentBlock()
   const isTargetDifferent = Boolean(chainId && activeChainId !== chainId)
@@ -84,30 +81,10 @@ export const useInitialBlock = (): number => {
   return Number(initialBlock)
 }
 
-export const useInitialBlockTimestamp = (chainId?: number): number => {
-  const { chainId: activeChainId } = useActiveChainId()
-  const isTargetDifferent = Boolean(chainId && activeChainId !== chainId)
-  const queryClient = useQueryClient()
+export const useInitialBlockTimestamp = (): number => {
+  const { chainId } = useActiveChainId()
   const { data: initialBlockTimestamp = 0 } = useInitBlockTimestamp({
-    chainId: chainId ?? activeChainId,
-  })
-  useWagmiBlock({
     chainId,
-    query: {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      refetchOnMount: false,
-      enabled: !initialBlockTimestamp && isTargetDifferent,
-      select: useCallback(
-        (block) => {
-          queryClient.setQueryData(
-            getInitialBlockTimestampQueryKey(chainId),
-            block !== undefined ? Number(block.timestamp) : undefined,
-          )
-        },
-        [chainId, queryClient],
-      ),
-    },
   })
-  return initialBlockTimestamp
+  return Number(initialBlockTimestamp)
 }

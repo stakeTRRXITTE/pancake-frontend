@@ -59,12 +59,7 @@ export function WrongNetworkModal({ currentChain, onDismiss }: { currentChain: C
   }, [chainId, logout, setQueryChainId, router])
 
   return (
-    <Modal
-      title={t('You are in wrong network')}
-      headerBackground="gradientCardHeader"
-      hideCloseButton
-      onDismiss={onDismiss}
-    >
+    <Modal title={t('You are in wrong network')} headerBackground="gradientCardHeader" onDismiss={onDismiss}>
       <Grid style={{ gap: '16px' }} maxWidth={['100%', null, '336px']}>
         <Text>{t('This page is located for %network%.', { network: currentChain.name })}</Text>
         <Text>

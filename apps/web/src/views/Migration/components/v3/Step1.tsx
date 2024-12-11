@@ -9,7 +9,6 @@ import { useFarms, usePollFarmsWithUserData } from 'state/farms/hooks'
 import { useFarmsV3Public } from 'state/farmsV3/hooks'
 import { getFarmApr } from 'utils/apr'
 import { useAccount } from 'wagmi'
-import { isAddressEqual } from 'utils'
 import MigrationFarmTable from '../MigrationFarmTable'
 import { V3Step1DesktopColumnSchema } from '../types'
 import { STABLE_LP_TO_MIGRATE } from './Step2'
@@ -36,10 +35,8 @@ const OldFarmStep1: React.FC<React.PropsWithChildren> = () => {
         .filter((f) => f.multiplier !== '0X')
         .find(
           (farmV3) =>
-            (isAddressEqual(farmV3.quoteToken.address, farm.quoteToken.address) &&
-              isAddressEqual(farmV3.token.address, farm.token.address)) ||
-            (isAddressEqual(farmV3.quoteToken.address, farm.token.address) &&
-              isAddressEqual(farmV3.token.address, farm.quoteToken.address)),
+            (farmV3.quoteToken.address === farm.quoteToken.address && farmV3.token.address === farm.token.address) ||
+            (farmV3.quoteToken.address === farm.token.address && farmV3.token.address === farm.quoteToken.address),
         )
     })
 

@@ -25,7 +25,7 @@ import {
   useModal,
   useTooltip,
 } from '@pancakeswap/uikit'
-import replaceBrowserHistoryMultiple from '@pancakeswap/utils/replaceBrowserHistoryMultiple'
+import replaceBrowserHistory from '@pancakeswap/utils/replaceBrowserHistory'
 import truncateHash from '@pancakeswap/utils/truncateHash'
 import { useUserSingleHopOnly } from '@pancakeswap/utils/user'
 import { ApproveModalContentV1, Swap, SwapTransactionReceiptModalContentV1 } from '@pancakeswap/widgets-internal'
@@ -147,17 +147,17 @@ export function TWAPPanel({ limit }: { limit?: boolean }) {
   } = useSwapState()
 
   const handleCurrencySelect = useCallback(
-    (isInput: boolean, newCurrency?: Currency) => {
+    (isInput: boolean, newCurrency: Currency) => {
       onCurrencySelection(isInput ? Field.INPUT : Field.OUTPUT, newCurrency)
       warningSwapHandler(newCurrency)
 
       const oldCurrencyId = isInput ? inputCurrencyId : outputCurrencyId
       const otherCurrencyId = isInput ? outputCurrencyId : inputCurrencyId
-      const newCurrencyId = newCurrency ? currencyId(newCurrency) : undefined
-      replaceBrowserHistoryMultiple({
-        ...(newCurrencyId === otherCurrencyId && { [isInput ? 'outputCurrency' : 'inputCurrency']: oldCurrencyId }),
-        [isInput ? 'inputCurrency' : 'outputCurrency']: newCurrencyId,
-      })
+      const newCurrencyId = currencyId(newCurrency)
+      if (newCurrencyId === otherCurrencyId) {
+        replaceBrowserHistory(isInput ? 'outputCurrency' : 'inputCurrency', oldCurrencyId)
+      }
+      replaceBrowserHistory(isInput ? 'inputCurrency' : 'outputCurrency', newCurrencyId)
     },
     [onCurrencySelection, warningSwapHandler, inputCurrencyId, outputCurrencyId],
   )

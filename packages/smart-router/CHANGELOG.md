@@ -1,36 +1,5 @@
 # @pancakeswap/smart-router
 
-## 7.0.1
-
-### Patch Changes
-
-- 4181a79: Fix unable to fetch quote with wrapped native token as output
-
-## 7.0.0
-
-### Major Changes
-
-- 36f8955: Update packages
-
-### Patch Changes
-
-- Updated dependencies [b529b61]
-- Updated dependencies [36f8955]
-  - @pancakeswap/gauges@2.0.3
-  - @pancakeswap/stable-swap-sdk@2.0.0
-  - @pancakeswap/sdk@5.8.10
-  - @pancakeswap/multicall@3.5.10
-  - @pancakeswap/tokens@0.6.29
-  - @pancakeswap/v3-sdk@3.8.13
-  - @pancakeswap/v4-sdk@0.1.6
-
-## 6.2.1
-
-### Patch Changes
-
-- Updated dependencies [6a9fd57]
-  - @pancakeswap/v4-sdk@0.1.5
-
 ## 6.2.0
 
 ### Minor Changes

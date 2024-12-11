@@ -69,7 +69,6 @@ export interface GaugeVeCakePoolConfig extends GaugeBaseConfig {
 export type GaugeConfig = GaugeV2Config | GaugeStableSwapConfig | GaugeV3Config | GaugeALMConfig | GaugeVeCakePoolConfig
 
 export type GaugeInfo = {
-  gid: number
   hash: Hash
   pairAddress: Address
   masterChef: Address

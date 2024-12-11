@@ -1,11 +1,5 @@
 # @pancakeswap/sdk
 
-## 5.8.10
-
-### Patch Changes
-
-- 36f8955: Update packages
-
 ## 5.8.9
 
 ### Patch Changes

@@ -70,28 +70,8 @@ const MenuItem: React.FC<{
     return disabled || isDisabled ? "disabled" : "textSubtle";
   }, [activeSubItemChildItem, disabled, hasChildItems, isDisabled, item]);
 
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (hasChildItems) {
-        handleToggleSubMenu(e);
-      } else {
-        setIsOpen(false);
-        itemProps?.onClick?.(e);
-      }
-    },
-    [hasChildItems, handleToggleSubMenu, setIsOpen, itemProps?.onClick]
-  );
-
-  const handleExternalClick = useCallback(
-    (e: any) => {
-      setIsOpen(false);
-      itemProps?.onClick?.(e);
-    },
-    [setIsOpen, itemProps?.onClick]
-  );
-
   return (
-    <StyledDropdownMenuItemContainer>
+    <StyledDropdownMenuItemContainer key={label?.toString()}>
       {type === DropdownMenuItemType.BUTTON && (
         <DropdownMenuItem $isActive={isActive} disabled={disabled || isDisabled} type="button" {...itemProps}>
           {MenuItemContent}
@@ -104,7 +84,14 @@ const MenuItem: React.FC<{
           href={href}
           {...itemProps}
           $isActive={isActive}
-          onClick={handleClick}
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            if (hasChildItems) {
+              handleToggleSubMenu(e);
+            } else {
+              setIsOpen(false);
+              itemProps.onClick?.(e);
+            }
+          }}
         >
           {MenuItemContent}
           {hasChildItems && (
@@ -125,7 +112,10 @@ const MenuItem: React.FC<{
           as="a"
           href={href}
           target="_blank"
-          onClick={handleExternalClick}
+          onClick={(e: any) => {
+            setIsOpen(false);
+            itemProps.onClick?.(e);
+          }}
         >
           <Flex alignItems="center" justifyContent="space-between" width="100%">
             {MenuItemContent}
@@ -140,10 +130,10 @@ const MenuItem: React.FC<{
         hasChildItems &&
         items
           ?.filter((childItem) => ((isMobile || isMd) && childItem.isMobileOnly) || !childItem.isMobileOnly)
-          ?.map((childItem, index) => (
+          ?.map((childItem) => (
             <MenuItem
               isChildItems
-              key={childItem?.label?.toString() || `delimiter${index}`}
+              key={childItem?.label?.toString()}
               item={childItem}
               isDisabled={isDisabled}
               linkComponent={linkComponent}
@@ -221,13 +211,15 @@ const DropdownMenu: React.FC<React.PropsWithChildren<DropdownMenuProps>> = ({
     }, [setIsOpen])
   );
 
-  const handlePointerDown = useCallback(() => {
-    setIsOpen((s) => !s);
-  }, []);
-
   return (
     <Box ref={setTargetRef} {...props}>
-      <Box onPointerDown={handlePointerDown}>{children}</Box>
+      <Box
+        onPointerDown={() => {
+          setIsOpen((s) => !s);
+        }}
+      >
+        {children}
+      </Box>
       {hasItems && (
         <StyledDropdownMenu
           ref={setTooltipRef}
@@ -240,7 +232,7 @@ const DropdownMenu: React.FC<React.PropsWithChildren<DropdownMenuProps>> = ({
             .filter((item) => ((isMobile || isMd) && item.isMobileOnly) || !item.isMobileOnly)
             .map((item) => (
               <MenuItem
-                key={item?.label?.toString() || `delimiter${index}`}
+                key={item?.label?.toString()}
                 item={item}
                 activeItem={activeItem}
                 activeSubItemChildItem={activeSubItemChildItem}

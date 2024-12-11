@@ -31,12 +31,13 @@ export function useLocalNetworkChain() {
   const [queryChainId, setQueryChainId] = useAtom(queryChainIdAtom)
   const { query } = useRouter()
   const chainId = +(getChainId(query.chain as string) || queryChainId)
+  const { chainId: wagmiChainId } = useAccount()
 
   useEffect(() => {
-    if (chainId) {
-      setQueryChainId(chainId)
+    if (wagmiChainId) {
+      setQueryChainId(wagmiChainId)
     }
-  }, [chainId, setQueryChainId])
+  }, [wagmiChainId, setQueryChainId])
 
   if (isChainSupported(chainId)) {
     return chainId

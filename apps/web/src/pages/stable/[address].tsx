@@ -38,7 +38,6 @@ import { formatFiatNumber } from '@pancakeswap/utils/formatFiatNumber'
 import { useTotalPriceUSD } from 'hooks/useTotalPriceUSD'
 import { useLPApr } from 'state/swap/useLPApr'
 import { formatAmount } from 'utils/formatInfoNumbers'
-import { isAddressEqual } from 'utils'
 
 export const BodyWrapper = styled(Card)`
   border-radius: 24px;
@@ -64,7 +63,7 @@ export default function StablePoolPage() {
   const { chainId } = useActiveChainId()
 
   const selectedLp = useMemo(
-    () => lpTokens.find(({ liquidityToken }) => isAddressEqual(liquidityToken.address, poolAddress)),
+    () => lpTokens.find(({ liquidityToken }) => liquidityToken.address === poolAddress),
     [lpTokens, poolAddress],
   )
 
@@ -157,7 +156,7 @@ export default function StablePoolPage() {
       <BodyWrapper>
         <AppHeader
           title={`${stableLp?.token0?.symbol}-${stableLp?.token1?.symbol} LP`}
-          backTo="/liquidity/positions"
+          backTo="/liquidity/pools"
           noConfig
           buttons={
             !isMobile && (

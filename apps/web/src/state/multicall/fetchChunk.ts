@@ -1,7 +1,6 @@
 import { ChainId } from '@pancakeswap/chains'
 import { getMulticall3ContractAddress, multicall3ABI } from '@pancakeswap/multicall'
 import { getViemClients } from 'utils/viem'
-import { InternalRpcError, InvalidInputRpcError } from 'viem'
 import { Call } from './actions'
 import { RetryableError } from './retry'
 
@@ -43,12 +42,12 @@ export async function fetchChunk(
   } catch (err) {
     const error = err as any
     if (
-      error.code === InvalidInputRpcError.code ||
+      error.code === -32000 ||
       (error?.data?.message && error?.data?.message?.indexOf('header not found') !== -1) ||
       error.message?.indexOf('header not found') !== -1
     ) {
       throw new RetryableError(`header not found for block number ${minBlockNumber}`)
-    } else if (error.code === InternalRpcError.code || error.message?.indexOf('execution ran out of gas') !== -1) {
+    } else if (error.code === -32603 || error.message?.indexOf('execution ran out of gas') !== -1) {
       if (chunk.length > 1) {
         if (process.env.NODE_ENV === 'development') {
           console.debug('Splitting a chunk in 2', chunk)

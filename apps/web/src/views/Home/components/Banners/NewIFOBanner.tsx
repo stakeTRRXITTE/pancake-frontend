@@ -1,11 +1,10 @@
 import { useTranslation } from '@pancakeswap/localization'
-import { Button, Flex, OpenNewIcon, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { Button, Flex, Link, OpenNewIcon, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
 
 import { ASSET_CDN } from 'config/constants/endpoints'
 import useTheme from 'hooks/useTheme'
 import { memo } from 'react'
 import { styled } from 'styled-components'
-import { NextLinkFromReactRouter } from '@pancakeswap/widgets-internal'
 import * as S from './Styled'
 import { Countdown } from './Countdown'
 
@@ -170,7 +169,7 @@ const NewIFOBanner = () => {
           <StyledSubheading>{t('CKP cIFO')}</StyledSubheading>
           <Countdown startTime={1704369600} />
           <Flex style={{ gap: isMobile ? 4 : 16 }}>
-            <NextLinkFromReactRouter to="/ifo" style={{ textDecoration: 'none' }}>
+            <Link href="/ifo" style={{ textDecoration: 'none' }}>
               <Button variant="text" pl="0px" pt="0px" scale={isMobile ? 'sm' : 'md'}>
                 <Text
                   textTransform={isMobile ? 'uppercase' : 'capitalize'}
@@ -182,7 +181,7 @@ const NewIFOBanner = () => {
                 </Text>
                 <OpenNewIcon color={theme.colors.primaryDark} />
               </Button>
-            </NextLinkFromReactRouter>
+            </Link>
           </Flex>
         </S.LeftWrapper>
         <BackGroundLayer>

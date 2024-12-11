@@ -1,5 +1,5 @@
 import { ChainId } from '@pancakeswap/chains'
-import { BigintIsh, Currency, CurrencyAmount, erc20Abi, Percent } from '@pancakeswap/sdk'
+import { BigintIsh, Currency, CurrencyAmount, Percent, erc20Abi } from '@pancakeswap/sdk'
 import { getStableSwapPools } from '@pancakeswap/stable-swap-sdk'
 import { deserializeToken } from '@pancakeswap/token-lists'
 import { DEPLOYER_ADDRESSES, FeeAmount, pancakeV3PoolABI, parseProtocolFees } from '@pancakeswap/v3-sdk'
@@ -13,7 +13,7 @@ import { PoolMeta, V3PoolMeta } from './internalTypes'
 
 export const getV2PoolsOnChain = createOnChainPoolFactory<V2Pool, PoolMeta>({
   abi: pancakePairABI,
-  getPossiblePoolMetas: async ([currencyA, currencyB]) => [
+  getPossiblePoolMetas: ([currencyA, currencyB]) => [
     { id: computeV2PoolAddress(currencyA.wrapped, currencyB.wrapped), currencyA, currencyB },
   ],
   buildPoolInfoCalls: ({ id: address }) => [
@@ -41,8 +41,8 @@ export const getV2PoolsOnChain = createOnChainPoolFactory<V2Pool, PoolMeta>({
 
 export const getStablePoolsOnChain = createOnChainPoolFactory<StablePool, PoolMeta>({
   abi: stableSwapPairABI,
-  getPossiblePoolMetas: async ([currencyA, currencyB]) => {
-    const poolConfigs = await getStableSwapPools(currencyA.chainId)
+  getPossiblePoolMetas: ([currencyA, currencyB]) => {
+    const poolConfigs = getStableSwapPools(currencyA.chainId)
     return poolConfigs
       .filter(({ token, quoteToken }) => {
         const tokenA = deserializeToken(token)
@@ -104,9 +104,10 @@ export const getStablePoolsOnChain = createOnChainPoolFactory<StablePool, PoolMe
     }
   },
 })
+
 export const getV3PoolsWithoutTicksOnChain = createOnChainPoolFactory<V3Pool, V3PoolMeta>({
   abi: pancakeV3PoolABI,
-  getPossiblePoolMetas: async ([currencyA, currencyB]) => {
+  getPossiblePoolMetas: ([currencyA, currencyB]) => {
     const deployerAddress = DEPLOYER_ADDRESSES[currencyA.chainId as ChainId]
     if (!deployerAddress) {
       return []
@@ -181,7 +182,7 @@ type ContractFunctionConfig = {
 
 interface OnChainPoolFactoryParams<TPool extends Pool, TPoolMeta extends PoolMeta, TAbi extends Abi | unknown[] = Abi> {
   abi: TAbi
-  getPossiblePoolMetas: (pair: [Currency, Currency]) => Promise<TPoolMeta[]>
+  getPossiblePoolMetas: (pair: [Currency, Currency]) => TPoolMeta[]
   buildPoolInfoCalls: (poolMeta: TPoolMeta) => ContractFunctionConfig[]
   buildPool: (poolMeta: TPoolMeta, data: any[]) => TPool | null
 }
@@ -209,8 +210,8 @@ export function createOnChainPoolFactory<
     const poolAddressSet = new Set<string>()
 
     const poolMetas: TPoolMeta[] = []
-    const allPossibleMetas = await Promise.all(pairs.map((pair) => getPossiblePoolMetas(pair)))
-    for (const possiblePoolMetas of allPossibleMetas) {
+    for (const pair of pairs) {
+      const possiblePoolMetas = getPossiblePoolMetas(pair)
       for (const meta of possiblePoolMetas) {
         if (!poolAddressSet.has(meta.id)) {
           poolMetas.push(meta)

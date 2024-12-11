@@ -97,7 +97,7 @@ export default function PoolFinder() {
   return (
     <Page>
       <AppBody>
-        <AppHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/liquidity/positions" />
+        <AppHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/liquidity/pools" />
         <AutoColumn style={{ padding: '1rem' }} gap="md">
           <StyledButton
             endIcon={<ChevronDownIcon />}

@@ -1,10 +1,11 @@
 /* eslint-disable no-await-in-loop, no-continue */
 import { Currency, CurrencyAmount, Price, TradeType } from '@pancakeswap/sdk'
-import { getStableSwapPairs } from './getStableSwapPairs'
-import { getStableSwapFee, getStableSwapOutputAmount } from './onchain'
-import { createTradeWithStableSwap, getFeePercent } from './stableSwap'
+
 import { BestTradeOptions, Pair, RouteType, StableSwapPair, TradeWithStableSwap } from './types'
 import { getOutputToken, involvesToken } from './utils/pair'
+import { stableSwapPairsByChainId } from './getStableSwapPairs'
+import { getStableSwapFee, getStableSwapOutputAmount } from './onchain'
+import { createTradeWithStableSwap, getFeePercent } from './stableSwap'
 
 export async function getBestTradeFromStablePools(
   amount: CurrencyAmount<Currency>,
@@ -14,7 +15,7 @@ export async function getBestTradeFromStablePools(
   const {
     currency: { chainId },
   } = amount
-  const pairs: StableSwapPair[] = (await getStableSwapPairs(chainId)) || []
+  const pairs = stableSwapPairsByChainId[chainId] || []
   const routes = computeAllRoutes(amount.currency, output, pairs, maxHops)
   const trades = await Promise.all(routes.map((r) => getStableTrade(amount, r, { provider })))
   if (!trades.length) {
