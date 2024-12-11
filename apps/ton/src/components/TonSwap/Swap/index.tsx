@@ -8,12 +8,12 @@ import { useCurrency } from 'hooks/Tokens'
 import { useSwapHotTokenDisplay } from 'hooks/useSwapHotTokenDisplay'
 import { Field } from 'state/swap/actions'
 import { useSingleTokenSwapInfo, useSwapState } from 'state/swap/hooks'
+import { StyledInputCurrencyWrapper, StyledSwapContainer } from '../../styles'
 import Page from '../Page'
 import { SwapFeaturesContext } from './SwapFeaturesContext'
 import { V3SwapForm } from './V3Swap'
 import PriceChartContainer from './components/Chart/PriceChartContainer'
 import { SwapSelection } from './components/SwapSelection'
-import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import { SwapType } from './types'
 
 export default function Swap() {

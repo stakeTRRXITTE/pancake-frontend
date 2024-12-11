@@ -1,6 +1,7 @@
 // import { TonConnectButton } from '@tonconnect/ui-react'
 
-import { CogIcon, Flex, LogoIcon, ShareIcon, Text } from '@pancakeswap/uikit'
+import { CogIcon, Flex, FlexGap, LinkExternal, LogoIcon, OpenNewIcon, ShareIcon, Text } from '@pancakeswap/uikit'
+import { bridgeLink } from 'config/constants/endpoints'
 import styled from 'styled-components'
 
 const StyledHeader = styled.header`
@@ -11,23 +12,40 @@ const StyledHeader = styled.header`
   align-items: center;
 `
 
-export const Header = () => {
+const StyledLinkExternal = styled(LinkExternal)`
+  color: ${({ theme }) => theme.colors.textSubtle};
+  gap: 4px;
+  cursor: pointer;
+`
+
+interface HeaderProps {
+  showBridgeLink?: boolean
+}
+export const Header = ({ showBridgeLink }: HeaderProps) => {
   return (
     <StyledHeader>
       <Flex alignItems="center">
         <LogoIcon width={24} />
 
-        <Flex ml="8px" alignItems="center">
+        <Flex ml="-4px" alignItems="center">
           {/* TODO: Move TON logo to assets */}
-          <img src="/images/ton-logo.png" alt="TON" width={24} />
+          <img src="/images/ton-logo.png" alt="TON" width={26} />
           <Text ml="8px">TON</Text>
         </Flex>
       </Flex>
 
-      <Flex alignItems="center">
+      <FlexGap gap="16px" alignItems="center">
+        {showBridgeLink && (
+          <>
+            <StyledLinkExternal href={bridgeLink} showExternalIcon={false}>
+              <span>Get TON</span>
+              <OpenNewIcon color="textSubtle" />
+            </StyledLinkExternal>
+          </>
+        )}
         <CogIcon width={24} color="textSubtle" />
-        <ShareIcon width={24} color="textSubtle" ml="16px" />
-      </Flex>
+        <ShareIcon width={24} color="textSubtle" />
+      </FlexGap>
       {/* <TonConnectButton /> */}
     </StyledHeader>
   )
