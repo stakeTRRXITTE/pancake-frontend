@@ -58,7 +58,7 @@ export const NotLockingCard: React.FC<React.PropsWithChildren<NotLockingCardProp
 
   return (
     <StyledCard innerCardProps={{ padding: hideCardPadding ? 0 : ['24px 16px', '24px 16px', '24px'] }}>
-      {!hideTitle && <Heading scale="md">{t('Lock CAKE to get veCAKE')}</Heading>}
+      {!hideTitle && <Heading scale="md">{t('Lock STAKE to get ESTATE')}</Heading>}
       <Grid
         gridTemplateColumns={isDesktop ? '1fr 1fr' : '1fr'}
         gridColumnGap="24px"

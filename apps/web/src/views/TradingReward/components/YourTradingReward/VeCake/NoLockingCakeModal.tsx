@@ -65,7 +65,7 @@ export const NoLockingCakeModal: React.FC<React.PropsWithChildren<NoLockingCakeM
   return (
     <StyledModal
       width="100%"
-      title={t('Lock CAKE to get veCAKE')}
+      title={t('Lock STAKE to get ESTATE')}
       headerBorderColor="transparent"
       maxWidth={['100%', '100%', '100%', '777px']}
       onDismiss={onDismiss}

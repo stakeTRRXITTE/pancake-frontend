@@ -52,14 +52,13 @@ export const chainName: { [key: number]: string } = {
 };
 
 // TODO: move to utils or token-list
-export const getTokenListBaseURL = (chainId: number) =>
-  `https://tokens.pancakeswap.finance/images/${chainName[chainId]}`;
+export const getTokenListBaseURL = (chainId: number) => `https://tokens.trrxitte.com/images/${chainName[chainId]}`;
 
 export const getTokenListTokenUrl = (token: Pick<Token, "chainId" | "address">) =>
   Object.keys(chainName).includes(String(token.chainId))
-    ? `https://tokens.pancakeswap.finance/images/${
-        token.chainId === ChainId.BSC ? "" : `${chainName[token.chainId]}/`
-      }${token.address}.png`
+    ? `https://tokens.trrxitte.com/images/${token.chainId === ChainId.BSC ? "" : `${chainName[token.chainId]}/`}${
+        token.address
+      }.png`
     : null;
 
 const commonCurrencySymbols = [
@@ -82,7 +81,7 @@ export const getCommonCurrencyUrl = memoize(
 export const getCommonCurrencyUrlBySymbol = memoize(
   (symbol?: string): string | undefined =>
     symbol && commonCurrencySymbols.includes(symbol)
-      ? `https://tokens.pancakeswap.finance/images/symbol/${symbol.toLocaleLowerCase()}.png`
+      ? `https://tokens.TRRXITTE.com/images/symbol/${symbol.toLocaleLowerCase()}.png`
       : undefined,
   (symbol?: string) => `logoUrls#symbol#${symbol}`
 );

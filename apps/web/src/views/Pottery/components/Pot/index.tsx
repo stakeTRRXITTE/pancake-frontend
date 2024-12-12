@@ -1,14 +1,14 @@
-import { styled } from 'styled-components'
-import { useState, useCallback, useMemo } from 'react'
-import { Flex, Box, Card, Text, useMatchBreakpoints, Balance, ButtonTabMenu } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
-import { useCakePrice } from 'hooks/useCakePrice'
+import { Balance, Box, ButtonTabMenu, Card, Flex, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { getBalanceNumber } from '@pancakeswap/utils/formatBalance'
+import { useCakePrice } from 'hooks/useCakePrice'
+import { useCallback, useMemo, useState } from 'react'
 import { usePotteryData } from 'state/pottery/hook'
-import Deposit from './Deposit/index'
-import Claim from './Claim/index'
-import CardHeader from './CardHeader'
+import { styled } from 'styled-components'
 import { POT_CATEGORY } from '../../types'
+import CardHeader from './CardHeader'
+import Claim from './Claim/index'
+import Deposit from './Deposit/index'
 
 const PotteryContainer = styled(Box)`
   position: relative;
@@ -105,8 +105,8 @@ const Pot: React.FC<React.PropsWithChildren> = () => {
               <Box>
                 <CardHeader
                   title={t('Pottery')}
-                  subTitle={t('Stake CAKE, Earn CAKE, Win CAKE')}
-                  primarySrc="https://tokens.pancakeswap.finance/images/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
+                  subTitle={t('Stake $STAKE, Earn $STAKE, Win $STAKE')}
+                  primarySrc="https://github.com/TRRXITTE/add-new-design-int.-index-dist./blob/main/TRRXITTE%20Int.png?raw=true"
                   secondarySrc="/images/pot-icon.svg"
                 />
                 {activeTab === POT_CATEGORY.Deposit ? <Deposit /> : <Claim />}

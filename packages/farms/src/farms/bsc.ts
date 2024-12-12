@@ -21,8 +21,8 @@ export const legacyFarmConfig: SerializedFarmConfig[] = [
   {
     pid: 0,
     v1pid: 0,
-    lpSymbol: 'CAKE',
-    lpAddress: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+    lpSymbol: 'STAKE',
+    lpAddress: '0x8CE592512B8BC92F0BEEac62F7cB692bb21aB225',
     token: bscTokens.syrup,
     quoteToken: bscTokens.wbnb,
   },

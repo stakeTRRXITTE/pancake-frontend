@@ -222,7 +222,7 @@ const config = {
       },
       {
         source: '/images/tokens/:address',
-        destination: 'https://tokens.pancakeswap.finance/images/:address',
+        destination: 'https://tokens.trrxitte.com/images/:address',
         permanent: false,
       },
       {

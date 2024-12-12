@@ -4,8 +4,8 @@ import {
   ImageProps,
   TokenImage as UIKitTokenImage,
   TokenPairImage as UIKitTokenPairImage,
-  TokenPairLogo as UIKitTokenPairLogo,
   TokenPairImageProps as UIKitTokenPairImageProps,
+  TokenPairLogo as UIKitTokenPairLogo,
 } from '@pancakeswap/uikit'
 import uriToHttp from '@pancakeswap/utils/uriToHttp'
 import { ASSET_CDN } from 'config/constants/endpoints'
@@ -34,7 +34,7 @@ export const getImageUrlFromToken = (token: Currency) => {
   return token
     ? token.isNative && token.chainId !== ChainId.BSC
       ? `${ASSET_CDN}/web/native/${token.chainId}.png`
-      : `https://tokens.pancakeswap.finance/images/${tokenImageChainNameMapping[token.chainId]}${address}.png`
+      : `https://tokens.trrxitte.com/images/${tokenImageChainNameMapping[token.chainId]}${address}.png`
     : ''
 }
 

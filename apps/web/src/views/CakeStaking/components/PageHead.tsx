@@ -26,12 +26,12 @@ export const PageHead = () => {
         <Heading />
         <Description />
         <NextLinkFromReactRouter
-          to="/swap?chain=bsc&inputCurrency=BNB&outputCurrency=0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82"
+          to="/swap?chain=bsc&inputCurrency=BNB&outputCurrency=0x8CE592512B8BC92F0BEEac62F7cB692bb21aB225"
           prefetch={false}
         >
           <Button p="0" variant="text" mt="4px">
             <Text color="primary" bold fontSize="16px" mr="4px">
-              {t('Get CAKE')}
+              {t('Get STAKE')}
             </Text>
             <ArrowForwardIcon color="primary" />
           </Button>

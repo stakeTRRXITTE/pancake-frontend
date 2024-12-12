@@ -1,5 +1,5 @@
 import { Token } from '@pancakeswap/swap-sdk-core'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import tryParseAmount from './tryParseAmount'
 
 describe('utils/tryParseAmount', () => {
@@ -16,10 +16,10 @@ describe('utils/tryParseAmount', () => {
         '100',
         new Token(
           56,
-          '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+          '0x8CE592512B8BC92F0BEEac62F7cB692bb21aB225',
           18,
-          'CAKE',
-          'PancakeSwap Token',
+          'STAKE',
+          'stakeTRRXITTE Token',
           'https://pancakeswap.finance/',
         ),
       ),

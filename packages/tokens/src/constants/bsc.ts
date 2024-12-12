@@ -2004,7 +2004,7 @@ export const bscTokens = {
   ),
   '8payV2': new ERC20Token(
     ChainId.BSC,
-    '0x6EaDc05928ACd93eFB3FA0DFbC644D96C6Aa1Df8',
+    '0xE610D6eE762f865F98B2458AF87A79828FA724F3',
     18,
     '8PAY v2',
     '8PAY Network v2',

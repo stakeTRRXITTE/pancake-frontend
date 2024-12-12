@@ -6,10 +6,10 @@ import BigNumber from 'bignumber.js'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { Ifo, PoolIds } from 'config/constants/types'
 import { useCurrencyBalance } from 'hooks/Balances'
+import useLedgerTimestamp from 'hooks/useLedgerTimestamp'
 import { useMemo } from 'react'
 import { getStatus } from 'views/Ifos/hooks/helpers'
 import { PublicIfoData, WalletIfoData } from 'views/Ifos/types'
-import useLedgerTimestamp from 'hooks/useLedgerTimestamp'
 import ContributeModal from './ContributeModal'
 
 interface Props {
@@ -67,7 +67,7 @@ const ContributeButton: React.FC<React.PropsWithChildren<Props>> = ({ poolId, if
     <IfoGetTokenModal
       symbol={ifo.currency.symbol}
       address={ifo.currency.address}
-      imageSrc={`https://tokens.pancakeswap.finance/images/aptos/${ifo.currency.address}.png`}
+      imageSrc={`https://tokens.trrxitte.com/images/aptos/${ifo.currency.address}.png`}
     />,
     false,
   )
